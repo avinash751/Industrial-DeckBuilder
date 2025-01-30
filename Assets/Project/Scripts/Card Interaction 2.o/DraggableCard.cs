@@ -1,9 +1,9 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(BoxCollider2D))]
-public class CardDraggable : MonoBehaviour
+public class DraggableCard : Draggable
 {
     [Header("References")]
     [SerializeField] private SortingGroup sortingGroup;
@@ -12,7 +12,6 @@ public class CardDraggable : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private Color invalidColor = Color.red;
     [SerializeField] private LayerMask cardLayer;
-    [SerializeField] private float moveSmoothness = 10f;
 
     private Color originalColor;
     private Vector3 originalPosition;
@@ -27,26 +26,30 @@ public class CardDraggable : MonoBehaviour
         originalColor = backgroundSprite.color;
         originalSortOrder = sortingGroup.sortingOrder;
     }
-
-    public void StartDrag()
+    protected override void OnMouseStartDrag()
     {
-        originalPosition = transform.position;
+        base.OnMouseStartDrag();
         sortingGroup.sortingOrder = 1;
         backgroundSprite.color = originalColor;
+        originalPosition = transform.position;
     }
 
-    public void UpdateDrag(Vector2 targetPosition)
+
+    protected override void UpdateDrag()
     {
-        transform.position = Vector3.Lerp(
-            transform.position,
-            targetPosition,
-            Time.deltaTime * moveSmoothness
-        );
-
-        CheckOverlaps();
+        base.UpdateDrag();
+        CheckForOverlappingCards();
     }
 
-    private void CheckOverlaps()
+    protected override void OnMouseEndDrag()
+    {
+        base.OnMouseEndDrag();
+        sortingGroup.sortingOrder = originalSortOrder;
+        if (!isValidPlacement) transform.position = originalPosition;
+        backgroundSprite.color = originalColor;
+
+    }
+    private void CheckForOverlappingCards()
     {
         Collider2D[] hits = Physics2D.OverlapBoxAll(
             transform.position,
@@ -63,12 +66,5 @@ public class CardDraggable : MonoBehaviour
 
         isValidPlacement = overlappingCards.Count == 0;
         backgroundSprite.color = isValidPlacement ? originalColor : invalidColor;
-    }
-
-    public void EndDrag()
-    {
-        sortingGroup.sortingOrder = originalSortOrder;
-        if (!isValidPlacement) transform.position = originalPosition;
-        backgroundSprite.color = originalColor;
     }
 }
