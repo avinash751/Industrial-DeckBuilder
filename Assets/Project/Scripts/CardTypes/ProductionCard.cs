@@ -1,9 +1,16 @@
 using CustomInspector;
 using UnityEngine;
 
-public class ProductionCard : MonoBehaviour
+public class ProductionCard : Card
 {
-    [SerializeField][Foldout] ProductionCardData productionCardSO;
+    [ReadOnly][SerializeField][Foldout] ProductionCardData productionCardSO;
+
+    public override void InitializeCard(CardData data)
+    {
+        base.InitializeCard(data);
+        productionCardSO = (ProductionCardData)data;
+        cardTypeText.text = "Production";
+    }
 
     void ProduceResource()
     {

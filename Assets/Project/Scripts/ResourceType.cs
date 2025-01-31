@@ -11,6 +11,6 @@ public enum RawResource
 public enum RefinedResource
 {
     StoneBricks,
-    Planks,
+    WoodPlanks,
     Cement,
 }
