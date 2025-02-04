@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public class CardFactory : MonoBehaviour
 {
     public static CardFactory Instance { get; private set; }
-    public List<CardData> cardDataList;
 
     private void Awake()
     {
@@ -19,10 +18,7 @@ public class CardFactory : MonoBehaviour
             Instance = this;
         }
 
-        foreach (CardData data in cardDataList)
-        {
-            CreateCard(data);
-        }
+        
     }
 
     public Card CreateCard(CardData data)

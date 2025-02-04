@@ -1,20 +1,15 @@
-using CustomInspector;
 using UnityEngine;
 
 public class ExtractionCard : Card
 {
-    [ReadOnly][SerializeField][Foldout] ExtractionCardData extractionCardSO;
-    [SerializeField]
+    [SerializeField] private ExtractionCardData extractionCardData;
 
     public override void InitializeCard(CardData data)
     {
         base.InitializeCard(data);
-        extractionCardSO = (ExtractionCardData)data;    
+        extractionCardData = (ExtractionCardData)data;
         cardTypeText.text = "Extraction";
     }
 
-    void ExtractResource()
-    {
-
-    }
 }
+

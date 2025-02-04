@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8e28f5aa7750748b0b3cc2adbad15f, type: 3}
+  m_Name: Stone Supply Chain
+  m_EditorClassIdentifier: 
+  ChainName: Stone Supply Chain
+  Cards:
+  - {fileID: 11400000, guid: 72762e146ef581342ba9453910dffc8c, type: 2}
+  - {fileID: 11400000, guid: ff6adab687baf8a4a8033ae23964a42b, type: 2}
+  - {fileID: 11400000, guid: 030bc5ed5a1c6a24c9e90556e438a06a, type: 2}
