@@ -53,6 +53,8 @@ MonoBehaviour:
   cardNameText: {fileID: 789084714949721148}
   cardTypeText: {fileID: 5222848148831339678}
   productionCardSO: {fileID: 0}
+  inputConnector: {fileID: 5782783199540889120}
+  outputConnector: {fileID: 1176033796638867979}
 --- !u!114 &8164788398406946847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,7 +281,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -736,7 +738,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -764,7 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f9a2c0972d71740a34c6d05317ef46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInput: 0
+  isInput: 1
   conveyor: {fileID: 0}
 --- !u!50 &8535467758665926764
 Rigidbody2D:

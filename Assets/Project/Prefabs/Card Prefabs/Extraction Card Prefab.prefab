@@ -629,6 +629,7 @@ MonoBehaviour:
   cardNameText: {fileID: 1245284668518345780}
   cardTypeText: {fileID: 9050317775030943431}
   extractionCardData: {fileID: 0}
+  outputConnector: {fileID: 8942630067686503376}
 --- !u!114 &2073530614838957763
 MonoBehaviour:
   m_ObjectHideFlags: 0

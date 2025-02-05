@@ -16,7 +16,6 @@ MonoBehaviour:
   CardDescription: "Produces And Transports \nStone Brick Made From Stone"
   CardIcon: {fileID: 21300000, guid: ffc58b5d1d8a6ed489be30f7a1291b1e, type: 3}
   IconColor: {r: 0, g: 0, b: 0, a: 1}
-  CardBackgroundColor: {r: 0.6114418, g: 0.7286151, b: 0.79622644, a: 0}
   CardPrefab: {fileID: 1371431145912167240, guid: fb5744d52171a584f922304ed4cfc27b, type: 3}
   ResourceInput:
     rawResources: 00000000
@@ -25,3 +24,4 @@ MonoBehaviour:
     rawResources: 
     refinedResources: 00000000
   ProductionRate: 1
+  resourcePrefab: {fileID: 294623129989791824, guid: dda61fde0367fa14c9fb96559b884f70, type: 3}

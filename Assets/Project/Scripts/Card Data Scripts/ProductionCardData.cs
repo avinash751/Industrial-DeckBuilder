@@ -8,7 +8,12 @@ public class ProductionCardData : CardData
     public MultiResource ResourceInput;
     public MultiResource ResourceOutput;
     public int ProductionRate;
+
+    [Preview]
+    [SerializeField]
+    public GameObject resourcePrefab; // Prefab for the resource to spawn
 }
+
 
 [System.Serializable]
 public class MultiResource
