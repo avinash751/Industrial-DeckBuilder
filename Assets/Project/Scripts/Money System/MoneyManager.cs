@@ -1,21 +1,23 @@
+using CustomInspector;
 using UnityEngine;
+using System; 
 
 public class MoneyManager : MonoBehaviour
 {
-    public static MoneyManager Instance { get; private set; } // Singleton instance
+    public static MoneyManager Instance { get; private set; } 
 
-    private float currentMoney;
+    [SerializeField] float startingMoney = 100f;
+    [SerializeField][ReadOnly] private float currentMoney;
 
-    public float CurrentMoney => currentMoney; // Public getter for the current money
+    public float CurrentMoney => currentMoney; 
 
-    private void Awake()
+    public event Action<float, float> OnMoneyChanged; 
+
+    private void OnEnable()
     {
-        // Singleton pattern implementation
         if (Instance == null)
         {
             Instance = this;
-            // Don't destroy on scene load so money persists (if needed across scenes)
-            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -24,13 +26,15 @@ public class MoneyManager : MonoBehaviour
             return;
         }
 
-        currentMoney = 100f; // Starting money as you specified
+        currentMoney = startingMoney;
+        OnMoneyChanged?.Invoke(currentMoney, 0f); 
     }
 
     public void AddMoney(float amount)
     {
         currentMoney += amount;
         Debug.Log($"Money added: {amount}. Current money: {currentMoney}");
+        OnMoneyChanged?.Invoke(currentMoney, amount);
     }
 
     public void SubtractMoney(float amount)
@@ -39,11 +43,13 @@ public class MoneyManager : MonoBehaviour
         {
             currentMoney -= amount;
             Debug.Log($"Money subtracted: {amount}. Current money: {currentMoney}");
+            OnMoneyChanged?.Invoke(currentMoney, -amount); 
         }
         else
         {
             Debug.Log("Insufficient funds!");
-            // Optionally handle insufficient funds (e.g., return false, trigger an event)
+            // You could also invoke the event here with 0 change or a specific value if you want to signal insufficient funds in the UI
+            OnMoneyChanged?.Invoke(currentMoney, 0f); 
         }
     }
 

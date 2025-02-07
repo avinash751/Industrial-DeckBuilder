@@ -17,6 +17,6 @@ MonoBehaviour:
   CardIcon: {fileID: 21300000, guid: 857187d2d610c234587c8a50803e4307, type: 3}
   IconColor: {r: 0, g: 0, b: 0, a: 1}
   CardPrefab: {fileID: 6904530581578315095, guid: 498f941d5eb5f1b47856e40fcd5c3c19, type: 3}
-  ResourceToExtract: 0
+  ResourceToExtract: 1
   resourcePrefab: {fileID: 294623129989791824, guid: 50844ba937eadbf46974ca775e250718, type: 3}
   ExtractionRate: 1
