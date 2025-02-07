@@ -9,14 +9,12 @@ public class Draggable : MonoBehaviour, IDraggable
     public Action OnDragStarted { get; set; }
 
     [SerializeField] protected float moveSmoothness = 10f;
-
     [SerializeField] Camera mainCamera;
 
     private void Start()
     {
         mainCamera = Camera.main;
     }
-
 
     private void OnMouseDown()
     {
@@ -33,11 +31,11 @@ public class Draggable : MonoBehaviour, IDraggable
         OnMouseEndDrag();
     }
 
-
     protected virtual void OnMouseStartDrag()
     {
+        // Reset the drag delay timer at the start of a new drag.
         OnDragStarted?.Invoke();
-        DragManager.StartDragging();
+        DragManager.ResetDragDelay();
     }
 
     protected virtual void OnMouseEndDrag()
@@ -46,13 +44,15 @@ public class Draggable : MonoBehaviour, IDraggable
         DragManager.StopDragging();
     }
 
-    protected virtual void  UpdateDrag()
+    protected virtual void UpdateDrag()
     {
+        DragManager.StartDragDelay();
+        if (!DragManager.IsDragging)
+            return;
 
         Vector3 targetPosition = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         targetPosition.z = 0;
-        transform.position = Vector3.Lerp(transform.position, targetPosition,
-                             Time.deltaTime * moveSmoothness);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * moveSmoothness);
         OnDragUpdate?.Invoke();
     }
 }

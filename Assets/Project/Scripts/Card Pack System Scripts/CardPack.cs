@@ -35,6 +35,7 @@ public class CardPack : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (DragManager.IsDragging) return;
         SpawnNextCard();
     }
 

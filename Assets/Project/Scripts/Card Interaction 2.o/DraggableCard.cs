@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.InputSystem;
+using System;
 
 public class DraggableCard : Draggable
 {
@@ -13,11 +14,13 @@ public class DraggableCard : Draggable
     [SerializeField] private Color invalidColor = Color.red;
     [SerializeField] private LayerMask cardLayer;
 
+
     private Color originalColor;
     private Vector3 originalPosition;
     private int originalSortOrder;
     private bool isValidPlacement;
     private List<Collider2D> overlappingCards = new List<Collider2D>();
+    event Action onCollisionEnter;
 
     private void Awake()
     {
@@ -25,6 +28,7 @@ public class DraggableCard : Draggable
         sortingGroup = GetComponentInChildren<SortingGroup>();
         originalColor = backgroundSprite.color;
         originalSortOrder = sortingGroup.sortingOrder;
+        onCollisionEnter?.Invoke();
     }
     protected override void OnMouseStartDrag()
     {
@@ -57,6 +61,7 @@ public class DraggableCard : Draggable
             0,
             cardLayer
         );
+
 
         overlappingCards.Clear();
         foreach (Collider2D hit in hits)
