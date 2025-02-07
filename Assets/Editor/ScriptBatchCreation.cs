@@ -187,6 +187,7 @@ public class ScriptBatchCreation : EditorWindow
             if (GUILayout.Button("Add Script", GUILayout.Width(80))) // Adjust width to make it smaller
             {
                 batch.scripts.Add(new ScriptEntry());
+
             }
             EditorGUILayout.EndHorizontal();
 
@@ -207,8 +208,9 @@ public class ScriptBatchCreation : EditorWindow
         if (GUILayout.Button("Add Script Batch"))
         {
             scriptBatches.Add(new ScriptBatch());
+            scriptBatches[ scriptBatches.Count-1].scripts.Add(new ScriptEntry());
         }
-
+                                                                                                                    
         if (GUILayout.Button("Create Scripts"))
         {
             CreateScripts();

@@ -985,6 +985,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 190917795}
     m_Modifications:
+    - target: {fileID: 4767060061400764241, guid: d4e09ea80adc13249af809ae87e786c3, type: 3}
+      propertyPath: dragDelay
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5213417876246887686, guid: d4e09ea80adc13249af809ae87e786c3, type: 3}
       propertyPath: m_Name
       value: Drag Manager
