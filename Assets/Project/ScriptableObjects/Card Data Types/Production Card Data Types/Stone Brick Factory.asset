@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Stone Brick Factory
   m_EditorClassIdentifier: 
   CardName: Stone Brick Factory
+  sellValue: 6
   CardDescription: "Produces And Transports \nStone Brick Made From Stone"
   CardIcon: {fileID: 21300000, guid: ffc58b5d1d8a6ed489be30f7a1291b1e, type: 3}
   IconColor: {r: 0, g: 0, b: 0, a: 1}

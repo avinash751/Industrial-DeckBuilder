@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cement Factory
   m_EditorClassIdentifier: 
   CardName: Cement Factory
+  sellValue: 9
   CardDescription: "Produces And Transports \nCement Made From\nStone & Cement"
   CardIcon: {fileID: 21300000, guid: f708c0da8a2b5fc4381f7f8d4a322a0a, type: 3}
   IconColor: {r: 0, g: 0, b: 0, a: 1}

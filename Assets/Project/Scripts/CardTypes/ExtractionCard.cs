@@ -19,6 +19,7 @@ public class ExtractionCard : Card
     }
 
     private void Update()
+
     {
         if(!isExtracting && outputConnector.IsConnected())
         {

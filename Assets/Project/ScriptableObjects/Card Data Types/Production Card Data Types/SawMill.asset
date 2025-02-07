@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SawMill
   m_EditorClassIdentifier: 
   CardName: Saw Mill
+  sellValue: 6
   CardDescription: "Produces And Transports \nWood Planks Made From Wood"
   CardIcon: {fileID: 21300000, guid: ac47ed8ccc79cf04dae198b9cc5b3a6f, type: 3}
   IconColor: {r: 0, g: 0, b: 0, a: 1}
