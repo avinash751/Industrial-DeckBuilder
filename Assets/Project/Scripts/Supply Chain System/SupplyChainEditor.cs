@@ -92,7 +92,7 @@ public class SupplyChainEditor : MonoBehaviour
         bool intersects = CheckForIntersections(currentMousePosition);
         if (Input.GetMouseButtonDown(0)  && waypoints.Count >= 1 && !intersects)
         {
-            ICommand placeCommand = new PlacePreviewConveyorSegment(this, currentMousePosition, lineWidth);
+            ICommand placeCommand = new PlacePreviewConveyorSegment(waypoints,this, currentMousePosition, lineWidth);
             commandManager.ExecuteCommand(placeCommand);
         }
         waypoints[waypoints.Count - 1] = currentMousePosition;
@@ -100,19 +100,8 @@ public class SupplyChainEditor : MonoBehaviour
         previewLine.positionCount = waypoints.Count;
         previewLine.SetPositions(waypoints.ToArray());
 
-
         previewLine.startColor = intersects ? invalidColor : validColor;
         previewLine.endColor = intersects ? invalidColor : validColor;
-
-    }
-
-    public void AddWaypointSegment(Vector3 point)
-    {
-        if (waypoints.Count > 0)
-        {
-            waypoints[waypoints.Count - 1] = point;
-        }
-        waypoints.Add(Vector3.zero); // Add placeholder for next point
     }
 
     void AttemptToCompleteLine(Connector connector)
@@ -194,23 +183,6 @@ public class SupplyChainEditor : MonoBehaviour
         waypoints.Clear();
         commandManager.ClearCommandHistory();
         startConnector = null;
-    }
-
-    public void RemoveLastWaypointSegment()
-    {
-        if (waypoints.Count > 2)
-        {
-            waypoints.RemoveAt(waypoints.Count - 2);
-        }
-    }
-
-    public Vector3 GetLastWaypoint()
-    {
-        if (waypoints.Count > 1)
-        {
-            return waypoints[waypoints.Count - 2]; // Return the second to last waypoint
-        }
-        return Vector3.zero;
     }
 
     public void DestroyAllPreviewColliders()
