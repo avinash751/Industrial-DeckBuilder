@@ -18,14 +18,10 @@ public class SupplyChainEditor : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private State currentState = State.Idle;
     [SerializeField] private List<Vector3> waypoints = new List<Vector3>();
-
-    // Finalized segment colliders from completed conveyors
-    [SerializeField] private List<EdgeCollider2D> segmentColliders = new List<EdgeCollider2D>();
-    private List<EdgeCollider2D> previewSegmentColliders = new List<EdgeCollider2D>();
-
+    [SerializeField] private List<EdgeCollider2D> finalizedSegmentColliders = new List<EdgeCollider2D>();
+    [SerializeField] public List<EdgeCollider2D> previewSegmentColliders = new List<EdgeCollider2D>();
     private CommandManager commandManager = new CommandManager();
     private Connector startConnector;
-
 
     void Start()
     {
@@ -59,7 +55,6 @@ public class SupplyChainEditor : MonoBehaviour
         currentState = State.Editing;
         waypoints.Clear();
         waypoints.Add(connector.transform.position);
-        waypoints.Add(Vector3.zero); // Placeholder for current mouse position
         previewLine.enabled = true;
         startConnector = connector;
         commandManager.ClearCommandHistory();
@@ -86,28 +81,29 @@ public class SupplyChainEditor : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            EndEditMode(true);
+            DestroyAllPreviewColliders();
+            EndEditMode();
         }
     }
 
     void UpdatePreviewLine()
     {
         Vector2 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        bool intersects = CheckForIntersections(currentMousePosition);
+        if (Input.GetMouseButtonDown(0)  && waypoints.Count >= 1 && !intersects)
+        {
+            ICommand placeCommand = new PlacePreviewConveyorSegment(this, currentMousePosition, lineWidth);
+            commandManager.ExecuteCommand(placeCommand);
+        }
         waypoints[waypoints.Count - 1] = currentMousePosition;
 
         previewLine.positionCount = waypoints.Count;
         previewLine.SetPositions(waypoints.ToArray());
 
-        bool intersects = CheckForIntersections(currentMousePosition);
 
         previewLine.startColor = intersects ? invalidColor : validColor;
         previewLine.endColor = intersects ? invalidColor : validColor;
 
-        if (Input.GetMouseButtonDown(0) && waypoints.Count >= 2 && !intersects)
-        {
-            ICommand placeCommand = new PlacePreviewConveyorSegment(this, currentMousePosition);
-            commandManager.ExecuteCommand(placeCommand);
-        }
     }
 
     public void AddWaypointSegment(Vector3 point)
@@ -117,7 +113,6 @@ public class SupplyChainEditor : MonoBehaviour
             waypoints[waypoints.Count - 1] = point;
         }
         waypoints.Add(Vector3.zero); // Add placeholder for next point
-        AddPreviewSegmentCollider(waypoints[waypoints.Count - 3], waypoints[waypoints.Count - 2]);
     }
 
     void AttemptToCompleteLine(Connector connector)
@@ -128,8 +123,6 @@ public class SupplyChainEditor : MonoBehaviour
 
         if (!intersects)
         {
-            // Add collider for the final segment
-            AddPreviewSegmentCollider(waypoints[waypoints.Count - 2], waypoints[waypoints.Count - 1]);
             FinalizeLine(connector);
         }
         else
@@ -147,40 +140,32 @@ public class SupplyChainEditor : MonoBehaviour
         Vector2 endPoint = newPoint;
 
         // Create a temporary collider for the new segment
-        GameObject tempObj = new GameObject("TempSegment");
-        EdgeCollider2D tempCollider = tempObj.AddComponent<EdgeCollider2D>();
+        GameObject tempColliderObj = new GameObject("TempSegment");
+        EdgeCollider2D tempCollider = tempColliderObj.AddComponent<EdgeCollider2D>();
         tempCollider.edgeRadius = lineWidth / 2.5f;
-        tempCollider.isTrigger = true; // Set as trigger to prevent physics interactions
+        tempCollider.isTrigger = true;
 
         // Apply trimming to the collider
         Vector2 direction = (endPoint - startPoint).normalized;
         float segmentLength = Vector2.Distance(startPoint, endPoint);
-        float trimAmount = segmentLength * 0.1f; // Trim 12.5% from each end
-
-        // Ensure we don't over-trim
+        float trimAmount = segmentLength * 0.1f; // Trim 10% from each end 
         trimAmount = Mathf.Min(trimAmount, segmentLength / 2f);
 
         Vector2 trimmedStart = startPoint + direction * trimAmount;
         Vector2 trimmedEnd = endPoint - direction * trimAmount;
-
         tempCollider.points = new Vector2[ ] { trimmedStart, trimmedEnd };
 
-        // Check for collisions with existing colliders
         bool intersects = false;
-
-        // Prepare the contact filter
         ContactFilter2D contactFilter = new ContactFilter2D();
         contactFilter.useTriggers = true;
-
         Collider2D[ ] results = new Collider2D[10];
-
         int collisionCount = tempCollider.Overlap(contactFilter, results);
 
         if (collisionCount > 0)
         {
             foreach (var collider in results)
             {
-                if (collider != null && (segmentColliders.Contains(collider) || previewSegmentColliders.Contains(collider)))
+                if (collider != null && finalizedSegmentColliders.Contains(collider)||previewSegmentColliders.Contains(collider))
                 {
                     intersects = true;
                     break;
@@ -189,33 +174,8 @@ public class SupplyChainEditor : MonoBehaviour
         }
 
         // Clean up temporary object
-        Destroy(tempObj);
-
+        Destroy(tempColliderObj);
         return intersects;
-    }
-
-    void AddPreviewSegmentCollider(Vector2 startPoint, Vector2 endPoint)
-    {
-        GameObject colliderObj = new GameObject("PreviewSegmentCollider");
-        colliderObj.transform.parent = this.transform;
-        EdgeCollider2D edgeCollider = colliderObj.AddComponent<EdgeCollider2D>();
-        edgeCollider.edgeRadius = lineWidth / 2.5f;
-        edgeCollider.isTrigger = true;
-
-        // Apply trimming to the collider
-        Vector2 direction = (endPoint - startPoint).normalized;
-        float segmentLength = Vector2.Distance(startPoint, endPoint);
-        float trimAmount = segmentLength * 0.1f; // Trim 10% from each end
-
-        // Ensure we don't over-trim
-        trimAmount = Mathf.Min(trimAmount, segmentLength / 2f);
-
-        Vector2 trimmedStart = startPoint + direction * trimAmount;
-        Vector2 trimmedEnd = endPoint - direction * trimAmount;
-
-        edgeCollider.points = new Vector2[ ] { trimmedStart, trimmedEnd };
-
-        previewSegmentColliders.Add(edgeCollider);
     }
 
     void FinalizeLine(Connector endConnector)
@@ -227,33 +187,13 @@ public class SupplyChainEditor : MonoBehaviour
         EndEditMode();
     }
 
-    public void EndEditMode(bool removePreviewCollidersPermanently = false)
+    void EndEditMode()
     {
         currentState = State.Idle;
         previewLine.enabled = false;
         waypoints.Clear();
         commandManager.ClearCommandHistory();
         startConnector = null;
-        ClearAllPreviewColliders(removePreviewCollidersPermanently);
-    }
-
-    private void ClearAllPreviewColliders(bool removePermanently = false)
-    {
-        if (removePermanently)
-        {
-            previewSegmentColliders.ForEach(collider => Destroy(collider.gameObject));
-            previewSegmentColliders.Clear();
-            return;
-        }
-        foreach (var previewCollider in previewSegmentColliders)
-        {
-            if (previewCollider != null)
-            {
-                // Move the collider to the finalized colliders list
-                segmentColliders.Add(previewCollider);
-            }
-        }
-        previewSegmentColliders.Clear();
     }
 
     public void RemoveLastWaypointSegment()
@@ -261,20 +201,23 @@ public class SupplyChainEditor : MonoBehaviour
         if (waypoints.Count > 2)
         {
             waypoints.RemoveAt(waypoints.Count - 2);
-
-            // Remove the last preview collider
-            RemoveLastPreviewCollider();
         }
     }
 
-    void RemoveLastPreviewCollider()
+    public Vector3 GetLastWaypoint()
     {
-        if (previewSegmentColliders.Count > 0)
+        if (waypoints.Count > 1)
         {
-            EdgeCollider2D lastCollider = previewSegmentColliders[previewSegmentColliders.Count - 1];
-            previewSegmentColliders.RemoveAt(previewSegmentColliders.Count - 1);
-            if (lastCollider != null)
-                Destroy(lastCollider.gameObject);
+            return waypoints[waypoints.Count - 2]; // Return the second to last waypoint
+        }
+        return Vector3.zero;
+    }
+
+    public void DestroyAllPreviewColliders()
+    {
+        while (commandManager.GetUndoCommandsCount() > 0)
+        {
+            commandManager.UndoCommand();
         }
     }
 }
