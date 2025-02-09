@@ -1,15 +1,16 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq; // Important for LINQ operations like All()
 using CustomInspector;
 
 public class ProductionCard : Card, IResourceReceiver
 {
     [ReadOnly][SerializeField][Foldout] private ProductionCardData productionCardSO;
-    [SerializeField] private Connector inputConnector;
-    [SerializeField] private Connector outputConnector;
+    [SerializeField] private List<Connector> inputConnectors = new List<Connector>(); // Now a list!
+    [SerializeField] private List<Connector> outputConnectors = new List<Connector>(); // Now a list!
 
-    private MultiResource receivedResources = new MultiResource();  // Stores received resource types
+    private MultiResource receivedResources = new MultiResource();
     private bool isProductionActive = false;
 
     public override void InitializeCard(CardData data)
@@ -20,34 +21,36 @@ public class ProductionCard : Card, IResourceReceiver
 
         isProductionActive = false;
         receivedResources = new MultiResource();
+        inputConnectors = connectorSpawner.GetConnectors(true);
+        outputConnectors = connectorSpawner.GetConnectors(false);
     }
 
-    // Called by the connector when a resource reaches the input.
     public void ReceiveResource(Resource resource)
     {
-        if (IsValidInput(resource))
+        if (!IsValidInputResource(resource))
         {
-            AddResourceToReceived(resource);
-            Destroy(resource.gameObject);
-            bool allResourcesRecived = CompareMultiResources(receivedResources, productionCardSO.ResourceInput);
-            if (!allResourcesRecived)
-            {
-                Debug.Log("Waiting for all required resources...");
-                return;
-            }
+            Debug.Log("Invalid resource received: " + resource.rawType);
+            return;
+        }
 
-            if (isProductionActive) return;
+        AddResourceToReceived(resource);
+        Destroy(resource.gameObject);
 
+        // Check if ALL required resources are received AND all input connectors are connected
+        if (!AreAllRequiredResourcesReceived() || !AreAllInputConnectorsConnected())
+        {
+            Debug.Log("Waiting for all required resources and input connections...");
+            return;
+        }
+
+        if (!isProductionActive)
+        {
             StartCoroutine(ProductionRoutine());
             isProductionActive = true;
         }
-        else
-        {
-            Debug.Log("Invalid resource received: " + resource.rawType);
-        }
     }
 
-    private bool IsValidInput(Resource resource)
+    private bool IsValidInputResource(Resource resource)
     {
         // Check allowed raw resources.
         foreach (RawResource allowedResource in productionCardSO.ResourceInput.rawResources)
@@ -64,7 +67,6 @@ public class ProductionCard : Card, IResourceReceiver
         return false;
     }
 
-    // Adds received resource to the MultiResource container.
     private void AddResourceToReceived(Resource resource)
     {
         if (!resource.isRefined)
@@ -93,18 +95,23 @@ public class ProductionCard : Card, IResourceReceiver
         }
     }
 
-    // Checks whether a resource array contains a specific resource.
-    private bool ContainsResource<T>(T[] resourceArray, T resourceType)
+    private bool AreAllRequiredResourcesReceived()
     {
-        foreach (T r in resourceArray)
-        {
-            if (EqualityComparer<T>.Default.Equals(r, resourceType))
-                return true;
-        }
-        return false;
+        return CompareMultiResources(receivedResources, productionCardSO.ResourceInput);
     }
 
-    // Compares two MultiResource objects to ensure all required resources are present.
+    private bool AreAllInputConnectorsConnected()
+    {
+        if (inputConnectors == null || inputConnectors.Count == 0) return true; // If no input connectors, consider it connected. Or handle as needed.
+        
+        for (int i = 0; i < inputConnectors.Count; i++)
+        {
+            if(inputConnectors[i] == null || !inputConnectors[i].IsConnected())
+                return false;
+        }
+        return true;
+    }
+
     private bool CompareMultiResources(MultiResource received, MultiResource required)
     {
         if (required.rawResources != null)
@@ -128,7 +135,6 @@ public class ProductionCard : Card, IResourceReceiver
         return true;
     }
 
-    // Coroutine that produces output resources at the production rate.
     IEnumerator ProductionRoutine()
     {
         while (true)
@@ -140,7 +146,7 @@ public class ProductionCard : Card, IResourceReceiver
 
     void ProduceResource()
     {
-        if (outputConnector == null || !inputConnector.IsConnected() || !outputConnector.IsConnected())
+        if (outputConnectors == null || outputConnectors.Count == 0 || !AreAllInputConnectorsConnected()) // Check for output connectors list and input connections
             return;
 
         if (productionCardSO.resourcePrefab == null)
@@ -149,28 +155,65 @@ public class ProductionCard : Card, IResourceReceiver
             return;
         }
 
-        // Instantiate output resource at the connector position.
-        GameObject outputResObj = Instantiate(productionCardSO.resourcePrefab, outputConnector.transform.position, Quaternion.identity);
+        List<ResourceInfo> outputResources = productionCardSO.ResourceOutput.GetAllResources();
+        for (int i = 0; i < outputConnectors.Count; i++)
+        {
+            Connector currentOutputConnector = outputConnectors[i];
+            if (currentOutputConnector == null || !currentOutputConnector.IsConnected()) continue;
+
+            // Determine which resource to produce for this connector
+            ResourceInfo resourceToProduce = default;
+            if (i < outputResources.Count)
+            {
+                resourceToProduce = outputResources[i];
+            }
+            else if (outputResources.Count > 0)
+            {
+                resourceToProduce = outputResources[i % outputResources.Count]; // Cycle through if more connectors than resources
+            }
+            else
+            {
+                Debug.LogWarning("No output resources defined in ProductionCardData, but output connectors exist.");
+                continue;
+            }
+
+            MakeAndInitializeResource(currentOutputConnector, resourceToProduce);
+        }
+    }
+
+    void MakeAndInitializeResource(Connector _currentOutputConnector, ResourceInfo _resourceToProduce)
+    {
+        GameObject outputResObj = Instantiate(productionCardSO.resourcePrefab, _currentOutputConnector.transform.position, Quaternion.identity);
         Resource res = outputResObj.GetComponent<Resource>();
-        if (res != null)
+        if (res == null) return;
+
+        if (_resourceToProduce.isRefined)
         {
             res.isRefined = true;
-            if (productionCardSO.ResourceOutput.refinedResources.Length > 0)
-            {
-                res.refinedType = productionCardSO.ResourceOutput.refinedResources[0];
-            }
-            else if (productionCardSO.ResourceOutput.rawResources.Length > 0)
-            {
-                res.isRefined = false;
-                res.rawType = productionCardSO.ResourceOutput.rawResources[0];
-            }
+            res.refinedType = _resourceToProduce.refinedType;
+        }
+        else
+        {
+            res.isRefined = false;
+            res.rawType = _resourceToProduce.rawType;
         }
 
         // If connected to a conveyor, add movement.
-        if (outputConnector.conveyor != null)
+        if (_currentOutputConnector.conveyor != null)
         {
             ResourceMover mover = outputResObj.GetComponent<ResourceMover>() ?? outputResObj.AddComponent<ResourceMover>();
-            mover.Initialize(outputConnector.conveyor.GetPathPoints());
+            mover.Initialize(_currentOutputConnector.conveyor.GetPathPoints());
         }
     }
+    private bool ContainsResource<T>(T[ ] resourceArray, T resourceType)
+    {
+        if (resourceArray == null) return false; // Handle null array case
+        foreach (T r in resourceArray)
+        {
+            if (EqualityComparer<T>.Default.Equals(r, resourceType))
+                return true;
+        }
+        return false;
+    }
+
 }

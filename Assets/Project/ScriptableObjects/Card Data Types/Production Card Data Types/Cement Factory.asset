@@ -19,8 +19,8 @@ MonoBehaviour:
   IconColor: {r: 0, g: 0, b: 0, a: 1}
   CardPrefab: {fileID: 1371431145912167240, guid: fb5744d52171a584f922304ed4cfc27b, type: 3}
   ResourceInput:
-    rawResources: 0300000001000000
-    refinedResources: 
+    rawResources: 03000000
+    refinedResources: 01000000
   ResourceOutput:
     rawResources: 
     refinedResources: 03000000

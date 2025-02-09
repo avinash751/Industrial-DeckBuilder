@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
+using System.Linq;
 
 public class ExtractionCard : Card
 {
@@ -13,13 +14,10 @@ public class ExtractionCard : Card
         base.InitializeCard(data);
         extractionCardData = (ExtractionCardData)data;
         cardTypeText.text = "Extraction";
-
-        // Start the extraction process.
-        
+        outputConnector = connectorSpawner.GetConnectors(false).First();       
     }
 
     private void Update()
-
     {
         if(!isExtracting && outputConnector.IsConnected())
         {
@@ -59,3 +57,5 @@ public class ExtractionCard : Card
         }
     }
 }
+
+
