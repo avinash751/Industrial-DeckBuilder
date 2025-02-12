@@ -8,7 +8,7 @@ public enum Month { January, February, March, April, May, June, July, August, Se
 public class MonthTimer : MonoBehaviour
 {
     public static MonthTimer Instance { get; private set; }
-    public static event Action OnMonthEnd;
+    public event Action OnMonthEnd;
 
     [SerializeField] private float monthDurationSeconds = 60f;
     [SerializeField][ReadOnly] private float timer;

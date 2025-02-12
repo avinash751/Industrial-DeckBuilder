@@ -1,14 +1,16 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq; // Important for LINQ operations like All()
+using System.Linq;
 using CustomInspector;
 
 public class ProductionCard : Card, IResourceReceiver
 {
     [ReadOnly][SerializeField][Foldout] private ProductionCardData productionCardSO;
-    [SerializeField] private List<Connector> inputConnectors = new List<Connector>(); // Now a list!
-    [SerializeField] private List<Connector> outputConnectors = new List<Connector>(); // Now a list!
+    [SerializeField] private List<Connector> inputConnectors = new List<Connector>();
+    [SerializeField] private List<Connector> outputConnectors = new List<Connector>();
+    // [SerializeField] private CardFeedbacks cardFeedbacks; // Add CardFeedbacks reference - assign in inspector!
+
 
     private MultiResource receivedResources = new MultiResource();
     private bool isProductionActive = false;
@@ -25,6 +27,45 @@ public class ProductionCard : Card, IResourceReceiver
         outputConnectors = connectorSpawner.GetConnectors(false);
     }
 
+
+    private void Start()
+    {
+        if (MonthTimer.Instance == null) return;
+        MonthTimer.Instance.OnMonthEnd += HandleEndOfMonthPayment; 
+    }
+
+    private void OnDisable()
+    {
+        if (MonthTimer.Instance == null) return;
+        MonthTimer.Instance.OnMonthEnd -= HandleEndOfMonthPayment;
+    }
+
+
+    private void HandleEndOfMonthPayment()
+    {
+        if (!AreAllInputConnectorsConnected() || !AreAllOutputConnectorsConnected())
+        {
+            return;
+        }
+        PayUpkeepCost();
+    }
+
+    private void PayUpkeepCost()
+    {
+        if (MoneyManager.Instance != null)
+        {
+            float upkeepCost = productionCardSO.MonthlyUpKeepCost;
+            MoneyManager.Instance.SubtractMoney(upkeepCost);
+            //cardFeedbacks.ShowMoneyFeedback(upkeepCost, Color.red); // Show feedback
+            Debug.Log($"{cardNameText.text} paid upkeep cost of ${upkeepCost}");
+        }
+        else
+        {
+            Debug.LogError("MoneyManager.Instance is null! Cannot deduct upkeep cost.");
+        }
+    }
+
+
     public void ReceiveResource(Resource resource)
     {
         if (!IsValidInputResource(resource))
@@ -36,7 +77,6 @@ public class ProductionCard : Card, IResourceReceiver
         AddResourceToReceived(resource);
         Destroy(resource.gameObject);
 
-        // Check if ALL required resources are received AND all input connectors are connected
         if (!AreAllRequiredResourcesReceived() || !AreAllInputConnectorsConnected())
         {
             Debug.Log("Waiting for all required resources and input connections...");
@@ -100,18 +140,6 @@ public class ProductionCard : Card, IResourceReceiver
         return CompareMultiResources(receivedResources, productionCardSO.ResourceInput);
     }
 
-    private bool AreAllInputConnectorsConnected()
-    {
-        if (inputConnectors == null || inputConnectors.Count == 0) return true; // If no input connectors, consider it connected. Or handle as needed.
-        
-        for (int i = 0; i < inputConnectors.Count; i++)
-        {
-            if(inputConnectors[i] == null || !inputConnectors[i].IsConnected())
-                return false;
-        }
-        return true;
-    }
-
     private bool CompareMultiResources(MultiResource received, MultiResource required)
     {
         if (required.rawResources != null)
@@ -146,7 +174,7 @@ public class ProductionCard : Card, IResourceReceiver
 
     void ProduceResource()
     {
-        if (outputConnectors == null || outputConnectors.Count == 0 || !AreAllInputConnectorsConnected()) // Check for output connectors list and input connections
+        if (outputConnectors == null || outputConnectors.Count == 0 || !AreAllInputConnectorsConnected()) 
             return;
 
         if (productionCardSO.resourcePrefab == null)
@@ -198,7 +226,6 @@ public class ProductionCard : Card, IResourceReceiver
             res.rawType = _resourceToProduce.rawType;
         }
 
-        // If connected to a conveyor, add movement.
         if (_currentOutputConnector.conveyor != null)
         {
             ResourceMover mover = outputResObj.GetComponent<ResourceMover>() ?? outputResObj.AddComponent<ResourceMover>();
@@ -216,4 +243,27 @@ public class ProductionCard : Card, IResourceReceiver
         return false;
     }
 
+    private bool AreAllInputConnectorsConnected()
+    {
+        if (inputConnectors == null || inputConnectors.Count == 0) return true; 
+
+        for (int i = 0; i < inputConnectors.Count; i++)
+        {
+            if (inputConnectors[i] == null || !inputConnectors[i].IsConnected())
+                return false;
+        }
+        return true;
+    }
+
+    private bool AreAllOutputConnectorsConnected()
+    {
+        if (outputConnectors == null || outputConnectors.Count == 0) return true; 
+
+        for (int i = 0; i < outputConnectors.Count; i++)
+        {
+            if (outputConnectors[i] == null || !outputConnectors[i].IsConnected())
+                return false;
+        }
+        return true;
+    }
 }

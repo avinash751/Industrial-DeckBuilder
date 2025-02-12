@@ -2,24 +2,60 @@ using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
 using System.Linq;
+using CustomInspector;
 
 public class ExtractionCard : Card
 {
     [SerializeField] private ExtractionCardData extractionCardData;
     [SerializeField] private Connector outputConnector;
+    //[SerializeField] private CardFeedbacks cardFeedbacks; // Added CardFeedbacks reference - assign in inspector!
 
-    [SerializeField]bool isExtracting;
+    [ReadOnly][SerializeField] bool isExtracting;
+
     public override void InitializeCard(CardData data)
     {
         base.InitializeCard(data);
         extractionCardData = (ExtractionCardData)data;
         cardTypeText.text = "Extraction";
-        outputConnector = connectorSpawner.GetConnectors(false).First();       
+        outputConnector = connectorSpawner.GetConnectors(false).First();
     }
+
+    private void Start()
+    {
+        if (MonthTimer.Instance == null) return;
+        MonthTimer.Instance.OnMonthEnd += HandleEndOfMonthPayment;
+    }
+
+    private void OnDisable()
+    {
+        if (MonthTimer.Instance == null) return;
+        MonthTimer.Instance.OnMonthEnd -= HandleEndOfMonthPayment;
+    }
+
+    private void HandleEndOfMonthPayment()
+    {
+        if (outputConnector == null ||!outputConnector.IsConnected())
+            return;
+        PayUpkeepCost();
+    }
+
+    private void PayUpkeepCost()
+    {
+        if (MoneyManager.Instance == null)
+        {
+            Debug.LogError("MoneyManager.Instance is null! Cannot deduct upkeep cost.");
+        }
+
+        float upkeepCost = extractionCardData.MonthlyUpKeepCost;
+        MoneyManager.Instance.SubtractMoney(upkeepCost);
+        // cardFeedbacks.ShowMoneyFeedback(upkeepCost, Color.red); // Show feedback
+        Debug.Log($"{cardNameText.text} paid upkeep cost of ${upkeepCost}");
+    }
+
 
     private void Update()
     {
-        if(!isExtracting && outputConnector.IsConnected())
+        if (!isExtracting && outputConnector.IsConnected())
         {
             StartCoroutine(ExtractionRoutine());
             isExtracting = true;
@@ -52,10 +88,8 @@ public class ExtractionCard : Card
 
         if (outputConnector.conveyor != null)
         {
-            ResourceMover mover = resourceObj.GetComponent< ResourceMover>();
+            ResourceMover mover = resourceObj.GetComponent<ResourceMover>();
             mover.Initialize(outputConnector.conveyor.GetPathPoints());
         }
     }
 }
-
-
