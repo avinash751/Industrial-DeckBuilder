@@ -40,8 +40,7 @@ public class ProductionCard : Card, IResourceReceiver
         MonthTimer.Instance.OnMonthEnd -= HandleEndOfMonthPayment;
     }
 
-
-    private void HandleEndOfMonthPayment()
+    protected override void HandleEndOfMonthPayment()
     {
         if (!AreAllInputConnectorsConnected() || !AreAllOutputConnectorsConnected())
         {
@@ -49,22 +48,6 @@ public class ProductionCard : Card, IResourceReceiver
         }
         PayUpkeepCost();
     }
-
-    private void PayUpkeepCost()
-    {
-        if (MoneyManager.Instance != null)
-        {
-            float upkeepCost = productionCardSO.MonthlyUpKeepCost;
-            MoneyManager.Instance.SubtractMoney(upkeepCost);
-            //cardFeedbacks.ShowMoneyFeedback(upkeepCost, Color.red); // Show feedback
-            Debug.Log($"{cardNameText.text} paid upkeep cost of ${upkeepCost}");
-        }
-        else
-        {
-            Debug.LogError("MoneyManager.Instance is null! Cannot deduct upkeep cost.");
-        }
-    }
-
 
     public void ReceiveResource(Resource resource)
     {

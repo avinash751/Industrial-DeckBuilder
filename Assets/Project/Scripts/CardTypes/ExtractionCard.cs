@@ -32,26 +32,12 @@ public class ExtractionCard : Card
         MonthTimer.Instance.OnMonthEnd -= HandleEndOfMonthPayment;
     }
 
-    private void HandleEndOfMonthPayment()
+    protected override void HandleEndOfMonthPayment()
     {
         if (outputConnector == null ||!outputConnector.IsConnected())
             return;
         PayUpkeepCost();
     }
-
-    private void PayUpkeepCost()
-    {
-        if (MoneyManager.Instance == null)
-        {
-            Debug.LogError("MoneyManager.Instance is null! Cannot deduct upkeep cost.");
-        }
-
-        float upkeepCost = extractionCardData.MonthlyUpKeepCost;
-        MoneyManager.Instance.SubtractMoney(upkeepCost);
-        // cardFeedbacks.ShowMoneyFeedback(upkeepCost, Color.red); // Show feedback
-        Debug.Log($"{cardNameText.text} paid upkeep cost of ${upkeepCost}");
-    }
-
 
     private void Update()
     {
