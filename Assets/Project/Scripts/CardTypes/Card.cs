@@ -15,7 +15,7 @@ public class Card : MonoBehaviour, ISellable
         cardIcon.sprite = data.CardIcon;
         cardIcon.color = data.IconColor;                                 
         cardNameText.text = data.CardName;     
-        sellValue = data.sellValue;
+        sellValue = data.SellValue;
         connectorSpawner = GetComponentInChildren<ConnectorSpawner>();         
         if (connectorSpawner != null)
         {

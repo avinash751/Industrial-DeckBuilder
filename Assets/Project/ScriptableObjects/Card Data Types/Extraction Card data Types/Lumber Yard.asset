@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Lumber Yard
   m_EditorClassIdentifier: 
   CardName: Lumber Yard
-  sellValue: 3
   CardDescription: Extracts And Transports Wood
   CardIcon: {fileID: 21300000, guid: 6cc5103edc9f0dd4f80e8274c73dfeac, type: 3}
   IconColor: {r: 0, g: 0, b: 0, a: 1}
   CardPrefab: {fileID: 6904530581578315095, guid: 498f941d5eb5f1b47856e40fcd5c3c19, type: 3}
+  MonthlyUpKeepCost: 3
+  SellValue: 5
   ResourceToExtract: 2
   resourcePrefab: {fileID: 294623129989791824, guid: 228d32b2d08bff94a814e4ebfef11574, type: 3}
   ExtractionRate: 1
