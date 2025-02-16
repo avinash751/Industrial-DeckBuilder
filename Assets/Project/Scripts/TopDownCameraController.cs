@@ -1,48 +1,69 @@
+using EditorAttributes;
 using UnityEngine;
 
 public class TopDownCameraController : MonoBehaviour
 {
     [Header("Base Movement Settings")]
-    [Tooltip("Damping factor for smooth camera movement. Higher values mean less smoothing (0 for no smoothing).")]
+    [Tooltip("Damping factor for smooth camera movement. Higher values mean less smoothing (0 for no smoothing). Range: 0-10")]
     [Range(0f, 10f)]
     [SerializeField] private float moveDamping = 0.2f;
 
-    [Header("Keyboard/Mouse Edge Scrolling Settings")]
+    [Line("#327ba8")]
+    [FoldoutGroup("Keyboard Movement", drawInBox: true, nameof(enableKeyboardMovement), nameof(keyboardMoveSpeed))]
+    [SerializeField] bool enableKeyboardMovement = true;
     [Tooltip("Speed of camera movement with WASD keys.")]
-    [SerializeField] private float keyboardMoveSpeed = 5f;
-    [Tooltip("Percentage of screen edge to activate edge scrolling (0-1).")]
-    [Range(0f, 0.5f)]
-    [SerializeField] private float edgeScrollZonePercentage = 0.05f;
+    [ShowField(nameof(enableKeyboardMovement))]
+    [SerializeField, HideInInspector] private float keyboardMoveSpeed = 5f;
+
+    [Line("#327ba8")]
+    [FoldoutGroup("Mouse Edge Scrolling", drawInBox: true, nameof(enableMouseEdgeScrolling), nameof(edgeScrollZonePercentage), nameof(edgeMoveSpeed))]
+    [SerializeField] bool enableMouseEdgeScrolling = true;
+    [Tooltip("Percentage of screen edge to activate edge scrolling (0-1). Range: 0-0.5")]
+    [ShowField(nameof(enableMouseEdgeScrolling))]
+    [SerializeField, HideInInspector] private float edgeScrollZonePercentage = 0.05f;
     [Tooltip("Speed of camera movement when mouse is at screen edges.")]
-    [SerializeField] private float edgeMoveSpeed = 3f;
+    [ShowField(nameof(enableMouseEdgeScrolling))]
+    [SerializeField, HideInInspector] private float edgeMoveSpeed = 3f;
 
-    [Header("Mouse Drag Movement Settings")]
-    [Range(0, 2)]
-    [SerializeField] int mouseDragInput;
-    [Range(0, 1)]
-    [SerializeField] float mouseDragSensitivity;
+    [Line("#327ba8")]
+    [FoldoutGroup("Mouse Drag Movement", drawInBox: true, nameof(enableMouseDragging), nameof(mouseDragInput), nameof(mouseDragSensitivity))]
+    [SerializeField] bool enableMouseDragging = true;
+    [Tooltip("Input button for mouse drag (0: Left, 1: Right, 2: Middle). Range: 0-2")]
+    [ShowField(nameof(enableMouseDragging))]
+    [SerializeField, HideInInspector] int mouseDragInput = 0;
+    [Tooltip("Sensitivity of mouse drag movement (adjust for drag speed). Range: 0-1")]
+    [ShowField(nameof(enableMouseDragging))]
+    [SerializeField, HideInInspector] float mouseDragSensitivity = 0.1f;
 
-
-    [Header("Zoom Settings")]
+    [Line("#327ba8")]
+    [FoldoutGroup("Camera Zoom", drawInBox: true, nameof(enableCameraZooming), nameof(zoomSpeed), nameof(zoomDamping), nameof(minZoom), nameof(maxZoom))]
+    [SerializeField] bool enableCameraZooming = true;
     [Tooltip("Speed of zooming with mouse wheel.")]
-    [SerializeField] private float zoomSpeed = 10f;
-    [Tooltip("Damping factor for smooth zooming. Higher values mean less smoothing (0 for no smoothing).")]
-    [Range(0f, 10f)]
-    [SerializeField] private float zoomDamping = 0.1f;
+    [ShowField(nameof(enableCameraZooming))]
+    [SerializeField, HideInInspector] private float zoomSpeed = 10f;
+    [Tooltip("Damping factor for smooth zooming. Higher values mean less smoothing (0 for no smoothing). Range: 0-10")]
+    [ShowField(nameof(enableCameraZooming))]
+    [SerializeField, HideInInspector] private float zoomDamping = 0.1f;
     [Tooltip("Minimum allowed orthographic size (zoom level).")]
-    [SerializeField] private float minZoom = 1f;
+    [ShowField(nameof(enableCameraZooming))]
+    [SerializeField, HideInInspector] private float minZoom = 1f;
     [Tooltip("Maximum allowed orthographic size (zoom level).")]
-    [SerializeField] private float maxZoom = 20f;
+    [ShowField(nameof(enableCameraZooming))]
+    [SerializeField, HideInInspector] private float maxZoom = 20f;
 
-    [Header("Movement Clamp Settings")]
+    [Line("#327ba8")]
+    [Title("<b>Movement Clamping Settings</b>",12,13,false,0,TextAnchor.MiddleLeft)]
     [Tooltip("Minimum X position the camera can reach in world units.")]
-    [SerializeField] private float minXClamp = -10f;
+    [HorizontalGroup(true, nameof(minXClamp), nameof(maxXClamp))]
+    [SerializeField]private float minXClamp = -10f;
     [Tooltip("Maximum X position the camera can reach in world units.")]
-    [SerializeField] private float maxXClamp = 10f;
+    [SerializeField,HideInInspector]private float maxXClamp = 10f;
+    [HorizontalGroup(true, nameof(minYClamp), nameof(maxYClamp))]
     [Tooltip("Minimum Y position the camera can reach in world units.")]
     [SerializeField] private float minYClamp = -10f;
     [Tooltip("Maximum Y position the camera can reach in world units.")]
-    [SerializeField] private float maxYClamp = 10f;
+    [SerializeField,HideInInspector] private float maxYClamp = 10f;
+    [Line("#327ba8")]
 
     private Camera cam;
     private Vector3 targetPosition;
@@ -75,6 +96,8 @@ public class TopDownCameraController : MonoBehaviour
 
     void HandleKeyboardMovement()
     {
+        if (!enableKeyboardMovement) return;
+
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -85,6 +108,8 @@ public class TopDownCameraController : MonoBehaviour
 
     void HandleEdgeScrolling()
     {
+        if (!enableMouseEdgeScrolling) return;
+
         currentMousePosition = Input.mousePosition;
         float screenWidth = Screen.width;
         float screenHeight = Screen.height;
@@ -116,6 +141,7 @@ public class TopDownCameraController : MonoBehaviour
 
     void HandleMouseDragging()
     {
+        if (!enableMouseDragging) return;
         if (Input.GetMouseButtonDown(mouseDragInput))
         {
             startMouseDragPosition = Input.mousePosition;
@@ -133,6 +159,7 @@ public class TopDownCameraController : MonoBehaviour
 
     void HandleZoom()
     {
+        if (!enableCameraZooming) return;
         float scrollInput = Input.mouseScrollDelta.y;
 
         if (scrollInput != 0)

@@ -1021,7 +1021,7 @@ MonoBehaviour:
     animatorParameterAttributeExamples:
       animatorController: {fileID: 9100000, guid: 3a1cea91d6692bf40b069a1d3b66f1b5, type: 2}
       animator: {fileID: 0}
-      paramName2: NewFloat
+      paramName2: <missing>
       paramName: <missing>
     asButtonAttributeExamples:
       selectableBoolean: 0
@@ -1031,7 +1031,7 @@ MonoBehaviour:
       myString: notSelected
       _: 0
     asRangeAttributeExamples:
-      positiveRange: {x: 0, y: 3.1415927}
+      positiveRange: {x: 0, y: 10}
       negativeRange: {x: 5.274035, y: 1}
     assetsOnlyAttributeExamples:
       gob1: {fileID: 0}
@@ -1048,7 +1048,7 @@ MonoBehaviour:
       _bool: 0
       _number: 0
     colorPaletteAttributeExamples:
-      myImageColor1: {r: 0.01, g: 0.36, b: 0.59, a: 1}
+      myImageColor1: {r: 0.01, g: 0.22, b: 0.42, a: 1}
       myImageColor2: {r: 0.7, g: 0.8, b: 0.88, a: 1}
       alternativeColor1: {r: 0, g: 1, b: 0.88, a: 1}
       alternativeColor2: {r: 1, g: 1, b: 0, a: 1}
@@ -1132,7 +1132,7 @@ MonoBehaviour:
         bar: World
       test: combine with a button
       b: 0
-      hisName: James
+      hisName: zdfesf
       hisName2: Robert
       hisName3: Smith
       herName: Jennifer
@@ -1312,7 +1312,7 @@ MonoBehaviour:
     toolbarAttributeExamples:
       edit: 0
       create: 0
-      animal: 0
+      animal: 2
       type: 0
     tooltipBoxAttributeExamples:
       myGameObject: {fileID: 0}
