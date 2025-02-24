@@ -3,14 +3,9 @@ using UnityEngine;
 namespace GameManagerSystem.Configuration
 {
     [CreateAssetMenu(fileName = "PauseBehaviorConfig", menuName = "Game Manager/Behavior Configs/Pause Behavior Config", order = 5)]
-    public class PauseBehaviorConfigSO : ScriptableObject
+    public class PauseBehaviorConfigSO :BaseGameBehaviourConfigSO
     {
-        [Header("Pause Behavior Configuration")]
-        public bool SetTimescaleToZeroOnPause = true;
-        public bool DisableCursorLockModeOnPause = true;
-        public bool EnableCursorVisibilityOnPause = true;
-
-        [Header("Input Settings")]
+        [Header("Pause Behaviour Settings")]
         public KeyCode PauseKey = KeyCode.Escape;
     }
 }
