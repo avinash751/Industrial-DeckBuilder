@@ -37,6 +37,7 @@ namespace GameManagerSystem.Configuration
 
         public void InitializeGameConfigurations(GameManager gameManager)
         {
+            gameManager.ClearAllBehaviours();
             foreach (BehaviorConfiguration behaviorConfiguration in behaviorConfigurations)
             {
                 switch (behaviorConfiguration.configSO.BehaviorType)

@@ -23,8 +23,11 @@ namespace GameManagerSystem
         Lose
     }
 
+
+    [System.Serializable]
     public abstract class GameBehaviorBase
     {
+        [SerializeField][HideInInspector]string behaviorName;
         protected GameManager gameManager { get; private set; }
         [SerializeField] protected BaseGameBehaviourConfigSO BehaviourConfigSO;
 
@@ -32,6 +35,7 @@ namespace GameManagerSystem
         {
             gameManager = _gameManager;
             BehaviourConfigSO = _behaviourConfigSO;
+            behaviorName = _behaviourConfigSO.BehaviorType.ToString() +" Behaviour";
         }
 
         public abstract void ExecuteBehavior();

@@ -6,15 +6,14 @@ namespace GameManagerSystem.GameBehaviors
     [System.Serializable]
     public class PauseBehavior : GameBehaviorBase
     {
-        [Header("Configuration")]
-        [SerializeField] private PauseBehaviorConfigSO config;
+        private PauseBehaviorConfigSO config;
 
         [Header("Pause State - Managed by PauseBehavior")]
         [field: SerializeField] public bool IsPaused { get; private set; } = false;
 
         public PauseBehavior(GameManager _gameManager, BaseGameBehaviourConfigSO _behaviourConfigSO) : base(_gameManager, _behaviourConfigSO)
         {
-
+            config = (PauseBehaviorConfigSO)BehaviourConfigSO;
         }
 
         public override void ExecuteBehavior()

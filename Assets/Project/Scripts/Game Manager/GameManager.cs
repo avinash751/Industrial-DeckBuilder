@@ -1,3 +1,4 @@
+using GameManagerSystem.Configuration;
 using GameManagerSystem.GameBehaviors;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace GameManagerSystem
 {
     public class GameManager : MonoBehaviour
     {
-        #region Singleton & Intialization
+        #region Singleton
 
         public static GameManager Instance { get; private set; }
 
@@ -24,9 +25,22 @@ namespace GameManagerSystem
 
         #endregion
 
-        [Header("Game Behaviors")]
-        [SerializeField] private List<GameBehaviorBase> gameBehaviors = new List<GameBehaviorBase>();
-
+        [SerializeField] GameManagerConfigSO gameManagerConfigSo;
+        [SerializeReference] private List<GameBehaviorBase> gameBehaviors = new List<GameBehaviorBase>();
+         
+        private void OnValidate()
+        {
+            if (gameManagerConfigSo == null)
+            {
+                Debug.LogWarning("No Game Manager Config found on GameManager. Please assign one.");
+                gameBehaviors.Clear();
+            }
+            else
+            {
+                gameManagerConfigSo.InitializeGameConfigurations(this);
+            }
+        }
+            
 
         #region Game State Control
 
@@ -67,7 +81,9 @@ namespace GameManagerSystem
         }
 
         public void AddGameBehaviour(GameBehaviorBase behavior) => gameBehaviors.Add(behavior);
-       
+
+        public void ClearAllBehaviours() => gameBehaviors.Clear();
+
 
         #endregion
     }
