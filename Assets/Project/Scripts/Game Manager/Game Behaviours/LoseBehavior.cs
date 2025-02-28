@@ -1,13 +1,19 @@
 using UnityEngine;
-using GameManagerSystem.Configuration;
 
 namespace GameManagerSystem.GameBehaviors
 {
+    [System.Serializable]
     public class LoseBehavior : GameBehaviorBase
     {
-        public override void ExecuteBehavior()
+      
+        public LoseBehavior(GameManager _gameManager,BaseGameBehaviourConfigSO _behaviourConfigSO) : base(_gameManager, _behaviourConfigSO)
         {
-           ApplyBaseBehaviorSettings(BehaviourConfigSO, GameBehaviorEventType.Lose);
+
         }
+
+        public override void ExecuteBehavior()
+        {           
+            ApplyBehaviorSettings(BehaviourConfigSO, GameBehaviorEventType.Lose);
+        }     
     }
 }

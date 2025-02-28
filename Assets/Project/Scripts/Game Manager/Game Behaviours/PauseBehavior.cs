@@ -3,6 +3,7 @@ using GameManagerSystem.Configuration;
 
 namespace GameManagerSystem.GameBehaviors
 {
+    [System.Serializable]
     public class PauseBehavior : GameBehaviorBase
     {
         [Header("Configuration")]
@@ -11,21 +12,21 @@ namespace GameManagerSystem.GameBehaviors
         [Header("Pause State - Managed by PauseBehavior")]
         [field: SerializeField] public bool IsPaused { get; private set; } = false;
 
-        private void Update()
+        public PauseBehavior(GameManager _gameManager, BaseGameBehaviourConfigSO _behaviourConfigSO) : base(_gameManager, _behaviourConfigSO)
         {
-            HandlePauseInput();
+
         }
 
         public override void ExecuteBehavior()
         {
-            TogglePauseState();
+            HandlePauseInput();
         }
 
         private void HandlePauseInput()
         {
             if (Input.GetKeyDown(config.PauseKey))
             {
-                TogglePauseState();                                                                             
+                TogglePauseState();
             }
         }
 
@@ -33,60 +34,27 @@ namespace GameManagerSystem.GameBehaviors
         {
             if (IsPaused)
             {
-                UnPauseGame();
+                ExecuteUnPause();
             }
             else
             {
-                PauseGame();
+                ExecutePause();
             }
         }
 
-        private void PauseGame()
+        private void ExecutePause()
         {
             if (IsPaused) return;
             IsPaused = true;
-            ExecutePauseBehavior();
+            ApplyBehaviorSettings(config, GameBehaviorEventType.Paused);
         }
 
-        private void UnPauseGame()
+        private void ExecuteUnPause()
         {
             if (!IsPaused) return;
             IsPaused = false;
-            ExecuteUnPauseBehavior();
-        }
-
-
-        private void ExecutePauseBehavior()
-        {
-            if (config == null)
-            {
-                Debug.LogError("PauseBehaviorConfigSO is not assigned to PauseBehavior. Please assign it in the Inspector.");
-                return;
-            }
-
-            Debug.Log("Executing Pause Behavior");
-
-            SetTimescale(config.SetTimescaleToZeroOnPause ? 0f : 1f);
-            SetCursorLockMode(config.DisableCursorLockModeOnPause);
-
-            if (GameManager.MenuManager != null)
-            {
-                GameManager.MenuManager.ShowPauseMenu();
-                GameManager.MenuManager.HideStartMenu();
-                GameManager.MenuManager.HideWinMenu();
-                GameManager.MenuManager.HideLoseMenu();
-            }
-            else
-            {
-                Debug.LogWarning("PrimaryMenusUIManager is null. Cannot show pause menu.");
-            }
-
-            InvokeOnBehaviorEvent(GameBehaviorEventType.Paused);
-        }
-
-        private void ExecuteUnPauseBehavior()
-        {
             InvokeOnBehaviorEvent(GameBehaviorEventType.UnPaused);
+            gameManager.GetBehavior<PlayBehavior>().ExecuteBehavior();
         }
     }
 }

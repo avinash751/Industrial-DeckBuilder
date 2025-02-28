@@ -2,11 +2,15 @@ using UnityEngine;
 
 namespace GameManagerSystem.GameBehaviors
 {
+    [System.Serializable]
     public class WinBehavior : GameBehaviorBase
-    { 
+    {
+        public WinBehavior(GameManager _gameManager, BaseGameBehaviourConfigSO _behaviourConfigSO) : base(_gameManager, _behaviourConfigSO)
+        {
+        }
         public override void ExecuteBehavior()
         {
-            ApplyBaseBehaviorSettings(BehaviourConfigSO, GameBehaviorEventType.Lose);
+            ApplyBehaviorSettings(BehaviourConfigSO, GameBehaviorEventType.Lose);
         }
     }
 }

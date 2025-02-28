@@ -7,37 +7,44 @@ namespace GameManagerSystem
 {
     public enum GameBehaviorEventType
     {
-        Initialized,
-        Started,
+        Initialized,// start of the game (Start)
+        GameStarted,// game is started (Play)
         Paused,
         UnPaused,
         Win,
         Lose
     }
-    public abstract class GameBehaviorBase : MonoBehaviour
+    public enum GameBehaviorType
     {
-        protected GameManager GameManager { get; private set; }
+        Start,
+        Play,
+        Paused,
+        Win,
+        Lose
+    }
+
+    public abstract class GameBehaviorBase
+    {
+        protected GameManager gameManager { get; private set; }
         [SerializeField] protected BaseGameBehaviourConfigSO BehaviourConfigSO;
 
-        protected virtual void Awake()
+        public GameBehaviorBase(GameManager _gameManager,BaseGameBehaviourConfigSO _behaviourConfigSO)
         {
-            GameManager = GameManager.Instance;
-            if (GameManager == null)
-            {
-                Debug.LogError("GameManager not found in the scene. Make sure GameManager script is present.");
-            }
+            gameManager = _gameManager;
+            BehaviourConfigSO = _behaviourConfigSO;
         }
 
         public abstract void ExecuteBehavior();
 
 
+
         // This needs to be called in Execute Behaviour in every derived class to apply the base behavior settings
-        protected virtual void  ApplyBaseBehaviorSettings(BaseGameBehaviourConfigSO config, GameBehaviorEventType eventType)
+        protected virtual void ApplyBehaviorSettings(BaseGameBehaviourConfigSO config, GameBehaviorEventType eventType)
         {
             if (BehaviourConfigSO == null)
             {
                 Debug.LogError("Config So is not assigned to this Game Manager Behaviour.Please assign it in the Inspector.");
-               
+
             }
 
             Debug.Log("Executing " + GetType().ToString());
@@ -50,19 +57,7 @@ namespace GameManagerSystem
                 LoadScene(config.SceneToLoad);
             }
 
-            if (GameManager.MenuManager != null)
-            {
-                GameManager.MenuManager.ShowLoseMenu();
-                GameManager.MenuManager.HidePauseMenu();
-                GameManager.MenuManager.HideStartMenu();
-                GameManager.MenuManager.HideWinMenu();
-            }
-            else
-            {
-                Debug.LogWarning("PrimaryMenusUIManager is null. Cannot show lose menu.");
-            }
-
-           InvokeOnBehaviorEvent(eventType);
+            InvokeOnBehaviorEvent(eventType);
         }
 
         protected virtual void SetTimescale(float customScale)
@@ -71,8 +66,8 @@ namespace GameManagerSystem
         }
 
         protected virtual void SetCursorLockMode(bool enabled)
-        {      
-            if(enabled)
+        {
+            if (enabled)
             {
                 Cursor.lockState = CursorLockMode.Locked;
             }
@@ -93,10 +88,8 @@ namespace GameManagerSystem
         }
 
         #region Centralized Behavior Event
-
         public event Action<GameBehaviorEventType> OnBehaviorEvent;
         protected void InvokeOnBehaviorEvent(GameBehaviorEventType eventType) => OnBehaviorEvent?.Invoke(eventType);
-
         #endregion
     }
 }

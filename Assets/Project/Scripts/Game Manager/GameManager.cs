@@ -8,11 +8,11 @@ namespace GameManagerSystem
 {
     public class GameManager : MonoBehaviour
     {
-        #region Singleton
+        #region Singleton & Intialization
 
         public static GameManager Instance { get; private set; }
 
-        private void Awake()
+        private void OnEnable()
         {
             if (Instance != null && Instance != this)
             {
@@ -20,11 +20,6 @@ namespace GameManagerSystem
                 return;
             }
             Instance = this;
-            MenuManager = GetComponentInChildren<PrimaryMenusUIManager>();
-            if (MenuManager == null)
-            {
-                Debug.LogError("PrimaryMenusUIManager not found in children of GameManager!");
-            }
         }
 
         #endregion
@@ -32,41 +27,18 @@ namespace GameManagerSystem
         [Header("Game Behaviors")]
         [SerializeField] private List<GameBehaviorBase> gameBehaviors = new List<GameBehaviorBase>();
 
-        public PrimaryMenusUIManager MenuManager { get; private set; }
 
         #region Game State Control
 
-        public void InitializeGame()
+        private void Start()
         {
             ExecuteBehavior<StartBehavior>();
         }
 
-        public void StartGame()
-        {
-            ExecuteBehavior<PlayBehavior>();
-        }
-
-        public void WinGame()
-        {
-            ExecuteBehavior<WinBehavior>();
-        }
-
-        public void LoseGame()
-        {
-            ExecuteBehavior<LoseBehavior>();
-        }
-
-        public void ExecutePauseBehavior()
+        private void Update()
         {
             ExecuteBehavior<PauseBehavior>();
         }
-
-        public void ExecuteUnPauseBehavior()
-        {
-            ExecuteBehavior<PauseBehavior>();
-            ExecuteBehavior<PlayBehavior>();
-        }
-
         #endregion
 
         #region Behavior Locator
@@ -93,6 +65,9 @@ namespace GameManagerSystem
                 behavior.ExecuteBehavior();
             }
         }
+
+        public void AddGameBehaviour(GameBehaviorBase behavior) => gameBehaviors.Add(behavior);
+       
 
         #endregion
     }

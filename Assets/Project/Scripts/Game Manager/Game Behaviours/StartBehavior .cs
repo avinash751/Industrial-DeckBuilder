@@ -1,13 +1,17 @@
 using UnityEngine;
-using GameManagerSystem.Configuration;
 
 namespace GameManagerSystem.GameBehaviors
 {
+    [System.Serializable]
     public class StartBehavior : GameBehaviorBase
     {
+        public StartBehavior(GameManager _gameManager, BaseGameBehaviourConfigSO _behaviourConfigSO) : base(_gameManager, _behaviourConfigSO)
+        {
+        }
         public override void ExecuteBehavior()
         {
-            ApplyBaseBehaviorSettings(BehaviourConfigSO, GameBehaviorEventType.Initialized);
+            ApplyBehaviorSettings(BehaviourConfigSO, GameBehaviorEventType.Initialized);
         }
+
     }
 }
