@@ -18,7 +18,7 @@ namespace GameManagerSystem.UI
         private WinBehavior winBehavior;
         private LoseBehavior loseBehavior;
 
-        private void Awake()
+        private void Start()
         {
             gameManager = GameManager.Instance;
             if (gameManager == null)
@@ -33,10 +33,6 @@ namespace GameManagerSystem.UI
             winBehavior = gameManager.GetBehavior<WinBehavior>();
             loseBehavior = gameManager.GetBehavior<LoseBehavior>();
 
-        }
-
-        private void Start()
-        {
             if (startBehavior != null) startBehavior.OnBehaviorEvent += OnBehaviorEventHandler;
             if (playBehavior != null) playBehavior.OnBehaviorEvent += OnBehaviorEventHandler;
             if (pauseBehavior != null) pauseBehavior.OnBehaviorEvent += OnBehaviorEventHandler;

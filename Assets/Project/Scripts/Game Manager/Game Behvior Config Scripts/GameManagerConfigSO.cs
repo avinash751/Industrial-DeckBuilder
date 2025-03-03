@@ -11,6 +11,7 @@ namespace GameManagerSystem.Configuration
     [CreateAssetMenu(fileName = "GameManagerConfig", menuName = "Game Manager/Game Manager Config", order = 0)]
     public class GameManagerConfigSO : ScriptableObject
     {
+        public int MainMenuSceneIndex = 0;
         [Header("Game Behaviors Configuration")]
         public List<BehaviorConfiguration> behaviorConfigurations = new List<BehaviorConfiguration>();
 

@@ -29,7 +29,7 @@ namespace GameManagerSystem.GameBehaviors
             }
         }
 
-        private void TogglePauseState()
+        public void TogglePauseState()
         {
             if (IsPaused)
             {

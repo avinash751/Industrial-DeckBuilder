@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BehaviorType: 0
   IsTimeZeroOnExecution: 1
-  IsCursorLockedOnExecution: 1
+  IsCursorLockedOnExecution: 0
   IsCursorVisibleOnExecution: 1
   LoadSceneOnExecution: 0
   SceneToLoad: 0

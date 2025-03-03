@@ -1,28 +1,9 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.Rendering.STP;
 
 namespace GameManagerSystem
 {
-    public enum GameBehaviorEventType
-    {
-        Initialized,// start of the game (Start)
-        GameStarted,// game is started (Play)
-        Paused,
-        UnPaused,
-        Win,
-        Lose
-    }
-    public enum GameBehaviorType
-    {
-        Start,
-        Play,
-        Paused,
-        Win,
-        Lose
-    }
-
 
     [System.Serializable]
     public abstract class GameBehaviorBase

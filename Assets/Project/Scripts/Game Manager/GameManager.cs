@@ -27,7 +27,7 @@ namespace GameManagerSystem
 
         [SerializeField] GameManagerConfigSO gameManagerConfigSo;
         [SerializeReference] private List<GameBehaviorBase> gameBehaviors = new List<GameBehaviorBase>();
-         
+
         private void OnValidate()
         {
             if (gameManagerConfigSo == null)
@@ -40,19 +40,38 @@ namespace GameManagerSystem
                 gameManagerConfigSo.InitializeGameConfigurations(this);
             }
         }
-            
+
 
         #region Game State Control
 
         private void Start()
         {
-            ExecuteBehavior<StartBehavior>();
+            IntializeGame();
         }
 
         private void Update()
         {
-            ExecuteBehavior<PauseBehavior>();
+            InputToPauseAndUnpauseGame();
         }
+
+        public void IntializeGame() => ExecuteBehavior<StartBehavior>();
+
+        public void PlayGame() => ExecuteBehavior<PlayBehavior>();
+
+        private void InputToPauseAndUnpauseGame() => ExecuteBehavior<PauseBehavior>();
+
+        public void TogglePause() => GetBehavior<PauseBehavior>().TogglePauseState();
+
+        public void WinGame() => ExecuteBehavior<WinBehavior>();
+
+        public void LoseGame() => ExecuteBehavior<LoseBehavior>();
+
+        public void LoadMainMenu() => SceneManager.LoadScene(gameManagerConfigSo.MainMenuSceneIndex);
+
+        public void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        public void QuitGame() => Application.Quit();
+
         #endregion
 
         #region Behavior Locator
@@ -83,7 +102,6 @@ namespace GameManagerSystem
         public void AddGameBehaviour(GameBehaviorBase behavior) => gameBehaviors.Add(behavior);
 
         public void ClearAllBehaviours() => gameBehaviors.Clear();
-
 
         #endregion
     }

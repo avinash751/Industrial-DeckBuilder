@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418a4b95e2972ea48814c4f2b4f20d3a, type: 3}
   m_Name: GameManagerConfig
   m_EditorClassIdentifier: 
+  MainMenuSceneIndex: 0
   behaviorConfigurations:
   - behaviorName: Start Behaviour
     configSO: {fileID: 11400000, guid: 7d71199ef5aa3db45919f8efcd22294e, type: 2}
+  - behaviorName: Paused Behaviour
+    configSO: {fileID: 11400000, guid: 2a6c47141911eab44b0bd85e9ae9583b, type: 2}
+  - behaviorName: Play Behaviour
+    configSO: {fileID: 11400000, guid: b19ce96dba2e19546ab8ceca4e6e0da0, type: 2}

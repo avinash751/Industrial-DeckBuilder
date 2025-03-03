@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 204ff921385566b49bd9a79dd71c03f8, type: 3}
-  m_Name: PauseBehaviorConfig
+  m_Script: {fileID: 11500000, guid: 56e0588e780ce234fbca14b5a926dd66, type: 3}
+  m_Name: PlayBehaviour
   m_EditorClassIdentifier: 
-  BehaviorType: 2
-  IsTimeZeroOnExecution: 1
-  IsCursorLockedOnExecution: 0
-  IsCursorVisibleOnExecution: 1
+  BehaviorType: 1
+  IsTimeZeroOnExecution: 0
+  IsCursorLockedOnExecution: 1
+  IsCursorVisibleOnExecution: 0
   LoadSceneOnExecution: 0
   SceneToLoad: 0
-  PauseKey: 27
