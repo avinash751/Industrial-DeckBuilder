@@ -1,5 +1,6 @@
 using GameManagerSystem.Configuration;
 using GameManagerSystem.GameBehaviors;
+using GameManagerSystem.GameBehaviors.Conditions;
 using GameManagerSystem.UI;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,11 @@ namespace GameManagerSystem
 
         [Header("References")]
         public static GameManager Instance { get; private set; }
-        [SerializeField]PrimaryMenusUIManager menuUIManager;
-
+        [SerializeField] PrimaryMenusUIManager menuUIManager;
 
         [SerializeField] GameManagerConfigSO gameManagerConfigSo;
-        [SerializeReference] private List<GameBehaviorBase> gameBehaviors = new List<GameBehaviorBase>();
-
+        private List<GameBehaviorBase> gameBehaviors = new List<GameBehaviorBase>();
+        [SerializeReference] List<GameCondition> gameConditions = new List<GameCondition>();
         #region Singleton
 
         private void OnEnable()
@@ -43,6 +43,7 @@ namespace GameManagerSystem
             else
             {
                 gameManagerConfigSo.InitializeGameConfigurations(this, menuUIManager);
+                gameManagerConfigSo.GetAllGameConditions(this, gameBehaviors);
                 TryGetComponent(out menuUIManager);
             }
         }
@@ -52,7 +53,8 @@ namespace GameManagerSystem
 
         private void Start()
         {
-            IntializeGame();
+            StartGame();
+            gameConditions.ForEach(condition => condition.InitializeCondition());
         }
 
         private void Update()
@@ -60,7 +62,7 @@ namespace GameManagerSystem
             InputToPauseAndUnpauseGame();
         }
 
-        public void IntializeGame() => ExecuteBehavior<StartBehavior>();
+        public void StartGame() => ExecuteBehavior<StartBehavior>();
 
         public void PlayGame() => ExecuteBehavior<PlayBehavior>();
 
@@ -80,7 +82,7 @@ namespace GameManagerSystem
 
         #endregion
 
-        #region Behavior Locator
+        #region Behavior Related Helper Fucntions
 
         public T GetBehavior<T>() where T : GameBehaviorBase
         {
@@ -106,8 +108,9 @@ namespace GameManagerSystem
         }
 
         public void AddGameBehaviour(GameBehaviorBase behavior) => gameBehaviors.Add(behavior);
-
         public void ClearAllBehaviours() => gameBehaviors.Clear();
+        public void AddGameCondition(GameCondition condition) => gameConditions.Add(condition);
+        public void ClearAllGameConditions() => gameConditions.Clear();
 
         #endregion
     }

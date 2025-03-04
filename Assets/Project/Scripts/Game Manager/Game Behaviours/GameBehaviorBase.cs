@@ -2,6 +2,7 @@ using GameManagerSystem.UI;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using GameManagerSystem.GameBehaviors.Conditions;
 
 namespace GameManagerSystem
 {
@@ -93,10 +94,15 @@ namespace GameManagerSystem
             SceneManager.LoadScene(sceneIndex);
         }
 
+        public virtual GameCondition GetGameCondition()
+        {
+            return null;
+        }
+
 
         #region Centralized Behavior Event
-        public event Action<GameBehaviorEventType> OnBehaviorEvent;
-        protected void InvokeOnBehaviorEvent(GameBehaviorEventType eventType) => OnBehaviorEvent?.Invoke(eventType);
+        public event Action<GameBehaviorEventType> OnGameBehaviorEvent;
+        protected void InvokeOnBehaviorEvent(GameBehaviorEventType eventType) => OnGameBehaviorEvent?.Invoke(eventType);
         #endregion
     }
 }

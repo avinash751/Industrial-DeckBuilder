@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using GameManagerSystem.GameBehaviors;
-using Unity.VisualScripting;
+using GameManagerSystem.GameBehaviors.Conditions;
 using System.Linq;
 using GameManagerSystem.UI;
 
@@ -60,6 +60,17 @@ namespace GameManagerSystem.Configuration
                         gameManager.AddGameBehaviour(new LoseBehavior(gameManager, behaviorConfiguration.configSO, menuUiManager));
                         break;
                 }
+            }
+        }
+
+        public void GetAllGameConditions(GameManager gameManager, List<GameBehaviorBase> gameBehaviour)
+        {
+            gameManager.ClearAllGameConditions();
+            foreach (GameBehaviorBase behavior in gameBehaviour)
+            {
+                GameCondition newGameCondition = behavior.GetGameCondition();
+                if (newGameCondition == null) continue;
+                gameManager.AddGameCondition(newGameCondition);
             }
         }
     }

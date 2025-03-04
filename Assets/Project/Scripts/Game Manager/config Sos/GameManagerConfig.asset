@@ -20,3 +20,7 @@ MonoBehaviour:
     configSO: {fileID: 11400000, guid: 2a6c47141911eab44b0bd85e9ae9583b, type: 2}
   - behaviorName: Play Behaviour
     configSO: {fileID: 11400000, guid: b19ce96dba2e19546ab8ceca4e6e0da0, type: 2}
+  - behaviorName: Win Behaviour
+    configSO: {fileID: 11400000, guid: 928cd32d9f78378478493ab70051c9eb, type: 2}
+  - behaviorName: Lose Behaviour
+    configSO: {fileID: 11400000, guid: 2489d6d091b00fd449371ec0915c1c3e, type: 2}

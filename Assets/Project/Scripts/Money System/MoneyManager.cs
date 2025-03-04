@@ -1,17 +1,19 @@
 using CustomInspector;
 using UnityEngine;
-using System; 
+using System;
 
 public class MoneyManager : MonoBehaviour
 {
-    public static MoneyManager Instance { get; private set; } 
+    public static MoneyManager Instance { get; private set; }
 
     [SerializeField] float startingMoney = 100f;
-    [SerializeField][ReadOnly] private float currentMoney;
+    [SerializeField] private float maxDebt;
+    [SerializeField] private float currentMoney;
 
-    public float CurrentMoney => currentMoney; 
+    public float CurrentMoney => currentMoney;
 
-    public event Action<float, float> OnMoneyChanged; 
+    public event Action<float, float> OnMoneyChanged;
+    public event Action OnMaxDebtAcquired;
 
     private void OnEnable()
     {
@@ -27,9 +29,15 @@ public class MoneyManager : MonoBehaviour
         }
 
         currentMoney = startingMoney;
-        OnMoneyChanged?.Invoke(currentMoney, 0f); 
+        OnMoneyChanged?.Invoke(currentMoney, 0f);
+
+        InvokeRepeating(nameof(IsCityBankrupt), 0f, 1f);
     }
 
+    private void OnDisable()
+    {
+        CancelInvoke(nameof(IsCityBankrupt));
+    }
     public void AddMoney(float amount)
     {
         currentMoney += amount;
@@ -43,13 +51,22 @@ public class MoneyManager : MonoBehaviour
         {
             currentMoney -= amount;
             Debug.Log($"Money subtracted: {amount}. Current money: {currentMoney}");
-            OnMoneyChanged?.Invoke(currentMoney, -amount); 
+            OnMoneyChanged?.Invoke(currentMoney, -amount);
         }
         else
         {
             Debug.Log("Insufficient funds!");
             // You could also invoke the event here with 0 change or a specific value if you want to signal insufficient funds in the UI
-            OnMoneyChanged?.Invoke(currentMoney, 0f); 
+            OnMoneyChanged?.Invoke(currentMoney, 0f);
+        }
+    }
+
+    void IsCityBankrupt()
+    {
+        if (currentMoney < maxDebt)
+        {
+            OnMaxDebtAcquired?.Invoke();
+            Debug.Log("we broke");
         }
     }
 

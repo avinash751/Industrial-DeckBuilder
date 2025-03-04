@@ -1,13 +1,15 @@
 using GameManagerSystem.UI;
-using UnityEngine;
+using GameManagerSystem.GameBehaviors.Conditions;
 
 namespace GameManagerSystem.GameBehaviors
 {
     [System.Serializable]
     public class WinBehavior : GameBehaviorBase
     {
+        WinCondition winCondition;
         public WinBehavior(GameManager _gameManager, BaseGameBehaviourConfigSO _behaviourConfigSO, PrimaryMenusUIManager menuUiManager) : base(_gameManager, _behaviourConfigSO, menuUiManager)
         {
+            winCondition = new WinCondition(_gameManager);
         }
         public override void ExecuteBehavior()
         {
@@ -18,6 +20,11 @@ namespace GameManagerSystem.GameBehaviors
         {
             menuUiManager.HideAllGameMenus();
             menuUiManager.ShowWinMenu();
+        }
+
+        public override GameCondition GetGameCondition()
+        {
+            return winCondition;
         }
     }
 }
