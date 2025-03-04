@@ -17,4 +17,5 @@ MonoBehaviour:
   IsCursorLockedOnExecution: 1
   IsCursorVisibleOnExecution: 0
   LoadSceneOnExecution: 0
+  ShowGameUIOnExecution: 1
   SceneToLoad: 0

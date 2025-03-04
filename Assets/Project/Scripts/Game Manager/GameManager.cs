@@ -1,5 +1,6 @@
 using GameManagerSystem.Configuration;
 using GameManagerSystem.GameBehaviors;
+using GameManagerSystem.UI;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,16 @@ namespace GameManagerSystem
 {
     public class GameManager : MonoBehaviour
     {
-        #region Singleton
 
+        [Header("References")]
         public static GameManager Instance { get; private set; }
+        [SerializeField]PrimaryMenusUIManager menuUIManager;
+
+
+        [SerializeField] GameManagerConfigSO gameManagerConfigSo;
+        [SerializeReference] private List<GameBehaviorBase> gameBehaviors = new List<GameBehaviorBase>();
+
+        #region Singleton
 
         private void OnEnable()
         {
@@ -25,9 +33,6 @@ namespace GameManagerSystem
 
         #endregion
 
-        [SerializeField] GameManagerConfigSO gameManagerConfigSo;
-        [SerializeReference] private List<GameBehaviorBase> gameBehaviors = new List<GameBehaviorBase>();
-
         private void OnValidate()
         {
             if (gameManagerConfigSo == null)
@@ -37,7 +42,8 @@ namespace GameManagerSystem
             }
             else
             {
-                gameManagerConfigSo.InitializeGameConfigurations(this);
+                gameManagerConfigSo.InitializeGameConfigurations(this, menuUIManager);
+                TryGetComponent(out menuUIManager);
             }
         }
 

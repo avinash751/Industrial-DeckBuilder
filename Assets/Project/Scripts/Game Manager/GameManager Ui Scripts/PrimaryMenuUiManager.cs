@@ -1,66 +1,37 @@
 using GameManagerSystem.GameBehaviors;
+using System;
 using UnityEngine;
 
 namespace GameManagerSystem.UI
 {
-    public class PrimaryMenusUIManager : MonoBehaviour
+    [Serializable]
+    public class PrimaryMenusUIManager: MonoBehaviour 
     {
+        [Header("Game UI Objects")]
+        [SerializeField] private GameObject inGameUI;
         [Header("Menu GameObjects")]
         [SerializeField] private GameObject startMenu;
         [SerializeField] private GameObject pauseMenu;
         [SerializeField] private GameObject winMenu;
         [SerializeField] private GameObject loseMenu;
 
-        private GameManager gameManager;
-        private StartBehavior startBehavior;
-        private PlayBehavior playBehavior;
-        private PauseBehavior pauseBehavior;
-        private WinBehavior winBehavior;
-        private LoseBehavior loseBehavior;
 
-        private void Start()
-        {
-            gameManager = GameManager.Instance;
-            if (gameManager == null)
-            {
-                Debug.LogError("GameManager not found in the scene. Make sure GameManager script is present.");
-                return;
-            }
+        #region Menu & UI Visibility Control - LAMBDA EXPRESSIONS
 
-            startBehavior = gameManager.GetBehavior<StartBehavior>();
-            playBehavior = gameManager.GetBehavior<PlayBehavior>();
-            pauseBehavior = gameManager.GetBehavior<PauseBehavior>();
-            winBehavior = gameManager.GetBehavior<WinBehavior>();
-            loseBehavior = gameManager.GetBehavior<LoseBehavior>();
+        public void ShowStartMenu() => SetUIVisibility(startMenu, true);
+        public void HideStartMenu() => SetUIVisibility(startMenu, false);
+        public void ShowPauseMenu() => SetUIVisibility(pauseMenu, true);
+        public void HidePauseMenu() => SetUIVisibility(pauseMenu, false);
+        public void ShowWinMenu() => SetUIVisibility(winMenu, true);
+        public void HideWinMenu() => SetUIVisibility(winMenu, false);
+        public void ShowLoseMenu() => SetUIVisibility(loseMenu, true);
+        public void HideLoseMenu() => SetUIVisibility(loseMenu, false);
+        public void ShowInGameUI() => SetUIVisibility(inGameUI, true);
+        public void HideInGameUI() => SetUIVisibility(inGameUI, false);
 
-            if (startBehavior != null) startBehavior.OnBehaviorEvent += OnBehaviorEventHandler;
-            if (playBehavior != null) playBehavior.OnBehaviorEvent += OnBehaviorEventHandler;
-            if (pauseBehavior != null) pauseBehavior.OnBehaviorEvent += OnBehaviorEventHandler;
-            if (winBehavior != null) winBehavior.OnBehaviorEvent += OnBehaviorEventHandler;
-            if (loseBehavior != null) loseBehavior.OnBehaviorEvent += OnBehaviorEventHandler;
-        }
+        #endregion
 
-        private void OnDisable()
-        {
-            if (startBehavior != null) startBehavior.OnBehaviorEvent -= OnBehaviorEventHandler;
-            if (playBehavior != null) playBehavior.OnBehaviorEvent -= OnBehaviorEventHandler;
-            if (pauseBehavior != null) pauseBehavior.OnBehaviorEvent -= OnBehaviorEventHandler;
-            if (winBehavior != null) winBehavior.OnBehaviorEvent -= OnBehaviorEventHandler;
-            if (loseBehavior != null) loseBehavior.OnBehaviorEvent -= OnBehaviorEventHandler;
-        }
-
-        #region Menu Visibility Control - LAMBDA EXPRESSIONS
-
-        public void ShowStartMenu() => SetMenuVisibility(startMenu, true);
-        public void HideStartMenu() => SetMenuVisibility(startMenu, false);
-        public void ShowPauseMenu() => SetMenuVisibility(pauseMenu, true);
-        public void HidePauseMenu() => SetMenuVisibility(pauseMenu, false);
-        public void ShowWinMenu() => SetMenuVisibility(winMenu, true);
-        public void HideWinMenu() => SetMenuVisibility(winMenu, false);
-        public void ShowLoseMenu() => SetMenuVisibility(loseMenu, true);
-        public void HideLoseMenu() => SetMenuVisibility(loseMenu, false);
-
-        public void HideAllMenus()
+        public void HideAllGameMenus()
         {
             HideStartMenu();
             HidePauseMenu();
@@ -68,61 +39,23 @@ namespace GameManagerSystem.UI
             HideLoseMenu();
         }
 
-        private void SetMenuVisibility(GameObject menu, bool visible)
+        public void HideAllUI()
+        {
+            HideInGameUI();
+            HideAllGameMenus();
+        }
+
+        private void SetUIVisibility(GameObject menu, bool visible)
         {
             if (menu != null)
             {
                 menu.SetActive(visible);
             }
         }
-
-        #endregion
-
-        #region Event Handlers
-
-        private void OnBehaviorEventHandler(GameBehaviorEventType eventType)
-        {
-            Debug.Log("Menu Manager Event Handler: " + eventType);
-
-            switch (eventType)
-            {
-                case GameBehaviorEventType.Initialized:
-                    ShowStartMenu();
-                    HidePauseMenu();
-                    HideWinMenu();
-                    HideLoseMenu();
-                    break;
-                case GameBehaviorEventType.GameStarted:
-                    HideAllMenus();
-                    break;
-                case GameBehaviorEventType.Paused:
-                    ShowPauseMenu();
-                    HideAllMenusExcept(pauseMenu);
-                    break;
-                case GameBehaviorEventType.UnPaused:
-                    HidePauseMenu();
-                    HideAllMenus();
-                    break;
-                case GameBehaviorEventType.Win:
-                    ShowWinMenu();
-                    HideAllMenusExcept(winMenu);
-                    break;
-                case GameBehaviorEventType.Lose:
-                    ShowLoseMenu();
-                    HideAllMenusExcept(loseMenu);
-                    break;
-                default:
-                    Debug.LogWarning("PrimaryMenusUIManager - unhandled event type: " + eventType);
-                    break;
-            }
-        }
-
         private void HideAllMenusExcept(GameObject menuToShow)
         {
-            HideAllMenus();
-            SetMenuVisibility(menuToShow, true);
+            HideAllGameMenus();
+            SetUIVisibility(menuToShow, true);
         }
-
-        #endregion
     }
 }

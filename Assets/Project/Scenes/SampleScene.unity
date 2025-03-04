@@ -1871,20 +1871,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5562700903036115606, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: inGameUI
+      value: 
+      objectReference: {fileID: 305903087}
+    - target: {fileID: 5562700903036115606, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 9194552862126661063}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: gameManagerConfigSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 6aa93736249dcb44a94a35316aff4c08, type: 2}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: gameBehaviors.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: 'gameBehaviors.Array.data[0]'
-      value: 851907180848742582
+      value: 851907204445110387
       objectReference: {fileID: 0}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: 'gameBehaviors.Array.data[1]'
-      value: 851907180848742583
+      value: 851907204445110388
       objectReference: {fileID: 0}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: 'gameBehaviors.Array.data[2]'
-      value: 851907180848742584
+      value: 851907204445110389
       objectReference: {fileID: 0}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: 'managedReferences[851907180848742561]'
@@ -1920,6 +1932,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: 'managedReferences[851907180848742584]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.PlayBehavior
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907204445110358]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.StartBehavior
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907204445110359]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.PauseBehavior
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907204445110360]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.PlayBehavior
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907204445110361]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.StartBehavior
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907204445110362]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.PauseBehavior
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907204445110363]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.PlayBehavior
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907204445110387]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.StartBehavior
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907204445110388]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.PauseBehavior
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907204445110389]'
       value: Assembly-CSharp GameManagerSystem.GameBehaviors.PlayBehavior
       objectReference: {fileID: 0}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
@@ -1959,6 +2007,42 @@ PrefabInstance:
       value: Play Behaviour
       objectReference: {fileID: 0}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110358].behaviorName
+      value: Start Behaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110359].behaviorName
+      value: Paused Behaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110360].behaviorName
+      value: Play Behaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110361].behaviorName
+      value: Start Behaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110362].behaviorName
+      value: Paused Behaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110363].behaviorName
+      value: Play Behaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110387].behaviorName
+      value: Start Behaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110388].behaviorName
+      value: Paused Behaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110389].behaviorName
+      value: Play Behaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: managedReferences[851907180848742561].BehaviourConfigSO
       value: 
       objectReference: {fileID: 11400000, guid: 7d71199ef5aa3db45919f8efcd22294e, type: 2}
@@ -1995,6 +2079,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b19ce96dba2e19546ab8ceca4e6e0da0, type: 2}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110358].BehaviourConfigSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d71199ef5aa3db45919f8efcd22294e, type: 2}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110359].BehaviourConfigSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a6c47141911eab44b0bd85e9ae9583b, type: 2}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110360].BehaviourConfigSO
+      value: 
+      objectReference: {fileID: 11400000, guid: b19ce96dba2e19546ab8ceca4e6e0da0, type: 2}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110361].BehaviourConfigSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d71199ef5aa3db45919f8efcd22294e, type: 2}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110362].BehaviourConfigSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a6c47141911eab44b0bd85e9ae9583b, type: 2}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110363].BehaviourConfigSO
+      value: 
+      objectReference: {fileID: 11400000, guid: b19ce96dba2e19546ab8ceca4e6e0da0, type: 2}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110387].BehaviourConfigSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d71199ef5aa3db45919f8efcd22294e, type: 2}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110388].BehaviourConfigSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a6c47141911eab44b0bd85e9ae9583b, type: 2}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110389].BehaviourConfigSO
+      value: 
+      objectReference: {fileID: 11400000, guid: b19ce96dba2e19546ab8ceca4e6e0da0, type: 2}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: managedReferences[851907180848742562].<IsPaused>k__BackingField
       value: 0
       objectReference: {fileID: 0}
@@ -2004,6 +2124,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: managedReferences[851907180848742583].<IsPaused>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110359].<IsPaused>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110362].<IsPaused>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907204445110388].<IsPaused>k__BackingField
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7000407683525665118, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}

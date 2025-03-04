@@ -10,5 +10,6 @@ public class BaseGameBehaviourConfigSO : ScriptableObject
     public bool IsCursorLockedOnExecution = true;
     public bool IsCursorVisibleOnExecution = true;
     public bool LoadSceneOnExecution = false;
+    public bool ShowGameUIOnExecution = false;
     public int SceneToLoad = 0;
 }

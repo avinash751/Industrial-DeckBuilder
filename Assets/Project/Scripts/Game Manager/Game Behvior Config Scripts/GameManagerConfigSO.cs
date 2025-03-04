@@ -4,6 +4,7 @@ using UnityEngine;
 using GameManagerSystem.GameBehaviors;
 using Unity.VisualScripting;
 using System.Linq;
+using GameManagerSystem.UI;
 
 namespace GameManagerSystem.Configuration
 {
@@ -31,12 +32,12 @@ namespace GameManagerSystem.Configuration
             else
             {
                 BehaviorConfiguration lastConfig = behaviorConfigurations.Last();
-                lastConfig.behaviorName = lastConfig.configSO.BehaviorType.ToString() +" Behaviour";
+                lastConfig.behaviorName = lastConfig.configSO.BehaviorType.ToString() + " Behaviour";
             }
 
         }
 
-        public void InitializeGameConfigurations(GameManager gameManager)
+        public void InitializeGameConfigurations(GameManager gameManager, PrimaryMenusUIManager menuUiManager)
         {
             gameManager.ClearAllBehaviours();
             foreach (BehaviorConfiguration behaviorConfiguration in behaviorConfigurations)
@@ -44,19 +45,19 @@ namespace GameManagerSystem.Configuration
                 switch (behaviorConfiguration.configSO.BehaviorType)
                 {
                     case GameBehaviorType.Start:
-                        gameManager.AddGameBehaviour(new StartBehavior(gameManager, behaviorConfiguration.configSO));
+                        gameManager.AddGameBehaviour(new StartBehavior(gameManager, behaviorConfiguration.configSO, menuUiManager));
                         break;
                     case GameBehaviorType.Play:
-                        gameManager.AddGameBehaviour(new PlayBehavior(gameManager, behaviorConfiguration.configSO));
+                        gameManager.AddGameBehaviour(new PlayBehavior(gameManager, behaviorConfiguration.configSO, menuUiManager));
                         break;
                     case GameBehaviorType.Paused:
-                        gameManager.AddGameBehaviour(new PauseBehavior(gameManager, behaviorConfiguration.configSO));
+                        gameManager.AddGameBehaviour(new PauseBehavior(gameManager, behaviorConfiguration.configSO, menuUiManager));
                         break;
                     case GameBehaviorType.Win:
-                        gameManager.AddGameBehaviour(new WinBehavior(gameManager, behaviorConfiguration.configSO));
+                        gameManager.AddGameBehaviour(new WinBehavior(gameManager, behaviorConfiguration.configSO, menuUiManager));
                         break;
                     case GameBehaviorType.Lose:
-                        gameManager.AddGameBehaviour(new LoseBehavior(gameManager, behaviorConfiguration.configSO));
+                        gameManager.AddGameBehaviour(new LoseBehavior(gameManager, behaviorConfiguration.configSO, menuUiManager));
                         break;
                 }
             }

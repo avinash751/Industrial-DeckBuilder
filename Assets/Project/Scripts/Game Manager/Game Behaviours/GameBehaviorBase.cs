@@ -1,3 +1,4 @@
+using GameManagerSystem.UI;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,15 +9,19 @@ namespace GameManagerSystem
     [System.Serializable]
     public abstract class GameBehaviorBase
     {
-        [SerializeField][HideInInspector]string behaviorName;
+        [SerializeField][HideInInspector] string behaviorName;
         protected GameManager gameManager { get; private set; }
+        protected PrimaryMenusUIManager menuUiManager { get; private set; }
         [SerializeField] protected BaseGameBehaviourConfigSO BehaviourConfigSO;
 
-        public GameBehaviorBase(GameManager _gameManager,BaseGameBehaviourConfigSO _behaviourConfigSO)
+
+
+        public GameBehaviorBase(GameManager _gameManager, BaseGameBehaviourConfigSO _behaviourConfigSO, PrimaryMenusUIManager _menuUiManager)
         {
             gameManager = _gameManager;
+            menuUiManager = _menuUiManager;
             BehaviourConfigSO = _behaviourConfigSO;
-            behaviorName = _behaviourConfigSO.BehaviorType.ToString() +" Behaviour";
+            behaviorName = _behaviourConfigSO.BehaviorType.ToString() + " Behaviour";
         }
 
         public abstract void ExecuteBehavior();
@@ -37,12 +42,28 @@ namespace GameManagerSystem
             SetTimescale(config.IsTimeZeroOnExecution ? 0f : 1f);
             SetCursorLockMode(config.IsCursorLockedOnExecution);
             SetCursorVisible(config.IsCursorVisibleOnExecution);
+            SetUISettings();
+            SetMenuSettings();
             if (config.LoadSceneOnExecution)
             {
                 LoadScene(config.SceneToLoad);
             }
 
             InvokeOnBehaviorEvent(eventType);
+        }
+
+        protected abstract void SetMenuSettings();
+        
+        protected virtual void SetUISettings()
+        {
+            if (BehaviourConfigSO.ShowGameUIOnExecution)
+            {
+                menuUiManager.ShowInGameUI();
+            }
+            else
+            {
+                menuUiManager.HideInGameUI();
+            }
         }
 
         protected virtual void SetTimescale(float customScale)
@@ -71,6 +92,7 @@ namespace GameManagerSystem
         {
             SceneManager.LoadScene(sceneIndex);
         }
+
 
         #region Centralized Behavior Event
         public event Action<GameBehaviorEventType> OnBehaviorEvent;
