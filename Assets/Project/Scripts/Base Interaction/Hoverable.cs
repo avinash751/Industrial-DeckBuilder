@@ -8,9 +8,12 @@ public class Hoverable : MonoBehaviour, IHoverable
     public Action OnHoverEnd { get; set; }
 
 
+
     private void OnMouseOver()
     {
-        OnMouseHoverEnter();
+        if (DragManager.IsDragging) return;
+
+        OnMouseHoverEnter();     
     }
 
     private void OnMouseExit()

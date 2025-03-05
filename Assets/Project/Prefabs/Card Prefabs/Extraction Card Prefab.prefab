@@ -669,7 +669,8 @@ MonoBehaviour:
   invalidColor: {r: 0.9019608, g: 0.72156864, b: 0.72156864, a: 1}
   cardLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
+  collsionDetectionScale: {x: 1, y: 1.56}
 --- !u!114 &3966456620767018009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,10 +680,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6904530581578315095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 210eabc039cdd374badea71d09b68457, type: 3}
+  m_Script: {fileID: 11500000, guid: fb23f8353cd237742906436ab3d57842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hoverScale: {x: 1.1, y: 1.1, z: 1.1}
+  hoverFeedbacks: {fileID: 0}
 --- !u!61 &2339481783312245002
 BoxCollider2D:
   m_ObjectHideFlags: 0

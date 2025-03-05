@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3942f55a4c44c384098c838ba2d18caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  editablePointPrefab: {fileID: 6961982113318424564, guid: eb7b1fb50c559fc4583f8c506d08d1b5, type: 3}
   line: {fileID: 5954548413084100321}
+  pathPoints: []
   startConnector: {fileID: 0}
   endConnector: {fileID: 0}
 --- !u!120 &5954548413084100321

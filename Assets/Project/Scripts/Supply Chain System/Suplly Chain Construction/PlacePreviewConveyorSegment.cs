@@ -33,9 +33,11 @@ public class PlacePreviewConveyorSegment : ICommand
         segmentColliderObject = new GameObject("PreviewSegmentCollider_Command");
         segmentColliderObject.transform.parent = editor.transform; // Parent it to the editor (optional, for organization)
         segmentCollider = segmentColliderObject.AddComponent<EdgeCollider2D>();
-        segmentCollider.edgeRadius = colliderWidth/ 2.5f;
+        segmentCollider.edgeRadius = colliderWidth;
         segmentCollider.isTrigger = true;
+        segmentCollider.gameObject.layer = 7;
         editor.previewSegmentColliders.Add(segmentCollider);
+
     }
 
     private void ApplyTrimmingToSegmentCollider()
@@ -44,7 +46,7 @@ public class PlacePreviewConveyorSegment : ICommand
         Vector2 endPoint = previousMousePosition;
         Vector2 direction = (endPoint - startPoint).normalized;
         float segmentLength = Vector2.Distance(startPoint, endPoint);
-        float trimAmount = segmentLength * 0.1f;    // 10% trimming
+        float trimAmount = segmentLength * 0.2f;    // 20% trimming
         trimAmount = Mathf.Min(trimAmount, segmentLength / 2f);
         Vector2 trimmedStart = startPoint + direction * trimAmount;
         Vector2 trimmedEnd = endPoint - direction * trimAmount;

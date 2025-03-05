@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour
 {
+    [SerializeField] private DragableCoveryorPoint editablePointPrefab;
     [SerializeField] private LineRenderer line;
-    [SerializeField]private List<Vector3> pathPoints = new List<Vector3>();
+    [SerializeField] private List<Vector3> pathPoints = new List<Vector3>();
+    [SerializeField] private List<DragableCoveryorPoint> editablePointsList;
     [SerializeField] private Connector startConnector;
     [SerializeField] private Connector endConnector;
-
+    public bool connected = false;
     private void Start()
     {
         if (line == null)
@@ -22,10 +24,10 @@ public class ConveyorBelt : MonoBehaviour
         {
             line.SetPosition(0, startConnector.transform.position);
             line.SetPosition(line.positionCount - 1, endConnector.transform.position);
-            Vector3[] positionsArray = pathPoints.ToArray();
-            line.GetPositions(positionsArray);
+            Vector3[] newPositionsArray = pathPoints.ToArray();
+            line.GetPositions(newPositionsArray);
             pathPoints.Clear();
-            pathPoints.AddRange(positionsArray);
+            pathPoints.AddRange(newPositionsArray);
         }
     }
 
@@ -41,6 +43,27 @@ public class ConveyorBelt : MonoBehaviour
         endConnector = _end;
         startConnector.Connect(this);
         endConnector.Connect(this);
+        connected = true;
+
+        if (editablePointPrefab != null)
+        {
+            ConstructEditablePoints();
+        }
+    }
+
+    void ConstructEditablePoints()
+    {
+        for (int i = 0; i < pathPoints.Count; i++)
+        {
+            if (i == 0 || i == pathPoints.Count - 1)
+            {
+                continue;
+            }
+            DragableCoveryorPoint newEditablePoint = Instantiate(editablePointPrefab, pathPoints[i], Quaternion.identity, transform);
+            newEditablePoint.InitializeEditablePoint(line, pathPoints, i);
+            editablePointsList.Add(newEditablePoint);
+           
+        }
     }
 
     // Provides the path for moving resources.

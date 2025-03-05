@@ -13,6 +13,7 @@ public class DraggableCard : Draggable
     [Header("Settings")]
     [SerializeField] private Color invalidColor = Color.red;
     [SerializeField] private LayerMask cardLayer;
+    [SerializeField] Vector2 collsionDetectionScale;
 
 
     private Color originalColor;
@@ -20,15 +21,13 @@ public class DraggableCard : Draggable
     private int originalSortOrder;
     private bool isValidPlacement;
     private List<Collider2D> overlappingCards = new List<Collider2D>();
-    event Action onCollisionEnter;
 
     private void Awake()
     {
-        backgroundSprite = GetComponentInChildren<SpriteRenderer>();
-        sortingGroup = GetComponentInChildren<SortingGroup>();
+        backgroundSprite = GetComponentInChildren<SpriteRenderer>() ?? backgroundSprite;
+        sortingGroup = GetComponentInChildren<SortingGroup>() ?? sortingGroup;
         originalColor = backgroundSprite.color;
         originalSortOrder = sortingGroup.sortingOrder;
-        onCollisionEnter?.Invoke();
     }
     protected override void OnMouseStartDrag()
     {
@@ -55,12 +54,13 @@ public class DraggableCard : Draggable
     }
     private void CheckForOverlappingCards()
     {
+
+
         Collider2D[] hits = Physics2D.OverlapBoxAll(
-            transform.position,
-            GetComponent<BoxCollider2D>().size,
-            0,
-            cardLayer
-        );
+       transform.position,
+      collsionDetectionScale, 0, cardLayer);
+
+
 
 
         overlappingCards.Clear();
