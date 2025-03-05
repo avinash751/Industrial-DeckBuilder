@@ -34,6 +34,20 @@ public class Connector : MonoBehaviour
     }
 
     public bool IsConnected() => conveyor != null;
-    public void Connect(ConveyorBelt belt) => conveyor = belt;
-    public void Disconnect() => conveyor = null;
+    public void Connect(ConveyorBelt belt, DragableCoveryorPoint startPoint)
+    {
+        conveyor = belt;
+        editablePoint = startPoint;
+        editablePoint.moveWithMouse = false;
+        editablePoint.gameObject.SetActive(false);
+        belt.connected = true;
+    }
+    public void Disconnect()
+    {
+        editablePoint.moveWithMouse = true;
+        editablePoint.gameObject.SetActive(true);
+        conveyor.connected = false;
+        conveyor = null;
+        editablePoint = null;
+    }
 }

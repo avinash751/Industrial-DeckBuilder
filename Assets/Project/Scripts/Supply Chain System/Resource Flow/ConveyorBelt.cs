@@ -41,28 +41,29 @@ public class ConveyorBelt : MonoBehaviour
         line.endWidth = lineWidth;
         startConnector = _start;
         endConnector = _end;
-        startConnector.Connect(this);
-        endConnector.Connect(this);
-        connected = true;
-
         if (editablePointPrefab != null)
         {
             ConstructEditablePoints();
         }
+        startConnector.Connect(this,editablePointsList.First());
+        endConnector.Connect(this, editablePointsList.Last());
+        connected = true;
+
+      
     }
 
     void ConstructEditablePoints()
     {
         for (int i = 0; i < pathPoints.Count; i++)
         {
-            if (i == 0 || i == pathPoints.Count - 1)
-            {
-                continue;
-            }
+           
             DragableCoveryorPoint newEditablePoint = Instantiate(editablePointPrefab, pathPoints[i], Quaternion.identity, transform);
             newEditablePoint.InitializeEditablePoint(line, pathPoints, i);
             editablePointsList.Add(newEditablePoint);
-           
+            if (i == 0 || i == pathPoints.Count - 1)
+            {
+                newEditablePoint.gameObject.SetActive(false);
+            }
         }
     }
 
