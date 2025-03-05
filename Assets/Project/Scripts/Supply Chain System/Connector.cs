@@ -5,6 +5,7 @@ public class Connector : MonoBehaviour
 {
     public bool isInput;
     public ConveyorBelt conveyor;
+    DragableCoveryorPoint editablePoint;
 
     public static event Action<Connector> OnConnectorClicked;
 

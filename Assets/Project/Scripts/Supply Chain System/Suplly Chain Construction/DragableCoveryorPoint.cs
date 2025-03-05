@@ -24,16 +24,15 @@ public class DragableCoveryorPoint : MonoBehaviour
             Vector2 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = currentMousePosition;
             updateLinePosition(currentMousePosition);
-            GetComponent<DraggableCard>().enabled = false;
         }
         else
         {
             updateLinePosition(transform.position);
-            GetComponent<DraggableCard>().enabled = false;
         }
     }
 
-   
+ 
+
 
     void updateLinePosition(Vector3 position)
     {
