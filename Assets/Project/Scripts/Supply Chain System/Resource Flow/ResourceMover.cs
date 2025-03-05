@@ -20,13 +20,13 @@ public class ResourceMover : MonoBehaviour
 
     private void Update()
     {
-        if (path == null || path.Count == 0 || currentTargetIndex >= path.Count)
+        if (path == null || path.Count == 0)
             return;
 
         Vector3 targetPos = path[currentTargetIndex];
         transform.position = Vector3.MoveTowards(transform.position, targetPos, resource.moveSpeed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, targetPos) < 0.1f)
+        if (Vector3.Distance(transform.position, targetPos) < 0.1f && currentTargetIndex != path.Count-1)
         {
             currentTargetIndex++;
             // Once the resource reaches the end of the path, you can implement additional logic if needed.

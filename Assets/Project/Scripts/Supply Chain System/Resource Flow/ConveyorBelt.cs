@@ -18,19 +18,7 @@ public class ConveyorBelt : MonoBehaviour
         // You can define pathPoints manually in the editor or via code.
     }
 
-    private void Update()
-    {
-        if (startConnector && endConnector)
-        {
-            line.SetPosition(0, startConnector.transform.position);
-            line.SetPosition(line.positionCount - 1, endConnector.transform.position);
-            Vector3[] newPositionsArray = pathPoints.ToArray();
-            line.GetPositions(newPositionsArray);
-            pathPoints.Clear();
-            pathPoints.AddRange(newPositionsArray);
-        }
-    }
-
+ 
     // Initialize the belt with a given path, line width, and connectors.
     public void Initialize(List<Vector3> path, float lineWidth, Connector _start, Connector _end)
     {
@@ -60,10 +48,6 @@ public class ConveyorBelt : MonoBehaviour
             DragableCoveryorPoint newEditablePoint = Instantiate(editablePointPrefab, pathPoints[i], Quaternion.identity, transform);
             newEditablePoint.InitializeEditablePoint(line, pathPoints, i);
             editablePointsList.Add(newEditablePoint);
-            if (i == 0 || i == pathPoints.Count - 1)
-            {
-                newEditablePoint.gameObject.SetActive(false);
-            }
         }
     }
 

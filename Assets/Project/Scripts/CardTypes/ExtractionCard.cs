@@ -51,11 +51,13 @@ public class ExtractionCard : Card
     // Coroutine to spawn resources based on the extraction rate.
     IEnumerator ExtractionRoutine()
     {
-        while (true)
+        while (outputConnector.IsConnected())
         {
+      
             SpawnResource();
             yield return new WaitForSeconds(1f / extractionCardData.ExtractionRate);
         }
+        isExtracting = false;
     }
 
     void SpawnResource()

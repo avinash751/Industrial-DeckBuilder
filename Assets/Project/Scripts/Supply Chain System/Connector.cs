@@ -8,6 +8,7 @@ public class Connector : MonoBehaviour
     DragableCoveryorPoint editablePoint;
 
     public static event Action<Connector> OnConnectorClicked;
+    public static event Action<Connector,ConveyorBelt,DragableCoveryorPoint> OnConnectorDisconnect;
 
     private void Start()
     {
@@ -16,8 +17,13 @@ public class Connector : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0))
-            OnConnectorClicked?.Invoke(this);
+        if (IsConnected())
+        {
+            OnConnectorDisconnect?.Invoke(this,conveyor,editablePoint);
+            return;
+        }
+
+        OnConnectorClicked?.Invoke(this);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,18 +41,16 @@ public class Connector : MonoBehaviour
     }
 
     public bool IsConnected() => conveyor != null;
-    public void Connect(ConveyorBelt belt, DragableCoveryorPoint startPoint)
+    public void Connect(ConveyorBelt belt, DragableCoveryorPoint _editablePoint)
     {
         conveyor = belt;
-        editablePoint = startPoint;
-        editablePoint.moveWithMouse = false;
-        editablePoint.gameObject.SetActive(false);
+        editablePoint = _editablePoint;
+        editablePoint.EnableConveyorEditMode(false,this);
         belt.connected = true;
     }
     public void Disconnect()
     {
-        editablePoint.moveWithMouse = true;
-        editablePoint.gameObject.SetActive(true);
+        editablePoint.EnableConveyorEditMode(true,this);
         conveyor.connected = false;
         conveyor = null;
         editablePoint = null;

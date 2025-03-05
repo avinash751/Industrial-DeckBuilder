@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class SupplyChainEditor : MonoBehaviour
 {
-    private enum State { Idle, Editing }
+    private enum State { Idle, SupplyChainEdit, ConveyorEdit }
 
     [Header("References")]
     [SerializeField] private GameObject conveyorBeltPrefab;
@@ -22,10 +23,13 @@ public class SupplyChainEditor : MonoBehaviour
     [SerializeField] public List<EdgeCollider2D> previewSegmentColliders = new List<EdgeCollider2D>();
     private CommandManager commandManager = new CommandManager();
     private Connector startConnector;
+    private DragableCoveryorPoint currentEditablePoint;
+    private ConveyorBelt existingConveyor;
 
     void Start()
     {
-        Connector.OnConnectorClicked += OnConnectorClicked;
+        Connector.OnConnectorClicked += HandleAllConnectionTypes;
+        Connector.OnConnectorDisconnect += DisconnectExistingConveyorBelt;
         if (previewLine != null)
         {
             previewLine.startWidth = lineWidth;
@@ -35,24 +39,53 @@ public class SupplyChainEditor : MonoBehaviour
 
     void OnDestroy()
     {
-        Connector.OnConnectorClicked -= OnConnectorClicked;
+        Connector.OnConnectorClicked -= HandleAllConnectionTypes;
+        Connector.OnConnectorDisconnect -= DisconnectExistingConveyorBelt;
     }
 
-    void OnConnectorClicked(Connector connector)
+    void HandleAllConnectionTypes(Connector connector)
     {
+        if (currentState == State.ConveyorEdit && !connector.IsConnected())
+        {
+            currentState = State.Idle;
+            connector.Connect(existingConveyor, currentEditablePoint);
+            currentEditablePoint = null;
+            existingConveyor = null;
+            return;
+        }
+
         if (currentState == State.Idle && !connector.IsConnected())
         {
-            StartEditMode(connector);
+            StartSupplyChainEditMode(connector);
         }
-        else if (currentState == State.Editing && connector != startConnector && !connector.IsConnected())
+        else if (currentState == State.SupplyChainEdit && connector != startConnector && !connector.IsConnected())
         {
-            AttemptToCompleteLine(connector);
+            AttemptToCompleteSupplyChainLine(connector);
         }
+
     }
 
-    void StartEditMode(Connector connector)
+    void DisconnectExistingConveyorBelt(Connector connector,ConveyorBelt conveyor,DragableCoveryorPoint _editablePoint)
     {
-        currentState = State.Editing;
+        if (currentState == State.SupplyChainEdit)
+        {
+            return;
+        }
+        if (currentState == State.Idle && connector.IsConnected())
+        {
+            currentState = State.ConveyorEdit;
+            currentEditablePoint = _editablePoint;
+            existingConveyor = conveyor;
+            connector.Disconnect();
+        }
+
+    }
+
+
+
+    void StartSupplyChainEditMode(Connector connector)
+    {
+        currentState = State.SupplyChainEdit;
         waypoints.Clear();
         waypoints.Add(connector.transform.position);
         previewLine.enabled = true;
@@ -67,7 +100,7 @@ public class SupplyChainEditor : MonoBehaviour
 
     private void HandleInputInEditMode()
     {
-        if (currentState != State.Editing) return;
+        if (currentState != State.SupplyChainEdit) return;
 
         UpdatePreviewLine();
         if (Input.GetKeyDown(KeyCode.Z))
@@ -90,9 +123,9 @@ public class SupplyChainEditor : MonoBehaviour
     {
         Vector2 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         bool intersects = CheckForIntersections(currentMousePosition);
-        if (Input.GetMouseButtonDown(0)  && waypoints.Count >= 1 && !intersects)
+        if (Input.GetMouseButtonDown(0) && waypoints.Count >= 1 && !intersects)
         {
-            ICommand placeCommand = new PlacePreviewConveyorSegment(waypoints,this, currentMousePosition, lineWidth);
+            ICommand placeCommand = new PlacePreviewConveyorSegment(waypoints, this, currentMousePosition, lineWidth);
             commandManager.ExecuteCommand(placeCommand);
         }
         waypoints[waypoints.Count - 1] = currentMousePosition;
@@ -104,7 +137,7 @@ public class SupplyChainEditor : MonoBehaviour
         previewLine.endColor = intersects ? invalidColor : validColor;
     }
 
-    void AttemptToCompleteLine(Connector connector)
+    void AttemptToCompleteSupplyChainLine(Connector connector)
     {
         Vector3 endPosition = connector.transform.position;
         waypoints[waypoints.Count - 1] = endPosition;
@@ -142,19 +175,19 @@ public class SupplyChainEditor : MonoBehaviour
 
         Vector2 trimmedStart = startPoint + direction * trimAmount;
         Vector2 trimmedEnd = endPoint - direction * trimAmount;
-        tempCollider.points = new Vector2[ ] { trimmedStart, trimmedEnd };
+        tempCollider.points = new Vector2[] { trimmedStart, trimmedEnd };
 
         bool intersects = false;
         ContactFilter2D contactFilter = new ContactFilter2D();
         contactFilter.useTriggers = true;
-        Collider2D[ ] results = new Collider2D[10];
+        Collider2D[] results = new Collider2D[10];
         int collisionCount = tempCollider.Overlap(contactFilter, results);
 
         if (collisionCount > 0)
         {
             foreach (var collider in results)
             {
-                if (collider != null && finalizedSegmentColliders.Contains(collider)||previewSegmentColliders.Contains(collider))
+                if (collider != null && finalizedSegmentColliders.Contains(collider) || previewSegmentColliders.Contains(collider))
                 {
                     intersects = true;
                     break;
@@ -172,7 +205,7 @@ public class SupplyChainEditor : MonoBehaviour
         GameObject conveyorObject = Instantiate(conveyorBeltPrefab);
         ConveyorBelt conveyorBelt = conveyorObject.GetComponent<ConveyorBelt>();
         conveyorBelt.Initialize(waypoints, lineWidth, startConnector, endConnector);
-        conveyorObject.transform.parent =transform;
+        conveyorObject.transform.parent = transform;
         EndEditMode();
     }
 
