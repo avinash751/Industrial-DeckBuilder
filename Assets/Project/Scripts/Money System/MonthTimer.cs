@@ -33,6 +33,11 @@ public class MonthTimer : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        Instance = null;
+    }
+
     private void Start()
     {
         timer = 0f;

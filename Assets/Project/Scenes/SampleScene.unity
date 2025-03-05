@@ -728,6 +728,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 305903088}
     m_Modifications:
     - target: {fileID: 936988164444606810, guid: ed7fc5a66e7f8ea4fb88462343ff88ee, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 936988164444606810, guid: ed7fc5a66e7f8ea4fb88462343ff88ee, type: 3}
       propertyPath: monthDurationSeconds
       value: 60
       objectReference: {fileID: 0}
