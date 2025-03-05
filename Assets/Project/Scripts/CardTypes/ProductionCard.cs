@@ -148,11 +148,12 @@ public class ProductionCard : Card, IResourceReceiver
 
     IEnumerator ProductionRoutine()
     {
-        while (true)
+        while (AreAllInputConnectorsConnected())
         {
             ProduceResource();
             yield return new WaitForSeconds(1f / productionCardSO.ProductionRate);
         }
+        isProductionActive = false;
     }
 
     void ProduceResource()
