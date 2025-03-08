@@ -23,6 +23,7 @@ public class SupplyChainEditor : MonoBehaviour
     [SerializeField] public List<EdgeCollider2D> previewSegmentColliders = new List<EdgeCollider2D>();
     private CommandManager commandManager = new CommandManager();
     private Connector startConnector;
+    private Connector previousConveyorConnector;
     private DragableCoveryorPoint currentEditablePoint;
     private ConveyorBelt existingConveyor;
 
@@ -51,6 +52,7 @@ public class SupplyChainEditor : MonoBehaviour
             connector.Connect(existingConveyor, currentEditablePoint);
             currentEditablePoint = null;
             existingConveyor = null;
+            previousConveyorConnector = null;
             return;
         }
 
@@ -76,7 +78,8 @@ public class SupplyChainEditor : MonoBehaviour
             currentState = State.ConveyorEdit;
             currentEditablePoint = _editablePoint;
             existingConveyor = conveyor;
-            connector.Disconnect();
+            previousConveyorConnector = connector;
+            previousConveyorConnector.Disconnect();
         }
 
     }
@@ -100,6 +103,21 @@ public class SupplyChainEditor : MonoBehaviour
 
     private void HandleInputInEditMode()
     {
+
+        if(currentState == State.ConveyorEdit)
+        {
+            if(Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                currentState = State.Idle;
+                previousConveyorConnector.Connect(existingConveyor, currentEditablePoint);
+                currentEditablePoint = null;
+                previousConveyorConnector = null;
+                existingConveyor = null;
+                return;
+            }
+        }
+
+
         if (currentState != State.SupplyChainEdit) return;
 
         UpdatePreviewLine();
@@ -204,7 +222,7 @@ public class SupplyChainEditor : MonoBehaviour
     {
         GameObject conveyorObject = Instantiate(conveyorBeltPrefab);
         ConveyorBelt conveyorBelt = conveyorObject.GetComponent<ConveyorBelt>();
-        conveyorBelt.Initialize(waypoints, lineWidth, startConnector, endConnector);
+        conveyorBelt.InitializeConnection(waypoints, lineWidth, startConnector, endConnector);
         conveyorObject.transform.parent = transform;
         EndEditMode();
     }
