@@ -65,7 +65,6 @@ namespace GameManagerSystem.Configuration
 
         public void GetAllGameConditions(GameManager gameManager, List<GameBehaviorBase> gameBehaviour)
         {
-            gameManager.ClearAllGameConditions();
             foreach (GameBehaviorBase behavior in gameBehaviour)
             {
                 GameCondition newGameCondition = behavior.GetGameCondition();

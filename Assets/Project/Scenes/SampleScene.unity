@@ -286,8 +286,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 513872338}
+  - component: {fileID: 513872339}
   m_Layer: 0
-  m_Name: Card Packs
+  m_Name: Game Progression Card Packs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,9 +309,26 @@ Transform:
   m_Children:
   - {fileID: 505727038}
   - {fileID: 260707022}
-  - {fileID: 1824404301}
   m_Father: {fileID: 1548750474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &513872339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513872337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae16a6be043a81146872e187a78e7b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mileStones:
+  - RequiredMoney: 200
+    AssociatedLockedElement: {fileID: 0}
+  - RequiredMoney: 400
+    AssociatedLockedElement: {fileID: 0}
+  lockedElementPrefab: {fileID: 5957049999186379861, guid: 9e5a85f5eaf0571459cb224b3194a38b, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +556,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000001df2ba5ce75c9a9f
+  m_ApplyToSortingLayers: 000000001df2ba5ce75c9a9f9d8a5cc477dbb58a
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -634,6 +652,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1824404301}
   - {fileID: 513872338}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -894,6 +913,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 513872338}
     m_Modifications:
+    - target: {fileID: 151084513806921917, guid: 1b377fa1db65e0e4984bd000a9c48e54, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 151084513806921917, guid: 1b377fa1db65e0e4984bd000a9c48e54, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1967793289
+      objectReference: {fileID: 0}
+    - target: {fileID: 665671049111336575, guid: 1b377fa1db65e0e4984bd000a9c48e54, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1196686030985313702, guid: 1b377fa1db65e0e4984bd000a9c48e54, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787228775612392725, guid: 1b377fa1db65e0e4984bd000a9c48e54, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584685151329393548, guid: 1b377fa1db65e0e4984bd000a9c48e54, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5161327458708739356, guid: 1b377fa1db65e0e4984bd000a9c48e54, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -934,9 +977,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6139962944626246209, guid: 1b377fa1db65e0e4984bd000a9c48e54, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591338071408094987, guid: 1b377fa1db65e0e4984bd000a9c48e54, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597564732188224718, guid: 1b377fa1db65e0e4984bd000a9c48e54, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8789027341542260901, guid: 1b377fa1db65e0e4984bd000a9c48e54, type: 3}
       propertyPath: m_Name
       value: Stone Card Pack Purchaser
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789027341542260901, guid: 1b377fa1db65e0e4984bd000a9c48e54, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1257,9 +1316,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1458281804407732103, guid: 67cc912136e766e499e99a83a917400c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1811744006829112210, guid: 67cc912136e766e499e99a83a917400c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258893534140488597, guid: 67cc912136e766e499e99a83a917400c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2459609321596612366, guid: 67cc912136e766e499e99a83a917400c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565029017340523340, guid: 67cc912136e766e499e99a83a917400c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997775246070750374, guid: 67cc912136e766e499e99a83a917400c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997775246070750374, guid: 67cc912136e766e499e99a83a917400c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1967793289
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882323919158371483, guid: 67cc912136e766e499e99a83a917400c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8828004269910862361, guid: 67cc912136e766e499e99a83a917400c, type: 3}
       propertyPath: m_Name
       value: Wood Card Pack Purchaser
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828004269910862361, guid: 67cc912136e766e499e99a83a917400c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8849637355832943644, guid: 67cc912136e766e499e99a83a917400c, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1280,6 +1379,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 200702380944004853, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 690983868201136530, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: MenuRelations.Array.size
       value: 4
@@ -1304,6 +1407,10 @@ PrefabInstance:
       propertyPath: MenuRelations.Array.data[3].UIButtonDataList.Array.data[2].Button
       value: 
       objectReference: {fileID: 2234993639382073821}
+    - target: {fileID: 690983868201136530, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: MenuRelations.Array.data[2].UIButtonDataList.Array.data[0].ButtonType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 690983868201136530, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: MenuRelations.Array.data[3].UIButtonDataList.Array.data[0].ButtonType
       value: 3
@@ -1334,11 +1441,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: 'gameConditions.Array.data[0]'
-      value: 851907204445110467
+      value: 851907322275954915
       objectReference: {fileID: 0}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: 'gameConditions.Array.data[1]'
-      value: 851907204445110468
+      value: 851907322275954916
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'gameConditions.Array.data[2]'
+      value: 851907322275954918
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'gameConditions.Array.data[3]'
+      value: 851907322275954922
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'gameConditions.Array.data[4]'
+      value: 851907322275954923
       objectReference: {fileID: 0}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: 'managedReferences[851907204445110461]'
@@ -1361,6 +1480,90 @@ PrefabInstance:
       value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.LoseCondition
       objectReference: {fileID: 0}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954881]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.WinCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954882]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.LoseCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954883]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.WinCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954884]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.LoseCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954885]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.WinCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954886]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.LoseCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954887]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.WinCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954888]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.LoseCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954889]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.WinCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954890]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.LoseCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954891]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.WinCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954892]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.LoseCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954893]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.WinCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954894]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.LoseCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954911]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.WinCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954912]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.LoseCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954915]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.WinCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954916]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.LoseCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954918]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.WinCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954922]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.WinCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: 'managedReferences[851907322275954923]'
+      value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.LoseCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: managedReferences[851907204445110461].conditionName
       value: Win Condition
       objectReference: {fileID: 0}
@@ -1379,6 +1582,134 @@ PrefabInstance:
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: managedReferences[851907204445110468].conditionName
       value: Lose Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954881].conditionName
+      value: Win Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954882].conditionName
+      value: Lose Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954883].conditionName
+      value: Win Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954884].conditionName
+      value: Lose Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954885].conditionName
+      value: Win Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954886].conditionName
+      value: Lose Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954887].conditionName
+      value: Win Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954888].conditionName
+      value: Lose Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954889].conditionName
+      value: Win Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954890].conditionName
+      value: Lose Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954891].conditionName
+      value: Win Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954892].conditionName
+      value: Lose Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954893].conditionName
+      value: Win Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954894].conditionName
+      value: Lose Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954911].conditionName
+      value: Win Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954912].conditionName
+      value: Lose Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954915].conditionName
+      value: Win Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954916].conditionName
+      value: Lose Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954918].conditionName
+      value: Win Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954922].conditionName
+      value: Win Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954923].conditionName
+      value: Lose Condition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954881].gameProgression
+      value: 
+      objectReference: {fileID: 513872339}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954883].gameProgression
+      value: 
+      objectReference: {fileID: 513872339}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954885].gameProgression
+      value: 
+      objectReference: {fileID: 513872339}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954887].gameProgression
+      value: 
+      objectReference: {fileID: 513872339}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954889].gameProgression
+      value: 
+      objectReference: {fileID: 513872339}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954891].gameProgression
+      value: 
+      objectReference: {fileID: 513872339}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954893].gameProgression
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954911].gameProgression
+      value: 
+      objectReference: {fileID: 513872339}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954915].gameProgression
+      value: 
+      objectReference: {fileID: 513872339}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954918].gameProgression
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954922].gameProgression
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7000407683525665118, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1435,7 +1766,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 513872338}
+    m_TransformParent: {fileID: 1548750474}
     m_Modifications:
     - target: {fileID: 4514311542554033200, guid: 70c687340f2fc4841a294603ae750ae2, type: 3}
       propertyPath: m_Name
@@ -1443,7 +1774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4990487510111471263, guid: 70c687340f2fc4841a294603ae750ae2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.05
+      value: -0.05000019
       objectReference: {fileID: 0}
     - target: {fileID: 4990487510111471263, guid: 70c687340f2fc4841a294603ae750ae2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1459,15 +1790,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4990487510111471263, guid: 70c687340f2fc4841a294603ae750ae2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4990487510111471263, guid: 70c687340f2fc4841a294603ae750ae2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4990487510111471263, guid: 70c687340f2fc4841a294603ae750ae2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4990487510111471263, guid: 70c687340f2fc4841a294603ae750ae2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

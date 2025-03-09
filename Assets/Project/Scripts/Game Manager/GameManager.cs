@@ -109,7 +109,22 @@ namespace GameManagerSystem
 
         public void AddGameBehaviour(GameBehaviorBase behavior) => gameBehaviors.Add(behavior);
         public void ClearAllBehaviours() => gameBehaviors.Clear();
-        public void AddGameCondition(GameCondition condition) => gameConditions.Add(condition);
+        public void AddGameCondition(GameCondition condition)
+        {
+            if (gameConditions.Count == 0)
+            {
+                gameConditions.Add(condition);
+                return;
+            }
+            foreach (GameCondition gameCondition in gameConditions)
+            {
+                if (gameCondition.GetType() == condition.GetType())
+                {
+                    Debug.LogWarning($"Game Condition of type {condition.GetType().Name} already exists in GameManager.");
+                    return;
+                }
+            }
+        }
         public void ClearAllGameConditions() => gameConditions.Clear();
 
         #endregion
