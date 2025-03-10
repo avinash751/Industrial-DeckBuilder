@@ -1,17 +1,22 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour
 {
     [SerializeField] private DragableCoveryorPoint editablePointPrefab;
+    [SerializeField] private DragableConnectorPoint editableConnectorPointPrefab;
     [SerializeField] private LineRenderer line;
     [SerializeField] private List<Vector3> pathPoints = new List<Vector3>();
-    [SerializeField] private List<DragableCoveryorPoint> editablePointsList;
+    [SerializeField] private List<DragableCoveryorPoint> editableConveyorPointsList;
+    private DragableConnectorPoint startEditableConnectorPoint;
+    private DragableConnectorPoint endEditableConnectorPoint;
+
     public bool Connected = false;
     private void Start()
     {
-            line ??= GetComponent<LineRenderer>();
+        line ??= GetComponent<LineRenderer>();
     }
 
 
@@ -25,20 +30,42 @@ public class ConveyorBelt : MonoBehaviour
         line.endWidth = lineWidth;
         if (editablePointPrefab != null)
         {
-            ConstructEditablePoints();
+            ConstructConveyorEditablePoints();
         }
-        _startConnector.Connect(this, editablePointsList.First());
-        _endConnector.Connect(this, editablePointsList.Last());
+        if (editableConnectorPointPrefab != null)
+        {
+            ConstructEditableConnectorPoints();
+        }
+
+        if (startEditableConnectorPoint != null)
+        {
+            _startConnector.Connect(this, startEditableConnectorPoint);
+        }
+        if (endEditableConnectorPoint != null)
+        {
+            _endConnector.Connect(this, endEditableConnectorPoint);
+        }
     }
 
-    void ConstructEditablePoints()
+    void ConstructConveyorEditablePoints()
     {
         for (int i = 0; i < pathPoints.Count; i++)
         {
+            if (i == 0 || i == pathPoints.Count - 1) continue;
             DragableCoveryorPoint newEditablePoint = Instantiate(editablePointPrefab, pathPoints[i], Quaternion.identity, transform);
-            newEditablePoint.InitializeEditablePoint(line, pathPoints, i);
-            editablePointsList.Add(newEditablePoint);
+            newEditablePoint.InitializeEditablePoint(this,line, pathPoints, i);
+            editableConveyorPointsList.Add(newEditablePoint);
         }
+    }
+
+    void ConstructEditableConnectorPoints()
+    {
+        Vector3 firstPathPointPosition = pathPoints.First();
+        startEditableConnectorPoint = Instantiate(editableConnectorPointPrefab, firstPathPointPosition, Quaternion.identity, transform);
+        startEditableConnectorPoint.InitializeEditablePoint(this,line, pathPoints, 0);
+        Vector3 lastPathPointPosition = pathPoints.Last();
+        endEditableConnectorPoint = Instantiate(editableConnectorPointPrefab, lastPathPointPosition, Quaternion.identity, transform);
+        endEditableConnectorPoint.InitializeEditablePoint(this,line, pathPoints, pathPoints.Count - 1);
     }
     public List<Vector3> GetPathPoints()
     {

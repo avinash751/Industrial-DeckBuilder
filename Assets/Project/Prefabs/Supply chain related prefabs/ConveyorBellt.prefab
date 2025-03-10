@@ -46,10 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   editablePointPrefab: {fileID: 6961982113318424564, guid: eb7b1fb50c559fc4583f8c506d08d1b5, type: 3}
+  editableConnectorPointPrefab: {fileID: -3420289294305188736, guid: 7460a70bf537a074ea06236c1f33cf52, type: 3}
   line: {fileID: 5954548413084100321}
   pathPoints: []
-  startConnector: {fileID: 0}
-  endConnector: {fileID: 0}
+  editableConveyorPointsList: []
+  Connected: 0
 --- !u!120 &5954548413084100321
 LineRenderer:
   serializedVersion: 2

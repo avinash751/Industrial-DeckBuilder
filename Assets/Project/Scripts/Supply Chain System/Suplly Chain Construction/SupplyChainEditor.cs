@@ -24,7 +24,7 @@ public class SupplyChainEditor : MonoBehaviour
     private CommandManager commandManager = new CommandManager();
     private Connector startConnector;
     private Connector previousConveyorConnector;
-    private DragableCoveryorPoint currentEditablePoint;
+    private DragableConnectorPoint currentEditablePoint;
     private ConveyorBelt existingConveyor;
 
     void Start()
@@ -67,7 +67,7 @@ public class SupplyChainEditor : MonoBehaviour
 
     }
 
-    void DisconnectExistingConveyorBelt(Connector connector,ConveyorBelt conveyor,DragableCoveryorPoint _editablePoint)
+    void DisconnectExistingConveyorBelt(Connector connector,ConveyorBelt conveyor,DragableConnectorPoint _editablePoint)
     {
         if (currentState == State.SupplyChainEdit)
         {

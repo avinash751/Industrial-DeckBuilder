@@ -5,10 +5,10 @@ public class Connector : MonoBehaviour
 {
     public bool isInput;
     public ConveyorBelt conveyor;
-    DragableCoveryorPoint editablePoint;
+    DragableConnectorPoint editableConnectorPoint;
 
     public static event Action<Connector> OnConnectorClicked;
-    public static event Action<Connector,ConveyorBelt,DragableCoveryorPoint> OnConnectorDisconnect;
+    public static event Action<Connector,ConveyorBelt,DragableConnectorPoint> OnConnectorDisconnect;
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class Connector : MonoBehaviour
     {
         if (IsConnected())
         {
-            OnConnectorDisconnect?.Invoke(this,conveyor,editablePoint);
+            OnConnectorDisconnect?.Invoke(this,conveyor,editableConnectorPoint);
             return;
         }
 
@@ -41,19 +41,19 @@ public class Connector : MonoBehaviour
     }
 
     public bool IsConnected() => conveyor != null;
-    public void Connect(ConveyorBelt belt, DragableCoveryorPoint _editablePoint)
+    public void Connect(ConveyorBelt belt, DragableConnectorPoint _editablePoint)
     {
         conveyor = belt;
-        editablePoint = _editablePoint;
-        editablePoint.EnableConveyorEditMode(false,this);
+        editableConnectorPoint = _editablePoint;
+        editableConnectorPoint.EnableConveyorEditMode(false,this);
         conveyor.Connected = true;
     }
     public void Disconnect()
     {
         conveyor.Connected = false;
-        editablePoint.EnableConveyorEditMode(true,this);
+        editableConnectorPoint.EnableConveyorEditMode(true,this);
         conveyor.Connected = false;
         conveyor = null;
-        editablePoint = null;      
+        editableConnectorPoint = null;      
     }
 }
