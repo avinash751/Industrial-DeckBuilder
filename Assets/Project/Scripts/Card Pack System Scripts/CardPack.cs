@@ -5,7 +5,7 @@ public class CardPack : MonoBehaviour
 {
     public CardSupplyChain SupplyChain; // Acts as a pool of cards
     public int packSize = 5; // Number of cards in the final pack
-    public Vector3 cardSpawnOffset = new Vector3(1, 0, 0); // Offset for spawning cards
+    public Vector3 cardSpawnOffset = new Vector3(1, 0, 0); // Offset for spawning car
 
     private List<CardData> finalPack; // The final pack of cards to spawn
     private int currentCardIndex = 0; // Tracks which card to spawn next

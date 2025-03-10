@@ -1,16 +1,26 @@
+using TMPro;
 using UnityEngine;
 
 public class CardPackPurchaser : MonoBehaviour
 {
     public GameObject cardPackPrefab; // Prefab of the CardPack
     public Transform spawnTransform; // Where to spawn the CardPack
+    [SerializeField]TextMeshPro costText;
+    [SerializeField] int cardPackCost;
     [field:SerializeField]public bool IsPurchasable { get; private set; } = true; // For future progression
+
+    private void Start()
+    {
+        if (costText == null) return;
+        costText.text = "Cost: $" + cardPackCost.ToString();
+    }
 
     private void OnMouseDown()
     {
         if (IsPurchasable)
         {
             SpawnCardPack();
+            MoneyManager.Instance.SubtractMoney(cardPackCost);
         }
     }
 
