@@ -24,6 +24,7 @@ public class ResourceMover : MonoBehaviour
             return;
 
         Vector3 targetPos = path[currentTargetIndex];
+        targetPos.z = 0;
         transform.position = Vector3.MoveTowards(transform.position, targetPos, resource.moveSpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, targetPos) < 0.1f && currentTargetIndex != path.Count-1)

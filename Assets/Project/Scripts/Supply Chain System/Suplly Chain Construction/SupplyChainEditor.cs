@@ -26,11 +26,13 @@ public class SupplyChainEditor : MonoBehaviour
     private Connector previousConveyorConnector;
     private DragableConnectorPoint currentEditablePoint;
     private ConveyorBelt existingConveyor;
+    int mouse0ClickCounter;
 
     void Start()
     {
         Connector.OnConnectorClicked += HandleAllConnectionTypes;
         Connector.OnConnectorDisconnect += DisconnectExistingConveyorBelt;
+        DragableConnectorPoint.OnAttemptToEnterConveyorEditMode += EnterCoveyorEditThroughConnectorPoint;
         if (previewLine != null)
         {
             previewLine.startWidth = lineWidth;
@@ -42,6 +44,7 @@ public class SupplyChainEditor : MonoBehaviour
     {
         Connector.OnConnectorClicked -= HandleAllConnectionTypes;
         Connector.OnConnectorDisconnect -= DisconnectExistingConveyorBelt;
+        DragableConnectorPoint.OnAttemptToEnterConveyorEditMode -= EnterCoveyorEditThroughConnectorPoint;
     }
 
     void HandleAllConnectionTypes(Connector connector)
@@ -67,7 +70,7 @@ public class SupplyChainEditor : MonoBehaviour
 
     }
 
-    void DisconnectExistingConveyorBelt(Connector connector,ConveyorBelt conveyor,DragableConnectorPoint _editablePoint)
+    void DisconnectExistingConveyorBelt(Connector connector, ConveyorBelt conveyor, DragableConnectorPoint _editablePoint)
     {
         if (currentState == State.SupplyChainEdit)
         {
@@ -80,8 +83,17 @@ public class SupplyChainEditor : MonoBehaviour
             existingConveyor = conveyor;
             previousConveyorConnector = connector;
             previousConveyorConnector.Disconnect();
+            mouse0ClickCounter = 0;
         }
 
+    }
+
+    void EnterCoveyorEditThroughConnectorPoint(DragableConnectorPoint connectorEditPoint, ConveyorBelt conveyor)
+    {
+        currentState = State.ConveyorEdit;
+        currentEditablePoint = connectorEditPoint;
+        existingConveyor = conveyor;
+        connectorEditPoint.EnableConveyorEditMode(true,false, true, null);
     }
 
 
@@ -104,15 +116,27 @@ public class SupplyChainEditor : MonoBehaviour
     private void HandleInputInEditMode()
     {
 
-        if(currentState == State.ConveyorEdit)
+        if (currentState == State.ConveyorEdit)
         {
-            if(Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 currentState = State.Idle;
                 previousConveyorConnector.Connect(existingConveyor, currentEditablePoint);
                 currentEditablePoint = null;
                 previousConveyorConnector = null;
                 existingConveyor = null;
+                return;
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                mouse0ClickCounter++;
+                if (mouse0ClickCounter < 2) return;
+                currentState = State.Idle;
+                currentEditablePoint.EnableConveyorEditMode(false, true, true, null);
+                currentEditablePoint = null;
+                previousConveyorConnector = null;
+                existingConveyor = null;
+                mouse0ClickCounter = 0;
                 return;
             }
         }

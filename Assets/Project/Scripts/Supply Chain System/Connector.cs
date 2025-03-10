@@ -45,13 +45,13 @@ public class Connector : MonoBehaviour
     {
         conveyor = belt;
         editableConnectorPoint = _editablePoint;
-        editableConnectorPoint.EnableConveyorEditMode(false,this);
+        editableConnectorPoint.EnableConveyorEditMode(false,false,false,this);
         conveyor.Connected = true;
     }
     public void Disconnect()
     {
         conveyor.Connected = false;
-        editableConnectorPoint.EnableConveyorEditMode(true,this);
+        editableConnectorPoint.EnableConveyorEditMode(true,true,true,this);
         conveyor.Connected = false;
         conveyor = null;
         editableConnectorPoint = null;      

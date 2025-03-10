@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 980179107116690135}
   - component: {fileID: -4552127889917701926}
   - component: {fileID: 4897692826096239580}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Stone Resource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1047009761
+  m_SortingLayer: 1
   m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.6754716, g: 0.6754716, b: 0.6754716, a: 1}
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be7241236930eaf4781d13bbfaa4492b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path: []
 --- !u!58 &-4552127889917701926
 CircleCollider2D:
   m_ObjectHideFlags: 0

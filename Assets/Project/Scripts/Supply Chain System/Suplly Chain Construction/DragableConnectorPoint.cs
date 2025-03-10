@@ -1,11 +1,15 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DragableConnectorPoint : DragableCoveryorPoint
-{ 
+{
     bool isConveyerEditMode = false;
     Connector associatedConnector;
     ConveyorBelt associatedConveyor;
+
+    public static Action<DragableConnectorPoint,ConveyorBelt> OnAttemptToEnterConveyorEditMode;
+
 
     public override void InitializeEditablePoint(ConveyorBelt conveyor, LineRenderer _lineRenderer, List<Vector3> _pathPoints, int index)
     {
@@ -17,21 +21,33 @@ public class DragableConnectorPoint : DragableCoveryorPoint
     {
         if (isConveyerEditMode)
         {
-            Vector2 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            currentMousePosition.z = -0.1f;
             transform.position = currentMousePosition;
         }
         else if (associatedConnector != null)
         {
-            transform.position = associatedConnector.transform.position;
+            Vector3 associatedConnectorPosition = associatedConnector.transform.position;
+            associatedConnectorPosition.z = -0.1f;
+            transform.position = associatedConnectorPosition;
+
         }
         UpdateLinePosition();
     }
 
-    public void EnableConveyorEditMode(bool enable, Connector connector)
+    private void OnMouseDown()
     {
-        isConveyerEditMode = enable;
-        GetComponent<CircleCollider2D>().enabled = false;
-        GetComponent<SpriteRenderer>().enabled = enable;
+        if (!isConveyerEditMode && !associatedConveyor.Connected)
+        {
+            OnAttemptToEnterConveyorEditMode?.Invoke(this, associatedConveyor);
+        }
+    }
+
+    public void EnableConveyorEditMode(bool enabledEditMode, bool colliderEnabled, bool rendererEnabled, Connector connector)
+    {
+        isConveyerEditMode = enabledEditMode;
+        GetComponent<CircleCollider2D>().enabled = colliderEnabled;
+        GetComponent<SpriteRenderer>().enabled = rendererEnabled;
         associatedConnector = connector;
     }
 }
