@@ -31,8 +31,9 @@ public class ConnectorSpawner : MonoBehaviour
         if (cardData is ExtractionCardData extractionCardData)
         {
             inputConnectorsRequired =1;
-            Connector newOutPutConnector = Instantiate(outputConnectorPrefab, outputSpawnPointsArray[0].position,
-                                                                                                                          Quaternion.identity, transform);
+            Vector3 spawnposition = outputSpawnPointsArray[0].position;
+            spawnposition.z = -0.2f;
+            Connector newOutPutConnector = Instantiate(outputConnectorPrefab,spawnposition, Quaternion.identity, transform);
             spawnedOutputConnectors.Add(newOutPutConnector);
         }
     }
@@ -48,14 +49,17 @@ public class ConnectorSpawner : MonoBehaviour
 
             for (int i = 0; i < inputConnectorsRequired; i++)
             {
-                Connector newInputConnector = Instantiate(inputConnectorPrefab, inputSpawnPointsArray[i].position,
-                                                                                                                     Quaternion.identity, transform);
+                Vector3 spawnposition = inputSpawnPointsArray[i].position;
+                spawnposition.z = -0.2f;
+                Connector newInputConnector = Instantiate(inputConnectorPrefab,spawnposition, Quaternion.identity, transform);
+
                 spawnedInputConnectors.Add(newInputConnector);
             }
             for (int i = 0; i < outputConnectorsRequired; i++)
             {
-                Connector newOutputConnector = Instantiate(outputConnectorPrefab, outputSpawnPointsArray[i].position,
-                                                                                                                            Quaternion.identity, transform);
+                Vector3 spawnposition = outputSpawnPointsArray[i].position;
+                spawnposition.z = -0.2f;
+                Connector newOutputConnector = Instantiate(outputConnectorPrefab,spawnposition,Quaternion.identity, transform);
                 spawnedOutputConnectors.Add((newOutputConnector));
             }
 

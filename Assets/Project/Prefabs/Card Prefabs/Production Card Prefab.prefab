@@ -52,7 +52,7 @@ MonoBehaviour:
   cardIcon: {fileID: 9067424428340818749}
   cardNameText: {fileID: 789084714949721148}
   cardTypeText: {fileID: 5222848148831339678}
-  connectorSpawner: {fileID: 0}
+  connectorSpawner: {fileID: 533132114721031445}
   productionCardSO: {fileID: 0}
   inputConnectors: []
   outputConnectors: []
@@ -90,7 +90,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverScale: {x: 1.1, y: 1.1, z: 1.1}
-  hoverFeedbacks: {fileID: 0}
 --- !u!61 &5186377802149020137
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -636,7 +635,7 @@ SortingGroup:
   m_GameObject: {fileID: 2147329398405717484}
   m_Enabled: 1
   m_SortingLayerID: 1555755549
-  m_SortingLayer: 1
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &2704932739241688012
@@ -991,6 +990,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd33f58e82c834c40b82b2dcce70fff0, type: 3}
+--- !u!114 &533132114721031445 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2834689660912959260, guid: bd33f58e82c834c40b82b2dcce70fff0, type: 3}
+  m_PrefabInstance: {fileID: 2319573638002293257}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a59c0304e36a4ee4494aac4d8fcd30a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1927305934837982219 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4219852400107298306, guid: bd33f58e82c834c40b82b2dcce70fff0, type: 3}

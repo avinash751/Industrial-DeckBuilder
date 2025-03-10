@@ -12,11 +12,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Cards
+  - Card
   - Coveyor
-  - 
-  - 
-  - 
+  - Card Pack
+  - Locked
+  - Resource
   - 
   - 
   - 
@@ -42,11 +42,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Cards
-    uniqueID: 1555755549
+  - name: Resource
+    uniqueID: 3247957535
     locked: 0
   - name: Coveyor
     uniqueID: 2677693671
+    locked: 0
+  - name: Card Pack
+    uniqueID: 2327174007
+    locked: 0
+  - name: 'Locked '
+    uniqueID: 3294399133
+    locked: 0
+  - name: Card
+    uniqueID: 1555755549
     locked: 0
   m_RenderingLayers:
   - Default
