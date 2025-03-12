@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4517518786634492012}
   - component: {fileID: 5186377802149020137}
   - component: {fileID: 6741666328618612187}
+  - component: {fileID: 448615704374814206}
   m_Layer: 6
   m_Name: Production Card Prefab
   m_TagString: Cards
@@ -56,6 +57,7 @@ MonoBehaviour:
   productionCardSO: {fileID: 0}
   inputConnectors: []
   outputConnectors: []
+  isProductionActive: 0
 --- !u!114 &8164788398406946847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +165,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &448615704374814206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371431145912167240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 687cb8208d755ab43ac3a2796f82e0d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 0}
+  cardData: {fileID: 0}
 --- !u!1 &1946884695491298329
 GameObject:
   m_ObjectHideFlags: 0

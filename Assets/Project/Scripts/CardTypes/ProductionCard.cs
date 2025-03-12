@@ -13,7 +13,7 @@ public class ProductionCard : Card, IResourceReceiver
 
 
     private MultiResource receivedResources = new MultiResource();
-    private bool isProductionActive = false;
+    [ReadOnly]public bool isProductionActive = false;
 
     public override void InitializeCard(CardData data)
     {
@@ -249,5 +249,10 @@ public class ProductionCard : Card, IResourceReceiver
                 return false;
         }
         return true;
+    }
+
+    public override CardData GetCardData()
+    {
+        return productionCardSO;
     }
 }

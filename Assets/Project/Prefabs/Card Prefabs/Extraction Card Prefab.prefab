@@ -607,6 +607,7 @@ GameObject:
   - component: {fileID: 3966456620767018009}
   - component: {fileID: 2339481783312245002}
   - component: {fileID: 489047617451587139}
+  - component: {fileID: -3945920868321059050}
   m_Layer: 6
   m_Name: Extraction Card Prefab
   m_TagString: Cards
@@ -757,6 +758,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &-3945920868321059050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6904530581578315095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 687cb8208d755ab43ac3a2796f82e0d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 0}
+  cardData: {fileID: 0}
 --- !u!1 &6939475382449996682
 GameObject:
   m_ObjectHideFlags: 0

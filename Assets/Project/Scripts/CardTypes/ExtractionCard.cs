@@ -10,7 +10,7 @@ public class ExtractionCard : Card
     [SerializeField] private Connector outputConnector;
     //[SerializeField] private CardFeedbacks cardFeedbacks; // Added CardFeedbacks reference - assign in inspector!
 
-    [ReadOnly][SerializeField] bool isExtracting;
+    [ReadOnly][SerializeField] public bool isExtracting;
 
     public override void InitializeCard(CardData data)
     {
@@ -79,5 +79,10 @@ public class ExtractionCard : Card
             ResourceMover mover = resourceObj.GetComponent<ResourceMover>();
             mover.Initialize(outputConnector.conveyor.GetPathPoints());
         }
+    }
+
+    public override CardData GetCardData()
+    {
+        return extractionCardData;
     }
 }

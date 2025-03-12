@@ -46,4 +46,9 @@ public abstract class Card : MonoBehaviour, ISellable
         Destroy(gameObject);
         MoneyManager.Instance.AddMoney(sellValue);
     }
+
+    public virtual CardData GetCardData()
+    {
+        return null;
+    }
 }
