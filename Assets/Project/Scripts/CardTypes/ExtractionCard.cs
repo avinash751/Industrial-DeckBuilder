@@ -16,7 +16,6 @@ public class ExtractionCard : Card
     {
         base.InitializeCard(data);
         extractionCardData = (ExtractionCardData)data;
-        cardTypeText.text = "Extraction";
         outputConnector = connectorSpawner.GetConnectors(false).First();
     }
 

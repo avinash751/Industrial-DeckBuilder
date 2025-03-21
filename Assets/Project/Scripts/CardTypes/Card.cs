@@ -7,7 +7,6 @@ public abstract class Card : MonoBehaviour, ISellable
 {
     [FromChildren][SerializeField] protected SpriteRenderer cardIcon;
     [FromChildren][SerializeField] protected TextMeshPro cardNameText;
-    [FromChildren][SerializeField] protected TextMeshPro cardTypeText;
     [FromChildren][SerializeField] protected ConnectorSpawner connectorSpawner;
     int sellValue;
     float monthlyUpkeepCost;

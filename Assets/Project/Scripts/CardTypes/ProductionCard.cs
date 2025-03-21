@@ -19,7 +19,6 @@ public class ProductionCard : Card, IResourceReceiver
     {
         base.InitializeCard(data);
         productionCardSO = (ProductionCardData)data;
-        cardTypeText.text = "Production";
 
         isProductionActive = false;
         receivedResources = new MultiResource();
