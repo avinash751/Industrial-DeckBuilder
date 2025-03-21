@@ -32,8 +32,9 @@ public class ConnectorSpawner : MonoBehaviour
         {
             inputConnectorsRequired =1;
             Vector3 spawnposition = outputSpawnPointsArray[0].position;
+            Quaternion spawnRotation = outputSpawnPointsArray[0].rotation;
             spawnposition.z = -0.2f;
-            Connector newOutPutConnector = Instantiate(outputConnectorPrefab,spawnposition, Quaternion.identity, transform);
+            Connector newOutPutConnector = Instantiate(outputConnectorPrefab,spawnposition,spawnRotation, transform);
             spawnedOutputConnectors.Add(newOutPutConnector);
         }
     }
@@ -50,16 +51,18 @@ public class ConnectorSpawner : MonoBehaviour
             for (int i = 0; i < inputConnectorsRequired; i++)
             {
                 Vector3 spawnposition = inputSpawnPointsArray[i].position;
+                Quaternion spawnRotation = inputSpawnPointsArray[i].rotation;
                 spawnposition.z = -0.2f;
-                Connector newInputConnector = Instantiate(inputConnectorPrefab,spawnposition, Quaternion.identity, transform);
+                Connector newInputConnector = Instantiate(inputConnectorPrefab,spawnposition,spawnRotation, transform);
 
                 spawnedInputConnectors.Add(newInputConnector);
             }
             for (int i = 0; i < outputConnectorsRequired; i++)
             {
                 Vector3 spawnposition = outputSpawnPointsArray[i].position;
+                Quaternion spawnRotation = outputSpawnPointsArray[i].rotation;
                 spawnposition.z = -0.2f;
-                Connector newOutputConnector = Instantiate(outputConnectorPrefab,spawnposition,Quaternion.identity, transform);
+                Connector newOutputConnector = Instantiate(outputConnectorPrefab,spawnposition,spawnRotation, transform);
                 spawnedOutputConnectors.Add((newOutputConnector));
             }
 
