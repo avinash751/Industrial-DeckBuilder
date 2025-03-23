@@ -1890,6 +1890,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 190917795}
     m_Modifications:
+    - target: {fileID: 82127747403602313, guid: a399cf8f0d873ac4aa000ef98290d028, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e06c4c9a41736da44bb3f2302ff3ebe9, type: 2}
+    - target: {fileID: 82127747403602313, guid: a399cf8f0d873ac4aa000ef98290d028, type: 3}
+      propertyPath: m_Parameters.textureScale.x
+      value: 13.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 82127747403602313, guid: a399cf8f0d873ac4aa000ef98290d028, type: 3}
+      propertyPath: m_Parameters.textureScale.y
+      value: 1.35
+      objectReference: {fileID: 0}
     - target: {fileID: 3817912294685223494, guid: a399cf8f0d873ac4aa000ef98290d028, type: 3}
       propertyPath: m_Name
       value: Supply Chain Editor
@@ -1937,6 +1949,34 @@ PrefabInstance:
     - target: {fileID: 6962723000952587493, guid: a399cf8f0d873ac4aa000ef98290d028, type: 3}
       propertyPath: lineWidth
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962723000952587493, guid: a399cf8f0d873ac4aa000ef98290d028, type: 3}
+      propertyPath: validColor.a
+      value: 0.56078434
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962723000952587493, guid: a399cf8f0d873ac4aa000ef98290d028, type: 3}
+      propertyPath: validColor.b
+      value: 0.5129522
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962723000952587493, guid: a399cf8f0d873ac4aa000ef98290d028, type: 3}
+      propertyPath: validColor.g
+      value: 0.5924529
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962723000952587493, guid: a399cf8f0d873ac4aa000ef98290d028, type: 3}
+      propertyPath: validColor.r
+      value: 0.4862585
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962723000952587493, guid: a399cf8f0d873ac4aa000ef98290d028, type: 3}
+      propertyPath: invalidColor.b
+      value: 0.2104592
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962723000952587493, guid: a399cf8f0d873ac4aa000ef98290d028, type: 3}
+      propertyPath: invalidColor.g
+      value: 0.2104592
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962723000952587493, guid: a399cf8f0d873ac4aa000ef98290d028, type: 3}
+      propertyPath: invalidColor.r
+      value: 0.6679245
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

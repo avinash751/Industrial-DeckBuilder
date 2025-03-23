@@ -35,8 +35,8 @@ public class SupplyChainEditor : MonoBehaviour
         DragableConnectorPoint.OnAttemptToEnterConveyorEditMode += EnterCoveyorEditThroughConnectorPoint;
         if (previewLine != null)
         {
-            previewLine.startWidth = lineWidth;
-            previewLine.endWidth = lineWidth;
+            previewLine.startWidth = lineWidth *0.8f;
+            previewLine.endWidth = lineWidth*0.8f;
         }
     }
 
