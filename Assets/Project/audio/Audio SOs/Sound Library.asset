@@ -14,36 +14,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundOptionsDictionary:
     serializedKvps:
-    - Key: cannon
-      Value: {fileID: 11400000, guid: e04639622b090ea4b909531dccd173ed, type: 2}
+    - Key: CardHover
+      Value: {fileID: 11400000, guid: c854ace3fe1b9d04cabbf16090b7050a, type: 2}
       index: 0
       isKeyRepeated: 0
-    - Key: Falling
-      Value: {fileID: 11400000, guid: e4209805fdd6f044f93dca94673774a9, type: 2}
+    - Key: CardClick
+      Value: {fileID: 11400000, guid: caf85f4e77a38384f9c90cd853c24f3e, type: 2}
       index: 1
       isKeyRepeated: 0
-    - Key: pop
-      Value: {fileID: 11400000, guid: e04335fa046184348bd8841272d06d5d, type: 2}
+    - Key: CardConnect
+      Value: {fileID: 11400000, guid: 2224abb4ddec8e7478a5e1694eda2c8b, type: 2}
       index: 2
       isKeyRepeated: 0
-    - Key: Ballon
-      Value: {fileID: 11400000, guid: 04439a148013ed6478840ebe0d663b85, type: 2}
+    - Key: CardDisconect
+      Value: {fileID: 11400000, guid: b40b9eb0ad9bd4d47a73f7ad862299d8, type: 2}
       index: 3
       isKeyRepeated: 0
-    - Key: laser
-      Value: {fileID: 11400000, guid: eddd4abb0f7ae9e4f85fff41ba45a4ed, type: 2}
+    - Key: BuyingCard
+      Value: {fileID: 11400000, guid: f99d6e0b4adf02546935e3114cb10f69, type: 2}
       index: 4
       isKeyRepeated: 0
-    - Key: gun
-      Value: {fileID: 11400000, guid: ea2e0f73a1ef2dd428da073792eefc7f, type: 2}
+    - Key: MonthlyPayment
+      Value: {fileID: 11400000, guid: 8bc2c556b04f6664a8295904a5e73e69, type: 2}
       index: 5
       isKeyRepeated: 0
-    - Key: hehe
-      Value: {fileID: 11400000, guid: 0c7d3757b3280f14dbc4b5a85784ee23, type: 2}
+    - Key: Selling
+      Value: {fileID: 11400000, guid: cffc234fc8241d546ac779978bcad0b6, type: 2}
       index: 6
       isKeyRepeated: 0
-    - Key: Theme
-      Value: {fileID: 11400000, guid: 951f999579f237e41a8944ac1cb3520f, type: 2}
+    - Key: GameWin
+      Value: {fileID: 11400000, guid: f5825260f30195846b1c839acff097c3, type: 2}
       index: 7
+      isKeyRepeated: 0
+    - Key: GameLose
+      Value: {fileID: 11400000, guid: 847aa4369beb98d4aaddce4a24eb85bd, type: 2}
+      index: 8
+      isKeyRepeated: 0
+    - Key: Pause
+      Value: {fileID: 11400000, guid: 7025be486a7064647a1ce4b04f7e77ba, type: 2}
+      index: 9
+      isKeyRepeated: 0
+    - Key: UnPause
+      Value: {fileID: 11400000, guid: fb88fbe6108d3914fa419175f3682ec2, type: 2}
+      index: 10
+      isKeyRepeated: 0
+    - Key: GameMusic
+      Value: {fileID: 11400000, guid: 4ca4214a28c8c134d95ef8b33db526a0, type: 2}
+      index: 11
+      isKeyRepeated: 0
+    - Key: GameAmbience
+      Value: {fileID: 11400000, guid: 68b6ce67f0958d64188b7ab86cfb0136, type: 2}
+      index: 12
       isKeyRepeated: 0
     dividerPos: 0.33

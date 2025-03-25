@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b98edf1eb40e2f4f8ae3debdf8f188c, type: 3}
   m_Name: GameMusic
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: e11872e9b66ee8d4eb211a476eacfb9b, type: 3}
   minVolume: 0
   maxVolume: 0
   minPitch: 0
@@ -20,15 +20,15 @@ MonoBehaviour:
   randomAudioClips: []
   soundPlayOptions:
     Initialized: 0
-    MmSoundManagerTrack: 0
+    MmSoundManagerTrack: 1
     AudioGroup: {fileID: 0}
-    Loop: 0
-    Volume: 0
-    Pitch: 0
-    ID: 0
-    Fade: 0
+    Loop: 1
+    Volume: 0.2
+    Pitch: 1
+    ID: 1764823235
+    Fade: 1
     FadeInitialVolume: 0
-    FadeDuration: 0
+    FadeDuration: 3
     FadeTween:
       MMTweenDefinitionType: 0
       MMTweenCurve: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
       ConditionPropertyName: 
       EnumConditionPropertyName: 
       EnumConditions: 
-    Persistent: 0
+    Persistent: 1
     RecycleAudioSource: {fileID: 0}
     PlaybackTime: 0
     PlaybackDuration: 0
