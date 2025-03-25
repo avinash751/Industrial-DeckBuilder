@@ -66,4 +66,12 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 68b6ce67f0958d64188b7ab86cfb0136, type: 2}
       index: 12
       isKeyRepeated: 0
+    - Key: EditPoint
+      Value: {fileID: 11400000, guid: 68b6ce67f0958d64188b7ab86cfb0136, type: 2}
+      index: 13
+      isKeyRepeated: 0
+    - Key: ConnectorClick
+      Value: {fileID: 11400000, guid: cec0ac6e31df40f45a5b244a33a9b863, type: 2}
+      index: 14
+      isKeyRepeated: 0
     dividerPos: 0.33

@@ -12,6 +12,7 @@ public class Connector : MonoBehaviour
 
     string connectedAudioKey = "CardConnect";
     string disconnectedAudioKey = "CardDisconnect";
+    string connectorClickedAudioKey = "ConnectorClick";
 
 
     private void Start()
@@ -26,7 +27,7 @@ public class Connector : MonoBehaviour
             OnConnectorDisconnect?.Invoke(this,conveyor,editableConnectorPoint);
             return;
         }
-
+        AudioManager.Instance?.PlayAudio(connectorClickedAudioKey);
         OnConnectorClicked?.Invoke(this);
     }
 
