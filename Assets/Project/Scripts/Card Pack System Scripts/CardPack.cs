@@ -10,6 +10,8 @@ public class CardPack : MonoBehaviour
     private List<CardData> finalPack; // The final pack of cards to spawn
     private int currentCardIndex = 0; // Tracks which card to spawn next
 
+    string audioKey = "CardPackClick";
+
     private void Start()
     {
         GenerateFinalPack();
@@ -37,6 +39,7 @@ public class CardPack : MonoBehaviour
     {
         if (DragManager.IsDragging) return;
         SpawnNextCard();
+        AudioManager.Instance?.PlayAudio(audioKey);
     }
 
     private void SpawnNextCard()

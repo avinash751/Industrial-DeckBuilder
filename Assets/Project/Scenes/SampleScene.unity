@@ -4438,7 +4438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2691ad21caa79478a6a8b78eac4745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMoney: 100
+  startingMoney: 0
   maxDebt: -10
   currentMoney: 0
 --- !u!223 &8946454801282137668

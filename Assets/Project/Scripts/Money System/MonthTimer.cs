@@ -75,7 +75,7 @@ public class MonthTimer : MonoBehaviour
     {
         float t = Mathf.InverseLerp(0, monthDurationSeconds, timer);
 
-        if(t > 0.85f && !isSoundPlayed)
+        if(t > 0.98f && !isSoundPlayed)
         {
             AudioManager.Instance?.PlayAudio("MonthlyPayment");
             isSoundPlayed = true;

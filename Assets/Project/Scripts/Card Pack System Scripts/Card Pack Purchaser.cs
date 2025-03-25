@@ -8,7 +8,9 @@ public class CardPackPurchaser : MonoBehaviour
     [SerializeField]TextMeshPro costText;
     [SerializeField] int cardPackCost;
     [field:SerializeField]public bool IsPurchasable { get; private set; } = true; // For future progression
-    string audioKey = "BuyingCard";
+    string buyAudioKey = "BuyingCard";
+    string denyAudioKey = "Cancel&Deny";
+
     private void Start()
     {
         if (costText == null) return;
@@ -19,9 +21,13 @@ public class CardPackPurchaser : MonoBehaviour
     {
         if (IsPurchasable)
         {
-            if (!MoneyManager.Instance.SubtractMoney(cardPackCost)) return;
+            if (!MoneyManager.Instance.SubtractMoney(cardPackCost))
+            {
+                AudioManager.Instance?.PlayAudio(denyAudioKey);
+                return;
+            }
             SpawnCardPack();
-            AudioManager.Instance?.PlayAudio(audioKey);
+            AudioManager.Instance?.PlayAudio(buyAudioKey);
         }
     }
 

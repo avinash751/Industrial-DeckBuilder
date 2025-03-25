@@ -28,6 +28,8 @@ public class SupplyChainEditor : MonoBehaviour
     private ConveyorBelt existingConveyor;
     int mouse0ClickCounter;
 
+    string editAudioKey = "EditPoint";
+    string cancelAudioKey = "Cancel&Deny";
     void Start()
     {
         Connector.OnConnectorClicked += HandleAllConnectionTypes;
@@ -125,6 +127,7 @@ public class SupplyChainEditor : MonoBehaviour
                 currentEditablePoint = null;
                 previousConveyorConnector = null;
                 existingConveyor = null;
+                AudioManager.Instance?.PlayAudio(cancelAudioKey);
                 return;
             }
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -158,6 +161,7 @@ public class SupplyChainEditor : MonoBehaviour
         {
             DestroyAllPreviewColliders();
             EndEditMode();
+            AudioManager.Instance?.PlayAudio(cancelAudioKey);
         }
     }
 
@@ -169,6 +173,7 @@ public class SupplyChainEditor : MonoBehaviour
         {
             ICommand placeCommand = new PlacePreviewConveyorSegment(waypoints, this, currentMousePosition, lineWidth);
             commandManager.ExecuteCommand(placeCommand);
+            AudioManager.Instance?.PlayAudio(editAudioKey);
         }
         waypoints[waypoints.Count - 1] = currentMousePosition;
 

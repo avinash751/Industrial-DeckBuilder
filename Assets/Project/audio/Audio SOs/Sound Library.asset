@@ -66,12 +66,24 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 68b6ce67f0958d64188b7ab86cfb0136, type: 2}
       index: 12
       isKeyRepeated: 0
-    - Key: EditPoint
-      Value: {fileID: 11400000, guid: 68b6ce67f0958d64188b7ab86cfb0136, type: 2}
-      index: 13
-      isKeyRepeated: 0
     - Key: ConnectorClick
       Value: {fileID: 11400000, guid: cec0ac6e31df40f45a5b244a33a9b863, type: 2}
+      index: 13
+      isKeyRepeated: 0
+    - Key: EditPoint
+      Value: {fileID: 11400000, guid: c1ef815b63f4aab4c930cb6d1d01a213, type: 2}
       index: 14
+      isKeyRepeated: 0
+    - Key: CardPackClick
+      Value: {fileID: 11400000, guid: f0bfad5544bfe724fa64481fef6ee4e3, type: 2}
+      index: 15
+      isKeyRepeated: 0
+    - Key: Cancel&Deny
+      Value: {fileID: 11400000, guid: 20fdd976746e7de42b0ffc1cc2d3ef4f, type: 2}
+      index: 16
+      isKeyRepeated: 0
+    - Key: CardPackHover
+      Value: {fileID: 11400000, guid: 9a82c2ebcab52744a82c7a663f155878, type: 2}
+      index: 17
       isKeyRepeated: 0
     dividerPos: 0.33

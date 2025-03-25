@@ -417,6 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSmoothness: 10
   mainCamera: {fileID: 0}
+  clickSoundKey: 
 --- !u!114 &6045543509622503267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,6 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverScale: {x: 1.1, y: 1.1, z: 1.1}
+  audioKey: CardHover
 --- !u!1 &8765413274646331729
 GameObject:
   m_ObjectHideFlags: 0
