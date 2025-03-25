@@ -8,6 +8,7 @@ namespace GameManagerSystem.GameBehaviors.Conditions
     [System.Serializable]
     public class LoseCondition : GameCondition
     {
+        [SerializeField] string LoseAudioKey;
         public LoseCondition(GameManager _gameManager) : base(_gameManager)
         {
             conditionName = "Lose Condition";
@@ -24,6 +25,8 @@ namespace GameManagerSystem.GameBehaviors.Conditions
         public override void ExecuteGameCondition()
         {
             GameManager.Instance.LoseGame();
+            AudioManager.Instance?.PlayAudio(LoseAudioKey);
+
         }
 
     }

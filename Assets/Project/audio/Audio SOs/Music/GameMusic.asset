@@ -23,7 +23,7 @@ MonoBehaviour:
     MmSoundManagerTrack: 1
     AudioGroup: {fileID: 0}
     Loop: 1
-    Volume: 0.16
+    Volume: 0.15
     Pitch: 1
     ID: 1764823235
     Fade: 1

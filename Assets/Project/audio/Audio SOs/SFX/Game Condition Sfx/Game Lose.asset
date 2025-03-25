@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Game Lose
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 82502e6ee3888d24fb9d00e560434a64, type: 3}
-  minVolume: 0.2
-  maxVolume: 0.4
+  minVolume: 0.6
+  maxVolume: 0.7
   minPitch: 0.9
   maxPitch: 1.1
   randomAudioClips: []

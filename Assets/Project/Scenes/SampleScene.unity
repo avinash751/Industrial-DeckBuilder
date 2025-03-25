@@ -1257,7 +1257,6 @@ Transform:
   m_Children:
   - {fileID: 190917795}
   - {fileID: 1548750474}
-  - {fileID: 1176415313}
   - {fileID: 305903088}
   - {fileID: 2511726980740069160}
   m_Father: {fileID: 0}
@@ -1266,11 +1265,6 @@ Transform:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7173461207526197649, guid: ed7fc5a66e7f8ea4fb88462343ff88ee, type: 3}
   m_PrefabInstance: {fileID: 1725529903798770533}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1176415313 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4409274951494471994, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
-  m_PrefabInstance: {fileID: 2224041345288834296}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1548750473
 GameObject:
@@ -2387,7 +2381,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 983210191}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1205995952352387298, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
       propertyPath: m_Name
@@ -2395,11 +2389,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409274951494471994, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -960.82
+      value: -0.8200073
       objectReference: {fileID: 0}
     - target: {fileID: 4409274951494471994, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -537.82
+      value: 2.1799927
       objectReference: {fileID: 0}
     - target: {fileID: 4409274951494471994, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3501,6 +3495,14 @@ PrefabInstance:
       value: Assembly-CSharp GameManagerSystem.GameBehaviors.Conditions.LoseCondition
       objectReference: {fileID: 0}
     - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954915].winAudioKey
+      value: GameWin
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: managedReferences[851907322275954916].LoseAudioKey
+      value: GameLose
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479745365326948165, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: managedReferences[851907204445110461].conditionName
       value: Win Condition
       objectReference: {fileID: 0}
@@ -4438,9 +4440,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2691ad21caa79478a6a8b78eac4745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMoney: 0
+  startingMoney: 100
   maxDebt: -10
-  currentMoney: 0
+  currentMoney: 100
 --- !u!223 &8946454801282137668
 Canvas:
   m_ObjectHideFlags: 0
@@ -4473,5 +4475,6 @@ SceneRoots:
   - {fileID: 362179761}
   - {fileID: 744281233}
   - {fileID: 983210191}
+  - {fileID: 2224041345288834296}
   - {fileID: 4570244906933520062}
   - {fileID: 384139355}

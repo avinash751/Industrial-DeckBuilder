@@ -7,6 +7,7 @@ namespace GameManagerSystem.GameBehaviors.Conditions
     public class WinCondition : GameCondition
     {
         [SerializeField] GameProgression gameProgression;
+        [SerializeField] string winAudioKey;
         public WinCondition(GameManager _gameManager) : base(_gameManager)
         {
             conditionName = "Win Condition";
@@ -27,6 +28,8 @@ namespace GameManagerSystem.GameBehaviors.Conditions
         public override void ExecuteGameCondition()
         {
             GameManager.Instance.WinGame();
+            AudioManager.Instance?.PlayAudio(winAudioKey);
+
         }
 
     }

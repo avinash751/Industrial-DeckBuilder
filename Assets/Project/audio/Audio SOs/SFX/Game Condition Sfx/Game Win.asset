@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Game Win
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: e70d383633c5e60429c8ad0ca5bbd94e, type: 3}
-  minVolume: 0.3
-  maxVolume: 0.6
+  minVolume: 0.7
+  maxVolume: 0.8
   minPitch: 0.9
   maxPitch: 1
   randomAudioClips: []
