@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Card Hover
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: ac6d8304cff67bc48a1474e57377ee07, type: 3}
-  minVolume: 0.2
-  maxVolume: 0.4
-  minPitch: 0.9
-  maxPitch: 1.1
+  minVolume: 0.1
+  maxVolume: 0.2
+  minPitch: 1
+  maxPitch: 1.5
   randomAudioClips: []
   soundPlayOptions:
     Initialized: 0

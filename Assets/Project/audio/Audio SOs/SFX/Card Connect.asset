@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: f2949e10e68081643b8b4031fe0faac0, type: 3}
   minVolume: 0.2
-  maxVolume: 0.4
+  maxVolume: 0.3
   minPitch: 0.9
   maxPitch: 1.1
   randomAudioClips: []
@@ -56,7 +56,7 @@ MonoBehaviour:
     BypassListenerEffects: 0
     BypassReverbZones: 0
     Priority: 0
-    ReverbZoneMix: 0
+    ReverbZoneMix: 1
     DopplerLevel: 0
     Location: {x: 0, y: 0, z: 0}
     Spread: 0

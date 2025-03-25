@@ -7,18 +7,25 @@ public class Hoverable : MonoBehaviour, IHoverable
     public Action OnHoverStart { get; set; }
     public Action OnHoverEnd { get; set; }
 
-
+    [SerializeField] string audioKey = "CardHover";
+    bool isSoundPlayed;
 
     private void OnMouseOver()
     {
         if (DragManager.IsDragging) return;
 
         OnMouseHoverEnter();     
+        if(!isSoundPlayed)
+        {
+            AudioManager.Instance?.PlayAudio(audioKey);
+            isSoundPlayed = true;
+        }
     }
 
     private void OnMouseExit()
     {
         OnMouseHoverExit();
+        isSoundPlayed = false;
     }
 
 

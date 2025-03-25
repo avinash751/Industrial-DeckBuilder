@@ -10,6 +10,10 @@ public class Connector : MonoBehaviour
     public static event Action<Connector> OnConnectorClicked;
     public static event Action<Connector,ConveyorBelt,DragableConnectorPoint> OnConnectorDisconnect;
 
+    string connectedAudioKey = "CardConnect";
+    string disconnectedAudioKey = "CardDisconnect";
+
+
     private void Start()
     {
         GetComponent<BoxCollider2D>().isTrigger = true;
@@ -47,6 +51,7 @@ public class Connector : MonoBehaviour
         editableConnectorPoint = _editablePoint;
         editableConnectorPoint.EnableConveyorEditMode(false,false,false,this);
         conveyor.Connected = true;
+        AudioManager.Instance?.PlayAudio(connectedAudioKey);
     }
     public void Disconnect()
     {
@@ -54,6 +59,7 @@ public class Connector : MonoBehaviour
         editableConnectorPoint.EnableConveyorEditMode(true,true,true,this);
         conveyor.Connected = false;
         conveyor = null;
-        editableConnectorPoint = null;      
+        editableConnectorPoint = null;
+        AudioManager.Instance?.PlayAudio(disconnectedAudioKey);
     }
 }

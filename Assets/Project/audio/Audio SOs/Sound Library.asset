@@ -26,7 +26,7 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 2224abb4ddec8e7478a5e1694eda2c8b, type: 2}
       index: 2
       isKeyRepeated: 0
-    - Key: CardDisconect
+    - Key: CardDisconnect
       Value: {fileID: 11400000, guid: b40b9eb0ad9bd4d47a73f7ad862299d8, type: 2}
       index: 3
       isKeyRepeated: 0
