@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Card Click
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 6f69e6b1bb662d84d8e0b9e9aa8b8384, type: 3}
-  minVolume: 0.3
-  maxVolume: 0.5
-  minPitch: 0.8
-  maxPitch: 1.2
+  minVolume: 0.1
+  maxVolume: 0.2
+  minPitch: 1
+  maxPitch: 1.5
   randomAudioClips: []
   soundPlayOptions:
     Initialized: 0

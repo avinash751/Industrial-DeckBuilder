@@ -45,19 +45,21 @@ public class MoneyManager : MonoBehaviour
         OnMoneyChanged?.Invoke(currentMoney, amount);
     }
 
-    public void SubtractMoney(float amount)
+    public bool SubtractMoney(float amount)
     {
         if (currentMoney >= amount)
         {
             currentMoney -= amount;
             Debug.Log($"Money subtracted: {amount}. Current money: {currentMoney}");
             OnMoneyChanged?.Invoke(currentMoney, -amount);
+            return true;
         }
         else
         {
             Debug.Log("Insufficient funds!");
             // You could also invoke the event here with 0 change or a specific value if you want to signal insufficient funds in the UI
             OnMoneyChanged?.Invoke(currentMoney, 0f);
+            return false;
         }
     }
 

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Buying Card Pack
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 57626fef058ba7948bf11d2b17d01ee0, type: 3}
-  minVolume: 0.3
-  maxVolume: 0.5
-  minPitch: 3
-  maxPitch: 1.1
+  minVolume: 0.1
+  maxVolume: 0.2
+  minPitch: 0.9
+  maxPitch: 1.2
   randomAudioClips: []
   soundPlayOptions:
     Initialized: 0

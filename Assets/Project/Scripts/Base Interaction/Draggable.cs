@@ -11,6 +11,8 @@ public class Draggable : MonoBehaviour, IDraggable
     [SerializeField] protected float moveSmoothness = 10f;
     [SerializeField] Camera mainCamera;
 
+    [SerializeField]string clickSoundKey = "CardClick";
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -19,6 +21,7 @@ public class Draggable : MonoBehaviour, IDraggable
     private void OnMouseDown()
     {
         OnMouseStartDrag();
+        AudioManager.Instance?.PlayAudio(clickSoundKey);
     }
 
     private void OnMouseDrag()
