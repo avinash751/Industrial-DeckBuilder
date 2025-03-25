@@ -18,6 +18,8 @@ public class MonthTimer : MonoBehaviour
     public string CurrentMonthName => CurrentMonthEnum.ToString();
     public float MonthProgress => timer / monthDurationSeconds;
 
+    bool isSoundPlayed;
+
 
     private void OnEnable()
     {
@@ -50,6 +52,7 @@ public class MonthTimer : MonoBehaviour
         timer += Time.deltaTime;
 
         UpdateCurrentMonth();
+        PlaySound();
     }
 
     private void UpdateCurrentMonth()
@@ -64,6 +67,18 @@ public class MonthTimer : MonoBehaviour
             }
             Debug.Log($" Month {((Month)currentMonthIndex).ToString()} starting.");
             OnMonthEnd?.Invoke();
+            isSoundPlayed = false;
+        }
+    }
+
+    void PlaySound()
+    {
+        float t = Mathf.InverseLerp(0, monthDurationSeconds, timer);
+
+        if(t > 0.8f && !isSoundPlayed)
+        {
+            AudioManager.Instance?.PlayAudio("MonthlyPayment");
+            isSoundPlayed = true;
         }
     }
 }

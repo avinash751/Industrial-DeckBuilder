@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SellZone : MonoBehaviour
 {
+    string audioKey = "Selling";
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Try to get the ISellable interface from the colliding object (or its parent)
@@ -16,6 +17,7 @@ public class SellZone : MonoBehaviour
         {
             Debug.Log($"Sellable object detected in SellZone: {collision.gameObject.name}");
             sellableObject.SellObject();
+            AudioManager.Instance?.PlayAudio(audioKey);
         }
     }
 }

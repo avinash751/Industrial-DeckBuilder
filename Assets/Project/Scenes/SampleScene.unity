@@ -2187,7 +2187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 936988164444606810, guid: ed7fc5a66e7f8ea4fb88462343ff88ee, type: 3}
       propertyPath: monthDurationSeconds
-      value: 60
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6240312025335582224, guid: ed7fc5a66e7f8ea4fb88462343ff88ee, type: 3}
       propertyPath: m_fontAsset
