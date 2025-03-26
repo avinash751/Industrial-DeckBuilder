@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rawResourceValues:
   - rawResourceType: 1
-    neutralDemandValue: 5
+    neutralDemandValue: 4
   - rawResourceType: 2
-    neutralDemandValue: 5
-  - rawResourceType: 3
     neutralDemandValue: 3
+  - rawResourceType: 3
+    neutralDemandValue: 2
   refinedResourceValues:
   - refinedResourceType: 1
-    neutralDemandValue: 10
+    neutralDemandValue: 6
   - refinedResourceType: 2
-    neutralDemandValue: 10
+    neutralDemandValue: 5
   - refinedResourceType: 3
-    neutralDemandValue: 15
+    neutralDemandValue: 8
