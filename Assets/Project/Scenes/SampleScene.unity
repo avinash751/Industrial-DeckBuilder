@@ -466,7 +466,7 @@ MonoBehaviour:
   mileStones:
   - RequiredMoney: 200
     AssociatedLockedElement: {fileID: 0}
-  - RequiredMoney: 400
+  - RequiredMoney: 800
     AssociatedLockedElement: {fileID: 0}
   lockedElementPrefab: {fileID: 5957049999186379861, guid: 9e5a85f5eaf0571459cb224b3194a38b, type: 3}
 --- !u!1 &519420028

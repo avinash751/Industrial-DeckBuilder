@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Water Tower
   CardDescription: Extracts And Transports Water
-  CardIcon: {fileID: 21300000, guid: 1915f55bbb9484044b7829d1df0b4abf, type: 3}
-  IconColor: {r: 0, g: 0, b: 0, a: 1}
+  CardIcon: {fileID: 21300000, guid: 58b37510ed6ff634091f8fb627265e2d, type: 3}
+  IconColor: {r: 0.83396226, g: 0.80406547, b: 0.80406547, a: 1}
   CardPrefab: {fileID: 6904530581578315095, guid: 498f941d5eb5f1b47856e40fcd5c3c19, type: 3}
   MonthlyUpKeepCost: 2
   SellValue: 4

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Stone Brick Factory
   CardDescription: "Produces And Transports \nStone Brick Made From Stone"
-  CardIcon: {fileID: 21300000, guid: ffc58b5d1d8a6ed489be30f7a1291b1e, type: 3}
-  IconColor: {r: 0, g: 0, b: 0, a: 1}
+  CardIcon: {fileID: 21300000, guid: d8acffe8501a23b48ba36f45db98a584, type: 3}
+  IconColor: {r: 1, g: 1, b: 1, a: 1}
   CardPrefab: {fileID: 1371431145912167240, guid: fb5744d52171a584f922304ed4cfc27b, type: 3}
   MonthlyUpKeepCost: 6
   SellValue: 12
