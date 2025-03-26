@@ -643,6 +643,7 @@ MonoBehaviour:
   edgeScrollZonePercentage: 0
   edgeMoveSpeed: 10
   enableMouseDragging: 1
+  invertMouseDrag: 1
   mouseDragInput: 1
   mouseDragSensitivity: 0.05
   enableCameraZooming: 1
