@@ -460,7 +460,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 513872337}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae16a6be043a81146872e187a78e7b08, type: 3}
   m_Name: 
@@ -468,11 +468,11 @@ MonoBehaviour:
   mileStones:
   - RequiredMoney: 200
     AssociatedLockedElement: {fileID: 0}
+  - RequiredMoney: 400
+    AssociatedLockedElement: {fileID: 0}
   - RequiredMoney: 800
     AssociatedLockedElement: {fileID: 0}
-  - RequiredMoney: 0
-    AssociatedLockedElement: {fileID: 0}
-  - RequiredMoney: 0
+  - RequiredMoney: 1500
     AssociatedLockedElement: {fileID: 0}
   lockedElementPrefab: {fileID: 5957049999186379861, guid: 9e5a85f5eaf0571459cb224b3194a38b, type: 3}
 --- !u!1 &519420028
