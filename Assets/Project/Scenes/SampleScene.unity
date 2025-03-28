@@ -598,11 +598,11 @@ MonoBehaviour:
   zoomSpeed: 5
   zoomDamping: 5
   minZoom: 2
-  maxZoom: 9
-  minXClamp: -3
-  maxXClamp: 3
-  minYClamp: -3
-  maxYClamp: 3
+  maxZoom: 10
+  minXClamp: -2.2
+  maxXClamp: 2.2
+  minYClamp: -2.2
+  maxYClamp: 2.2
 --- !u!4 &560263545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5277569605500176403, guid: fd7b33c06408a484989188c90aaf921b, type: 3}
@@ -2644,6 +2644,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Export Zone
       objectReference: {fileID: 0}
+    - target: {fileID: 1507011042706123327, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209725640372529277, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374376833954752838, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704629288877512727, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4409274951494471994, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.8200073
@@ -2689,6 +2705,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6359982878888906577, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 2922131190137922334, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3085655659131347493, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 1346775853844553831, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3832620157610611279, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 00492cb367d2daf44ae66f71e92532f0, type: 3}
@@ -3375,6 +3403,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 40877865392688817, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 200702380944004853, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3419,6 +3451,14 @@ PrefabInstance:
       propertyPath: MenuRelations.Array.data[3].UIButtonDataList.Array.data[2].ButtonType
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 819013233698363148, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 898977154569569912, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1236991275578419015, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -3455,6 +3495,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 61
       objectReference: {fileID: 0}
+    - target: {fileID: 1777163592199159078, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1781454597295193193, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -3467,9 +3511,17 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2108853461345455764, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2227439211101556586, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357518728137348473, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_BlockingObjects
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2369889857167675131, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: m_fontAsset
@@ -3519,6 +3571,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -103.848015
       objectReference: {fileID: 0}
+    - target: {fileID: 2956501191407584632, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3145271775930458917, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_BlockingObjects
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3213065114951099224, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -3534,6 +3594,14 @@ PrefabInstance:
     - target: {fileID: 3610462869876167074, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3643933561721784909, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_BlockingObjects
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717968092212196752, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3765536747070216572, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3593,6 +3661,18 @@ PrefabInstance:
       objectReference: {fileID: -5895554233666591663, guid: 0b2a7da0a7a1f0a46915a284030e74bf, type: 2}
     - target: {fileID: 3848451836780788292, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4032686873310712891, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097426942695277739, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159945856916400023, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4647577275409295774, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
@@ -3907,6 +3987,10 @@ PrefabInstance:
       propertyPath: managedReferences[851907322275954922].gameProgression
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6537643821899965485, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6760785036945082191, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -3990,6 +4074,10 @@ PrefabInstance:
     - target: {fileID: 7673868760058420175, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026925285403535332, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
+      propertyPath: m_BlockingObjects
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8159171677117840714, guid: 4930d3d59d0fc2b409bd72538c9211ff, type: 3}
       propertyPath: m_AnchoredPosition.y
