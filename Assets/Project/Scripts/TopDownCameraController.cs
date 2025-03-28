@@ -166,8 +166,15 @@ public class TopDownCameraController : MonoBehaviour
     private Vector3 ClampPosition(Vector3 positionToClamp)
     {
         Vector3 clampedPosition = positionToClamp;
-        clampedPosition.x = Mathf.Clamp(clampedPosition.x, minXClamp, maxXClamp);
-        clampedPosition.y = Mathf.Clamp(clampedPosition.y, minYClamp, maxYClamp);
+        float xFovInfluence = Mathf.Lerp(maxZoom + minZoom*2,0,cam.orthographicSize/maxZoom);
+        float yFovInfluence = Mathf.Lerp(maxZoom, 0, cam.orthographicSize / maxZoom);
+        float minX = minXClamp - xFovInfluence;
+        float maxX = maxXClamp + xFovInfluence;
+        float minY = minYClamp - yFovInfluence;
+        float maxY = maxYClamp + yFovInfluence;
+
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);
+        clampedPosition.y = Mathf.Clamp(clampedPosition.y, minY, maxY);
         clampedPosition.z = -10;
         return clampedPosition;
     }
