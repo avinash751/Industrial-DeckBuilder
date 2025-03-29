@@ -7,7 +7,7 @@ namespace GameManagerSystem.GameBehaviors
     [System.Serializable]
     public class PauseBehavior : GameBehaviorBase
     {
-        private PauseBehaviorConfigSO config;
+        [HideInInspector][SerializeField]private PauseBehaviorConfigSO config;
 
         [Header("Pause State - Managed by PauseBehavior")]
         [field: SerializeField] public bool IsPaused { get; private set; } = false;

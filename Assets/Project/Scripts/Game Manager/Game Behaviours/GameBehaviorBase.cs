@@ -11,9 +11,11 @@ namespace GameManagerSystem
     public abstract class GameBehaviorBase
     {
         [SerializeField][HideInInspector] string behaviorName;
-        protected GameManager gameManager { get; private set; }
-        protected PrimaryMenusUIManager menuUiManager { get; private set; }
-        [SerializeField] protected BaseGameBehaviourConfigSO BehaviourConfigSO;
+
+
+        [HideInInspector][field: SerializeField] protected GameManager gameManager { get; private set; }
+        [HideInInspector][field: SerializeField] protected PrimaryMenusUIManager menuUiManager { get; private set; }
+        [HideInInspector][SerializeField] protected BaseGameBehaviourConfigSO BehaviourConfigSO;
 
 
 
@@ -54,7 +56,7 @@ namespace GameManagerSystem
         }
 
         protected abstract void SetMenuSettings();
-        
+
         protected virtual void SetUISettings()
         {
             if (BehaviourConfigSO.ShowGameUIOnExecution)

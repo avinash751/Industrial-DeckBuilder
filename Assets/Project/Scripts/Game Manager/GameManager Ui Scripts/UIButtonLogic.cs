@@ -6,8 +6,9 @@ using System;
 using System.Collections;
 
 [System.Serializable]
-public struct UIButtonData
+public class UIButtonData
 {
+    [HideInInspector] public string ButtonName;
     public ButtonType ButtonType;
     public Button Button;
 }
@@ -19,6 +20,7 @@ public class MenuRelation
     public List<UIButtonData> UIButtonDataList;
 }
 
+[RequireComponent(typeof(GameManager))]
 public class UIButtonLogic : MonoBehaviour
 {
     [SerializeField] List<MenuRelation> MenuRelations;
@@ -31,8 +33,19 @@ public class UIButtonLogic : MonoBehaviour
             foreach (var buttonData in menuRelation.UIButtonDataList)
             {
                 List<Func<IEnumerator>> commandsForListner = new List<Func<IEnumerator>>();
-                CreateButtonCommand(buttonData.ButtonType,commandsForListner);
+                CreateButtonCommand(buttonData.ButtonType, commandsForListner);
                 buttonData.Button.onClick.AddListener(() => StartCoroutine(GameCommandExecutorForButton(commandsForListner)));
+            }
+        }
+    }
+
+    private void OnValidate()
+    {
+        foreach(var menuRelation in MenuRelations)
+        {
+            foreach(var buttonData in menuRelation.UIButtonDataList)
+            {
+                buttonData.ButtonName = buttonData.ButtonType + " Button";
             }
         }
     }

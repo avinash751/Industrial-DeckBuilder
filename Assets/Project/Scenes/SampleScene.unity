@@ -5437,33 +5437,44 @@ MonoBehaviour:
   MenuRelations:
   - MenuName: Start Menu
     UIButtonDataList:
-    - ButtonType: 0
+    - ButtonName: StartGame Button
+      ButtonType: 0
       Button: {fileID: 2199677106798125868}
-    - ButtonType: 5
+    - ButtonName: QuitGame Button
+      ButtonType: 5
       Button: {fileID: 4593277943915399533}
   - MenuName: Pause Menu
     UIButtonDataList:
-    - ButtonType: 2
+    - ButtonName: ResumeGame Button
+      ButtonType: 2
       Button: {fileID: 8447310530943272314}
-    - ButtonType: 4
+    - ButtonName: GoToMainMenu Button
+      ButtonType: 4
       Button: {fileID: 4980866288135204466}
-    - ButtonType: 5
+    - ButtonName: QuitGame Button
+      ButtonType: 5
       Button: {fileID: 8428138854220067785}
   - MenuName: Game Win Menu
     UIButtonDataList:
-    - ButtonType: 3
+    - ButtonName: RestartGame Button
+      ButtonType: 3
       Button: {fileID: 5948417888565500190}
-    - ButtonType: 4
+    - ButtonName: GoToMainMenu Button
+      ButtonType: 4
       Button: {fileID: 1618637061709753481}
-    - ButtonType: 5
+    - ButtonName: QuitGame Button
+      ButtonType: 5
       Button: {fileID: 4235035480600436927}
   - MenuName: Game Over Menu
     UIButtonDataList:
-    - ButtonType: 3
+    - ButtonName: RestartGame Button
+      ButtonType: 3
       Button: {fileID: 8109722702984911024}
-    - ButtonType: 4
+    - ButtonName: GoToMainMenu Button
+      ButtonType: 4
       Button: {fileID: 7840175549686833328}
-    - ButtonType: 5
+    - ButtonName: QuitGame Button
+      ButtonType: 5
       Button: {fileID: 6585168572119910454}
 --- !u!114 &3979011123185616178
 MonoBehaviour:
@@ -7622,6 +7633,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuUIManager: {fileID: 8241142535091248168}
   gameManagerConfigSo: {fileID: 11400000, guid: 6aa93736249dcb44a94a35316aff4c08, type: 2}
+  gameBehaviors:
+  - rid: 851907777084784936
+  - rid: 851907777084784937
+  - rid: 851907777084784938
+  - rid: 851907777084784939
+  - rid: 851907777084784940
   gameConditions:
   - rid: 851907322275954915
   - rid: 851907322275954916
@@ -7639,6 +7656,43 @@ MonoBehaviour:
       data:
         conditionName: Lose Condition
         LoseAudioKey: GameLose
+    - rid: 851907777084784936
+      type: {class: StartBehavior, ns: GameManagerSystem.GameBehaviors, asm: Assembly-CSharp}
+      data:
+        behaviorName: Start Behaviour
+        <gameManager>k__BackingField: {fileID: 7386021669217001979}
+        <menuUiManager>k__BackingField: {fileID: 8241142535091248168}
+        BehaviourConfigSO: {fileID: 11400000, guid: 7d71199ef5aa3db45919f8efcd22294e, type: 2}
+    - rid: 851907777084784937
+      type: {class: PauseBehavior, ns: GameManagerSystem.GameBehaviors, asm: Assembly-CSharp}
+      data:
+        behaviorName: Paused Behaviour
+        <gameManager>k__BackingField: {fileID: 7386021669217001979}
+        <menuUiManager>k__BackingField: {fileID: 8241142535091248168}
+        BehaviourConfigSO: {fileID: 11400000, guid: 2a6c47141911eab44b0bd85e9ae9583b, type: 2}
+        config: {fileID: 11400000, guid: 2a6c47141911eab44b0bd85e9ae9583b, type: 2}
+        <IsPaused>k__BackingField: 0
+    - rid: 851907777084784938
+      type: {class: PlayBehavior, ns: GameManagerSystem.GameBehaviors, asm: Assembly-CSharp}
+      data:
+        behaviorName: Play Behaviour
+        <gameManager>k__BackingField: {fileID: 7386021669217001979}
+        <menuUiManager>k__BackingField: {fileID: 8241142535091248168}
+        BehaviourConfigSO: {fileID: 11400000, guid: b19ce96dba2e19546ab8ceca4e6e0da0, type: 2}
+    - rid: 851907777084784939
+      type: {class: WinBehavior, ns: GameManagerSystem.GameBehaviors, asm: Assembly-CSharp}
+      data:
+        behaviorName: Win Behaviour
+        <gameManager>k__BackingField: {fileID: 7386021669217001979}
+        <menuUiManager>k__BackingField: {fileID: 8241142535091248168}
+        BehaviourConfigSO: {fileID: 11400000, guid: 928cd32d9f78378478493ab70051c9eb, type: 2}
+    - rid: 851907777084784940
+      type: {class: LoseBehavior, ns: GameManagerSystem.GameBehaviors, asm: Assembly-CSharp}
+      data:
+        behaviorName: Lose Behaviour
+        <gameManager>k__BackingField: {fileID: 7386021669217001979}
+        <menuUiManager>k__BackingField: {fileID: 8241142535091248168}
+        BehaviourConfigSO: {fileID: 11400000, guid: 2489d6d091b00fd449371ec0915c1c3e, type: 2}
 --- !u!114 &7503209222113187913
 MonoBehaviour:
   m_ObjectHideFlags: 0

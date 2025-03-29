@@ -11,14 +11,12 @@ namespace GameManagerSystem
 {
     public class GameManager : MonoBehaviour
     {
-
-        [Header("References")]
         public static GameManager Instance { get; private set; }
+        [Header("References")]
         [SerializeField] PrimaryMenusUIManager menuUIManager;
-
         [SerializeField] GameManagerConfigSO gameManagerConfigSo;
-        private List<GameBehaviorBase> gameBehaviors = new List<GameBehaviorBase>();
-        [SerializeReference] List<GameCondition> gameConditions = new List<GameCondition>();
+        [HideInInspector][SerializeReference]private List<GameBehaviorBase> gameBehaviors = new();
+        [SerializeReference] List<GameCondition> gameConditions = new();
         #region Singleton
 
         private void OnEnable()
@@ -39,6 +37,7 @@ namespace GameManagerSystem
             {
                 Debug.LogWarning("No Game Manager Config found on GameManager. Please assign one.");
                 gameBehaviors.Clear();
+                gameConditions.Clear();
             }
             else
             {
@@ -53,8 +52,12 @@ namespace GameManagerSystem
 
         private void Start()
         {
-            StartGame();
             gameConditions.ForEach(condition => condition.InitializeCondition());
+            if (menuUIManager == null)
+            {
+
+            }
+            StartGame();
         }
 
         private void Update()
@@ -124,6 +127,7 @@ namespace GameManagerSystem
                     return;
                 }
             }
+            gameConditions.Add(condition);
         }
         public void ClearAllGameConditions() => gameConditions.Clear();
 

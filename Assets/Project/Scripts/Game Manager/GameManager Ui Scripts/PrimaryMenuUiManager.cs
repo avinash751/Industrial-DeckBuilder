@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameManagerSystem.UI
 {
-    [Serializable]
+    [RequireComponent(typeof(GameManager))]
     public class PrimaryMenusUIManager: MonoBehaviour 
     {
         [Header("Game UI Objects")]
