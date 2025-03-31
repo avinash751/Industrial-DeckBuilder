@@ -11,11 +11,11 @@ namespace GameManagerSystem.GameBehaviors
         {
             winCondition = new WinCondition(_gameManager);
         }
-        public override void ExecuteBehavior()
-        {
-            ApplyBehaviorSettings(BehaviourConfigSO, GameBehaviorEventType.Lose);
-        }
 
+        public override void Enter()
+        {
+            ApplyBehaviorSettings(BehaviourConfigSO, GameBehaviorEventType.Win);
+        }
         protected override void SetMenuSettings()
         {
             menuUiManager.HideAllGameMenus();

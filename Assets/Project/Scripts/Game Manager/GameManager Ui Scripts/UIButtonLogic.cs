@@ -58,10 +58,10 @@ public class UIButtonLogic : MonoBehaviour
                 commandList.Add(() => WrapActionAsCoroutine(GameManager.Instance.PlayGame));
                 break;
             case ButtonType.PauseGame:
-                commandList.Add(() => WrapActionAsCoroutine(GameManager.Instance.TogglePause));
+               // commandList.Add(() => WrapActionAsCoroutine(GameManager.Instance.TogglePause));
                 break;
             case ButtonType.ResumeGame:
-                commandList.Add(() => WrapActionAsCoroutine(GameManager.Instance.TogglePause));
+               // commandList.Add(() => WrapActionAsCoroutine(GameManager.Instance.TogglePause));
                 break;
             case ButtonType.RestartGame:
                 commandList.Add(() => WrapActionAsCoroutine(GameManager.Instance.RestartGame));

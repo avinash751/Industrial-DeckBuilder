@@ -8,16 +8,12 @@ namespace GameManagerSystem
 {
 
     [System.Serializable]
-    public abstract class GameBehaviorBase
+    public abstract class GameBehaviorBase : IGameBehavior
     {
         [SerializeField][HideInInspector] string behaviorName;
-
-
         [HideInInspector][field: SerializeField] protected GameManager gameManager { get; private set; }
         [HideInInspector][field: SerializeField] protected PrimaryMenusUIManager menuUiManager { get; private set; }
         [HideInInspector][SerializeField] protected BaseGameBehaviourConfigSO BehaviourConfigSO;
-
-
 
         public GameBehaviorBase(GameManager _gameManager, BaseGameBehaviourConfigSO _behaviourConfigSO, PrimaryMenusUIManager _menuUiManager)
         {
@@ -27,11 +23,26 @@ namespace GameManagerSystem
             behaviorName = _behaviourConfigSO.BehaviorType.ToString() + " Behaviour";
         }
 
-        public abstract void ExecuteBehavior();
 
+        public virtual void Enter()
+        {
 
+        }
+        public virtual void OnUpdate()
+        {
 
-        // This needs to be called in Execute Behaviour in every derived class to apply the base behavior settings
+        }
+
+        public virtual void Exit()
+        {
+
+        }
+
+        /// <summary>
+        /// This needs to be called in EnterState  in every derived class to apply the base behavior settings
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="eventType"></param>
         protected virtual void ApplyBehaviorSettings(BaseGameBehaviourConfigSO config, GameBehaviorEventType eventType)
         {
             if (BehaviourConfigSO == null)
@@ -54,6 +65,12 @@ namespace GameManagerSystem
 
             InvokeOnBehaviorEvent(eventType);
         }
+
+
+        /// <summary>
+        /// This needs to be ovverriden in every derived class to set
+        /// which menus to enable or disable on entering the state
+        /// </summary>
 
         protected abstract void SetMenuSettings();
 

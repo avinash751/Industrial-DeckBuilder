@@ -12,11 +12,10 @@ namespace GameManagerSystem.GameBehaviors
             loseCondition = new LoseCondition(_gameManager);
         }
 
-        public override void ExecuteBehavior()
+        public override void Enter()
         {
             ApplyBehaviorSettings(BehaviourConfigSO, GameBehaviorEventType.Lose);
         }
-
         protected override void SetMenuSettings()
         {
             menuUiManager.HideAllGameMenus();

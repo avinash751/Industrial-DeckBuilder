@@ -8,7 +8,6 @@ namespace GameManagerSystem.GameBehaviors
     public class PauseBehavior : GameBehaviorBase
     {
         [HideInInspector][SerializeField]private PauseBehaviorConfigSO config;
-
         [Header("Pause State - Managed by PauseBehavior")]
         [field: SerializeField] public bool IsPaused { get; private set; } = false;
 
@@ -17,12 +16,7 @@ namespace GameManagerSystem.GameBehaviors
             config = (PauseBehaviorConfigSO)BehaviourConfigSO;
         }
 
-        public override void ExecuteBehavior()
-        {
-            HandlePauseInput();
-        }
-
-        private void HandlePauseInput()
+        public override void OnUpdate()
         {
             if (Input.GetKeyDown(config.PauseKey))
             {
@@ -34,16 +28,15 @@ namespace GameManagerSystem.GameBehaviors
         {
             if (IsPaused)
             {
-                ExecuteUnPause();
+                Enter();
             }
             else
             {
-                ExecutePause();
-            }
-          
+                Exit();
+            }  
         }
 
-        private void ExecutePause()
+        public override void Enter()
         {
             if (IsPaused) return;
             SetMenuSettings();
@@ -51,11 +44,12 @@ namespace GameManagerSystem.GameBehaviors
             IsPaused = true;
         }
 
-        private void ExecuteUnPause()
+
+        public override void Exit()
         {
             if (!IsPaused) return;
-            InvokeOnBehaviorEvent(GameBehaviorEventType.UnPaused);
-            gameManager.GetBehavior<PlayBehavior>().ExecuteBehavior();
+            SetMenuSettings();
+            ApplyBehaviorSettings(config, GameBehaviorEventType.UnPaused);
             IsPaused = false;
         }
 

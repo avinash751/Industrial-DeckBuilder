@@ -15,7 +15,8 @@ namespace GameManagerSystem
         [Header("References")]
         [SerializeField] PrimaryMenusUIManager menuUIManager;
         [SerializeField] GameManagerConfigSO gameManagerConfigSo;
-        [HideInInspector][SerializeReference]private List<GameBehaviorBase> gameBehaviors = new();
+        [field: SerializeField] public IGameBehavior CurrentBehavior { get; private set; }
+        [HideInInspector][SerializeReference] private List<GameBehaviorBase> gameBehaviors = new();
         [SerializeReference] List<GameCondition> gameConditions = new();
         #region Singleton
 
@@ -53,29 +54,28 @@ namespace GameManagerSystem
         private void Start()
         {
             gameConditions.ForEach(condition => condition.InitializeCondition());
-            if (menuUIManager == null)
-            {
-
-            }
             StartGame();
         }
 
         private void Update()
         {
-            InputToPauseAndUnpauseGame();
+            if (CurrentBehavior != null)
+            {
+                CurrentBehavior.OnUpdate();
+            }
         }
 
-        public void StartGame() => ExecuteBehavior<StartBehavior>();
+        public void StartGame() => TransitionTo<StartBehavior>();
 
-        public void PlayGame() => ExecuteBehavior<PlayBehavior>();
+        public void PlayGame() => TransitionTo<PlayBehavior>();
 
-        private void InputToPauseAndUnpauseGame() => ExecuteBehavior<PauseBehavior>();
 
-        public void TogglePause() => GetBehavior<PauseBehavior>().TogglePauseState();
+        // the way pausign works need to be refactored to work with the satte ans strategy pattern
+        // public void TogglePause() => GetBehavior<PauseBehavior>().TogglePauseState();
 
-        public void WinGame() => ExecuteBehavior<WinBehavior>();
+        public void WinGame() => TransitionTo<WinBehavior>();
 
-        public void LoseGame() => ExecuteBehavior<LoseBehavior>();
+        public void LoseGame() => TransitionTo<LoseBehavior>();
 
         public void LoadMainMenu() => SceneManager.LoadScene(gameManagerConfigSo.MainMenuSceneIndex);
 
@@ -93,7 +93,7 @@ namespace GameManagerSystem
             {
                 if (behavior is T targetBehavior)
                 {
-                    return (T)targetBehavior;
+                    return targetBehavior;
                 }
             }
             Debug.LogWarning($"No GameBehavior of type {typeof(T).Name} found on GameManager.");
@@ -101,13 +101,18 @@ namespace GameManagerSystem
         }
 
 
-        private void ExecuteBehavior<T>() where T : GameBehaviorBase
+        private void TransitionTo<T>() where T : GameBehaviorBase
         {
-            T behavior = GetBehavior<T>();
-            if (behavior != null)
+            T newBehavior = GetBehavior<T>();
+            if (newBehavior == null)
             {
-                behavior.ExecuteBehavior();
+                Debug.LogError($"Could Not Tranasition to {typeof(T).Name} as the the behavior type was not found on GameManager.");
+                return;
             }
+
+            if (CurrentBehavior != null) { CurrentBehavior.Exit(); }
+            CurrentBehavior = newBehavior;
+            CurrentBehavior.Enter();
         }
 
         public void AddGameBehaviour(GameBehaviorBase behavior) => gameBehaviors.Add(behavior);
