@@ -16,10 +16,10 @@ namespace GameManagerSystem.GameBehaviors.Conditions
         {
             MoneyManager.Instance.OnMaxDebtAcquired += HandleOnGameConditionMet;
         }
-      
+
         protected override void HandleOnGameConditionMet()
         {
-            GameManager.Instance.LoseGame();
+            gameManager?.LoseGame();
             AudioManager.Instance?.PlayAudio(LoseAudioKey);
         }
     }

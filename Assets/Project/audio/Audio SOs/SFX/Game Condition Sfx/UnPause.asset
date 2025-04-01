@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b98edf1eb40e2f4f8ae3debdf8f188c, type: 3}
   m_Name: UnPause
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 1b4fb3432247d7d48aae148859c995e0, type: 3}
   minVolume: 0.2
-  maxVolume: 0.4
+  maxVolume: 0.3
   minPitch: 0.8
   maxPitch: 1.2
   randomAudioClips: []

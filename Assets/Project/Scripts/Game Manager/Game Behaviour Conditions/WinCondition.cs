@@ -21,12 +21,11 @@ namespace GameManagerSystem.GameBehaviors.Conditions
             }
             gameProgression.OnAllCardPacksUnlocked += HandleOnGameConditionMet;
         }
-    
+
         protected override void HandleOnGameConditionMet()
         {
-            GameManager.Instance.WinGame();
+            gameManager?.WinGame();
             AudioManager.Instance?.PlayAudio(winAudioKey);
-
         }
     }
 }
