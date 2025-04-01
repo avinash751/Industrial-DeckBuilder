@@ -14,10 +14,6 @@ namespace GameManagerSystem.GameBehaviors
             winCondition = new WinCondition(_gameManager);
         }
 
-        public override void Enter()
-        {
-            ApplyBehaviorSettings(BehaviourConfigSO, GameBehaviorEventType.Win);
-        }
         protected override void SetMenuSettings()
         {
             menuUiManager.HideAllGameMenus();

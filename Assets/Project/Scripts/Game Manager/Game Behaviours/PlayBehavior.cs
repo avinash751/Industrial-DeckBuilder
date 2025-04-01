@@ -12,11 +12,6 @@ namespace GameManagerSystem.GameBehaviors
 
         }
 
-        public override void Enter()
-        {
-            ApplyBehaviorSettings(BehaviourConfigSO, GameBehaviorEventType.GameStarted);
-        }
-
         protected override void SetMenuSettings()
         {
             menuUiManager.HideAllGameMenus();

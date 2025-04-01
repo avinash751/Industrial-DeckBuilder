@@ -3,6 +3,8 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using GameManagerSystem.GameBehaviors.Conditions;
+using System.Collections.Generic;
+using GameManagerSystem.GameBehaviors;
 
 namespace GameManagerSystem
 {
@@ -23,27 +25,34 @@ namespace GameManagerSystem
             behaviorName = _behaviourConfigSO.BehaviorType.ToString() + " Behaviour";
         }
 
-
-        public virtual void Enter()
+        public void Enter()
         {
-
-        }
-        public virtual void OnUpdate()
-        {
-
-        }
-
-        public virtual void Exit()
-        {
-
+            ApplyBaseSettings();
+            OnEnter();
         }
 
         /// <summary>
-        /// This needs to be called in EnterState  in every derived class to apply the base behavior settings
+        ///  If The behavior needs to have custom logic when
+        ///  entering the state,then it needs to be overriden in the derived class
         /// </summary>
-        /// <param name="config"></param>
-        /// <param name="eventType"></param>
-        protected virtual void ApplyBehaviorSettings(BaseGameBehaviourConfigSO config, GameBehaviorEventType eventType)
+        protected virtual void OnEnter() { }
+
+        /// <summary>
+        /// This is intended to be called every frame when the behavior is active
+        /// This needs to be overriden in the derived class if custom logic needs 
+        /// to run every frame
+        /// </summary>
+        public virtual void OnUpdate() { }
+        public virtual void Exit() { }
+  
+        /// <summary>
+        /// This needs to be ovverriden in every derived class to set
+        /// which menus to enable or disable on entering the state
+        /// </summary>
+        protected abstract void SetMenuSettings();
+       
+
+        private void ApplyBaseSettings()
         {
             if (BehaviourConfigSO == null)
             {
@@ -53,26 +62,18 @@ namespace GameManagerSystem
 
             Debug.Log("Executing " + GetType().ToString());
 
-            SetTimescale(config.IsTimeZeroOnExecution ? 0f : 1f);
-            SetCursorLockMode(config.IsCursorLockedOnExecution);
-            SetCursorVisible(config.IsCursorVisibleOnExecution);
+            SetTimescale(BehaviourConfigSO.IsTimeZeroOnExecution ? 0f : 1f);
+            SetCursorLockMode(BehaviourConfigSO.IsCursorLockedOnExecution);
+            SetCursorVisible(BehaviourConfigSO.IsCursorVisibleOnExecution);
             SetUISettings();
             SetMenuSettings();
-            if (config.LoadSceneOnExecution)
+            if (BehaviourConfigSO.LoadSceneOnExecution)
             {
-                LoadScene(config.SceneToLoad);
+                LoadScene(BehaviourConfigSO.SceneToLoad);
             }
 
-            InvokeOnBehaviorEvent(eventType);
+            InvokeOnBehaviorEvent(this);
         }
-
-
-        /// <summary>
-        /// This needs to be ovverriden in every derived class to set
-        /// which menus to enable or disable on entering the state
-        /// </summary>
-
-        protected abstract void SetMenuSettings();
 
         protected virtual void SetUISettings()
         {
@@ -113,15 +114,11 @@ namespace GameManagerSystem
             SceneManager.LoadScene(sceneIndex);
         }
 
-        public virtual GameCondition GetGameCondition()
-        {
-            return null;
-        }
-
-
+        public virtual GameCondition GetGameCondition() => null;
+  
         #region Centralized Behavior Event
-        public event Action<GameBehaviorEventType> OnGameBehaviorEvent;
-        protected void InvokeOnBehaviorEvent(GameBehaviorEventType eventType) => OnGameBehaviorEvent?.Invoke(eventType);
+        public event Action<GameBehaviorBase> OnGameBehaviorEvent;
+        protected void InvokeOnBehaviorEvent(GameBehaviorBase behvaiorType) => OnGameBehaviorEvent?.Invoke(behvaiorType);
         #endregion
     }
 }

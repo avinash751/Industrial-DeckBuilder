@@ -19,20 +19,18 @@ namespace GameManagerSystem.GameBehaviors
             pauseCondition = new PauseCondition(_gameManager, config);
         }
 
-        public override void Enter()
+        protected override void OnEnter()
         {
-            if (IsPaused) return;
-            SetMenuSettings();
-            ApplyBehaviorSettings(config, GameBehaviorEventType.Paused);
-            IsPaused = true;
+            if (IsPaused)
+            {
+                SetMenuSettings();
+            }
         }
-
 
         public override void Exit()
         {
             if (!IsPaused) return;
             SetMenuSettings();
-            ApplyBehaviorSettings(config, GameBehaviorEventType.UnPaused);
             IsPaused = false;
         }
 
