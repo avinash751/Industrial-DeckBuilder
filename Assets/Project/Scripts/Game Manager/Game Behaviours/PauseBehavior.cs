@@ -23,11 +23,8 @@ namespace GameManagerSystem.GameBehaviors
 
         public override void Exit()
         {
-            if (gameManager.CurrentBehavior is PauseBehavior)
-            {
-                InvokeOnBehaviorEvent(this);
-                AudioManager.Instance?.PlayAudio(config.UnPauseAudioKey);
-            }
+            InvokeOnBehaviorEvent(this);
+            AudioManager.Instance?.PlayAudio(config.UnPauseAudioKey);
         }
 
         protected override void SetMenuSettings()
