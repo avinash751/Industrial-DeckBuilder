@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace GameManagerSystem.GameBehaviors.Conditions
@@ -6,16 +7,21 @@ namespace GameManagerSystem.GameBehaviors.Conditions
     public abstract class GameCondition
     {
         [SerializeField][HideInInspector] protected string conditionName;
-        GameManager gameManager;
+        [SerializeField][HideInInspector] protected GameManager gameManager;
+        public Action OnGameCondtionMet;
 
         public GameCondition(GameManager _gameManager)
         {
             gameManager = _gameManager;
         }
-
-        public abstract void InitializeCondition();
-        public abstract bool IsGameConditionMet();
-        public abstract void ExecuteGameCondition();
+        public abstract void Initialize();
+        public virtual void OnUpdate(float deltaTime = 0) { }
+        public virtual void CleanUp() { }
+        protected void TriggerGameConditionMet()
+        {
+            OnGameCondtionMet?.Invoke();
+            HandleOnGameConditionMet();
+        }
+        protected abstract void HandleOnGameConditionMet();
     }
 }
-

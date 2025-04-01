@@ -12,26 +12,22 @@ namespace GameManagerSystem.GameBehaviors.Conditions
         {
             conditionName = "Win Condition";
         }
-        public override void InitializeCondition()
+        public override void Initialize()
         {
             if (gameProgression == null)
             {
                 Debug.LogError("Game Progression is not assigned in Win Condition script");
                 return;
             }
-            gameProgression.OnAllCardPacksUnlocked += ExecuteGameCondition;
+            gameProgression.OnAllCardPacksUnlocked += HandleOnGameConditionMet;
         }
-        public override bool IsGameConditionMet()
-        {
-            return true;
-        }
-        public override void ExecuteGameCondition()
+    
+        protected override void HandleOnGameConditionMet()
         {
             GameManager.Instance.WinGame();
             AudioManager.Instance?.PlayAudio(winAudioKey);
 
         }
-
     }
 }
 

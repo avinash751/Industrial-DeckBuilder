@@ -8,6 +8,7 @@ namespace GameManagerSystem.GameBehaviors
     {
         public StartBehavior(GameManager _gameManager, BaseGameBehaviourConfigSO _behaviourConfigSO,PrimaryMenusUIManager menuUiManager) : base(_gameManager, _behaviourConfigSO, menuUiManager)
         {
+
         }
 
         public override void Enter()

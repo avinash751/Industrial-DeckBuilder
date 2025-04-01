@@ -20,7 +20,7 @@ public class MenuRelation
     public List<UIButtonData> UIButtonDataList;
 }
 
-[RequireComponent(typeof(GameManager))]
+[RequireComponent(typeof(GameManagerSystem.GameManager))]
 public class UIButtonLogic : MonoBehaviour
 {
     [SerializeField] List<MenuRelation> MenuRelations;
@@ -41,9 +41,9 @@ public class UIButtonLogic : MonoBehaviour
 
     private void OnValidate()
     {
-        foreach(var menuRelation in MenuRelations)
+        foreach (var menuRelation in MenuRelations)
         {
-            foreach(var buttonData in menuRelation.UIButtonDataList)
+            foreach (var buttonData in menuRelation.UIButtonDataList)
             {
                 buttonData.ButtonName = buttonData.ButtonType + " Button";
             }
@@ -58,10 +58,10 @@ public class UIButtonLogic : MonoBehaviour
                 commandList.Add(() => WrapActionAsCoroutine(GameManager.Instance.PlayGame));
                 break;
             case ButtonType.PauseGame:
-               // commandList.Add(() => WrapActionAsCoroutine(GameManager.Instance.TogglePause));
+                commandList.Add(() => WrapActionAsCoroutine(GameManager.Instance.PauseGame));
                 break;
             case ButtonType.ResumeGame:
-               // commandList.Add(() => WrapActionAsCoroutine(GameManager.Instance.TogglePause));
+                commandList.Add(() => WrapActionAsCoroutine(GameManager.Instance.PlayGame));
                 break;
             case ButtonType.RestartGame:
                 commandList.Add(() => WrapActionAsCoroutine(GameManager.Instance.RestartGame));
@@ -80,8 +80,6 @@ public class UIButtonLogic : MonoBehaviour
         action.Invoke();
         yield return null;
     }
-
-
     IEnumerator GameCommandExecutorForButton(List<Func<IEnumerator>> commands)
     {
         for (int i = 0; i < commands.Count; i++)

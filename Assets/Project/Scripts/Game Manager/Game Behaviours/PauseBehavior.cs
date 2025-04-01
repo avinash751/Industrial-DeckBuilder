@@ -1,6 +1,7 @@
 using UnityEngine;
 using GameManagerSystem.Configuration;
 using GameManagerSystem.UI;
+using GameManagerSystem.GameBehaviors.Conditions;
 
 namespace GameManagerSystem.GameBehaviors
 {
@@ -8,32 +9,14 @@ namespace GameManagerSystem.GameBehaviors
     public class PauseBehavior : GameBehaviorBase
     {
         [HideInInspector][SerializeField]private PauseBehaviorConfigSO config;
+        [HideInInspector][SerializeField]private PauseCondition pauseCondition;
         [Header("Pause State - Managed by PauseBehavior")]
         [field: SerializeField] public bool IsPaused { get; private set; } = false;
 
         public PauseBehavior(GameManager _gameManager, BaseGameBehaviourConfigSO _behaviourConfigSO, PrimaryMenusUIManager menuUiManager) : base(_gameManager, _behaviourConfigSO, menuUiManager)
         {
             config = (PauseBehaviorConfigSO)BehaviourConfigSO;
-        }
-
-        public override void OnUpdate()
-        {
-            if (Input.GetKeyDown(config.PauseKey))
-            {
-                TogglePauseState();
-            }
-        }
-
-        public void TogglePauseState()
-        {
-            if (IsPaused)
-            {
-                Enter();
-            }
-            else
-            {
-                Exit();
-            }  
+            pauseCondition = new PauseCondition(_gameManager, config);
         }
 
         public override void Enter()
@@ -60,6 +43,11 @@ namespace GameManagerSystem.GameBehaviors
                 menuUiManager.HideAllGameMenus();
                 menuUiManager.ShowPauseMenu();
             }
+        }
+
+        public override GameCondition GetGameCondition()
+        {
+            return pauseCondition;
         }
     }
 }

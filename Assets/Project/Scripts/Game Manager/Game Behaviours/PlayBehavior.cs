@@ -11,7 +11,8 @@ namespace GameManagerSystem.GameBehaviors
         {
 
         }
-        public override void OnUpdate()
+
+        public override void Enter()
         {
             ApplyBehaviorSettings(BehaviourConfigSO, GameBehaviorEventType.GameStarted);
         }

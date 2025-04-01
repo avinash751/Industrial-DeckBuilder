@@ -4,7 +4,6 @@ using GameManagerSystem;
 
 namespace GameManagerSystem.GameBehaviors.Conditions
 {
-
     [System.Serializable]
     public class LoseCondition : GameCondition
     {
@@ -12,23 +11,17 @@ namespace GameManagerSystem.GameBehaviors.Conditions
         public LoseCondition(GameManager _gameManager) : base(_gameManager)
         {
             conditionName = "Lose Condition";
-
         }
-        public override void InitializeCondition()
+        public override void Initialize()
         {
-            MoneyManager.Instance.OnMaxDebtAcquired += ExecuteGameCondition;
+            MoneyManager.Instance.OnMaxDebtAcquired += HandleOnGameConditionMet;
         }
-        public override bool IsGameConditionMet()
-        {
-            return true;
-        }
-        public override void ExecuteGameCondition()
+      
+        protected override void HandleOnGameConditionMet()
         {
             GameManager.Instance.LoseGame();
             AudioManager.Instance?.PlayAudio(LoseAudioKey);
-
         }
-
     }
 }
 

@@ -53,7 +53,7 @@ namespace GameManagerSystem
 
         private void Start()
         {
-            gameConditions.ForEach(condition => condition.InitializeCondition());
+            gameConditions.ForEach(condition => condition.Initialize());
             StartGame();
         }
 
@@ -63,15 +63,19 @@ namespace GameManagerSystem
             {
                 CurrentBehavior.OnUpdate();
             }
+            gameConditions.ForEach(condition => condition.OnUpdate());
+        }
+
+        private void OnDisable()
+        {
+            gameConditions.ForEach(condition => condition.CleanUp());
         }
 
         public void StartGame() => TransitionTo<StartBehavior>();
 
         public void PlayGame() => TransitionTo<PlayBehavior>();
-
-
-        // the way pausign works need to be refactored to work with the satte ans strategy pattern
-        // public void TogglePause() => GetBehavior<PauseBehavior>().TogglePauseState();
+   
+        public void PauseGame() => TransitionTo<PauseBehavior>();
 
         public void WinGame() => TransitionTo<WinBehavior>();
 
@@ -100,13 +104,12 @@ namespace GameManagerSystem
             return null;
         }
 
-
         private void TransitionTo<T>() where T : GameBehaviorBase
         {
             T newBehavior = GetBehavior<T>();
             if (newBehavior == null)
             {
-                Debug.LogError($"Could Not Tranasition to {typeof(T).Name} as the the behavior type was not found on GameManager.");
+                Debug.LogError($"Null Reference,Could Not Tranasition to {typeof(T).Name} as the the behavior type was not found on GameManager.");
                 return;
             }
 
