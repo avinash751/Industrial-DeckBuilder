@@ -27,6 +27,11 @@ namespace GameManagerSystem.GameBehaviors.Conditions
             gameManager?.WinGame();
             AudioManager.Instance?.PlayAudio(winAudioKey);
         }
+
+        public override void CleanUp()
+        {
+            gameProgression.OnAllCardPacksUnlocked -= HandleOnGameConditionMet;
+        }
     }
 }
 

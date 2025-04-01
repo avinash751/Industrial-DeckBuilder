@@ -22,6 +22,10 @@ namespace GameManagerSystem.GameBehaviors.Conditions
             gameManager?.LoseGame();
             AudioManager.Instance?.PlayAudio(LoseAudioKey);
         }
+        public override void CleanUp()
+        {
+            MoneyManager.Instance.OnMaxDebtAcquired -= HandleOnGameConditionMet;
+        }
     }
 }
 
