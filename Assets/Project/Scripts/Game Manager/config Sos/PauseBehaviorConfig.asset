@@ -17,5 +17,8 @@ MonoBehaviour:
   IsCursorLockedOnExecution: 0
   IsCursorVisibleOnExecution: 1
   LoadSceneOnExecution: 0
+  ShowGameUIOnExecution: 0
   SceneToLoad: 0
   PauseKey: 27
+  PauseAudiokey: Pause
+  UnPauseAudioKey: UnPause

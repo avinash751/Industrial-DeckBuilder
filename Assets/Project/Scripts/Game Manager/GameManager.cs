@@ -75,7 +75,17 @@ namespace GameManagerSystem
 
         public void PlayGame() => TransitionTo<PlayBehavior>();
    
-        public void PauseGame() => TransitionTo<PauseBehavior>();
+        public void TogglePause()
+        {
+            if(CurrentBehavior is PlayBehavior)
+            {
+                TransitionTo<PauseBehavior>();
+            }
+            else if (CurrentBehavior is PauseBehavior)
+            {
+                TransitionTo<PlayBehavior>();
+            }
+        }
 
         public void WinGame() => TransitionTo<WinBehavior>();
 
@@ -137,8 +147,6 @@ namespace GameManagerSystem
             }
             gameConditions.Add(condition);
         }
-        public void ClearAllGameConditions() => gameConditions.Clear();
-
         #endregion
     }
 }

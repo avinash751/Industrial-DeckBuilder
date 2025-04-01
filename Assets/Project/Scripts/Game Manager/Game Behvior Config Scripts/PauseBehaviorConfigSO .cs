@@ -7,5 +7,7 @@ namespace GameManagerSystem.Configuration
     {
         [Header("Pause Behaviour Settings")]
         public KeyCode PauseKey = KeyCode.Escape;
+        public string PauseAudiokey;
+        public string UnPauseAudioKey;
     }
 }

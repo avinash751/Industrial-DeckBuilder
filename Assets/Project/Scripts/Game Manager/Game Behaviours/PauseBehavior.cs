@@ -8,11 +8,8 @@ namespace GameManagerSystem.GameBehaviors
     [System.Serializable]
     public class PauseBehavior : GameBehaviorBase
     {
-        [HideInInspector][SerializeField]private PauseBehaviorConfigSO config;
-        [HideInInspector][SerializeField]private PauseCondition pauseCondition;
-        [Header("Pause State - Managed by PauseBehavior")]
-        [field: SerializeField] public bool IsPaused { get; private set; } = false;
-
+        [HideInInspector][SerializeField] private PauseBehaviorConfigSO config;
+        [HideInInspector][SerializeField] private PauseCondition pauseCondition;
         public PauseBehavior(GameManager _gameManager, BaseGameBehaviourConfigSO _behaviourConfigSO, PrimaryMenusUIManager menuUiManager) : base(_gameManager, _behaviourConfigSO, menuUiManager)
         {
             config = (PauseBehaviorConfigSO)BehaviourConfigSO;
@@ -21,26 +18,22 @@ namespace GameManagerSystem.GameBehaviors
 
         protected override void OnEnter()
         {
-            if (IsPaused)
-            {
-                SetMenuSettings();
-            }
+            AudioManager.Instance?.PlayAudio(config.PauseAudiokey);
         }
 
         public override void Exit()
         {
-            if (!IsPaused) return;
-            SetMenuSettings();
-            IsPaused = false;
+            if (gameManager.CurrentBehavior is PauseBehavior)
+            {
+                InvokeOnBehaviorEvent(this);
+                AudioManager.Instance?.PlayAudio(config.UnPauseAudioKey);
+            }
         }
 
         protected override void SetMenuSettings()
         {
-            if (!IsPaused)
-            {
-                menuUiManager.HideAllGameMenus();
-                menuUiManager.ShowPauseMenu();
-            }
+            menuUiManager.HideAllGameMenus();
+            menuUiManager.ShowPauseMenu();
         }
 
         public override GameCondition GetGameCondition()
