@@ -375,7 +375,7 @@ MonoBehaviour:
         FrequencyX: 0
         DampingY: 1
         FrequencyY: 0
-        DampingZ: 0.25
+        DampingZ: 0.28
         FrequencyZ: 6
         Mode: 2
         MoveToRotationMin: {x: 45, y: 0, z: 0}
