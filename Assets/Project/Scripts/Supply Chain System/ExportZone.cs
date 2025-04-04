@@ -1,9 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using CustomInspector;
+using TMPro;
 
 public class ExportZone : MonoBehaviour, IResourceReceiver
 {
+    [Header("References")]
+    public TextMeshPro moneyText; // Assign in Inspector
+
     [Header("Resource Tracking")]
     [SerializeField] private Dictionary<RawResource, int> rawResourcesInventory = new Dictionary<RawResource, int>();
     [SerializeField] private Dictionary<RefinedResource, int> refinedResourcesInventory = new Dictionary<RefinedResource, int>();
@@ -22,6 +26,7 @@ public class ExportZone : MonoBehaviour, IResourceReceiver
         {
             SellAllResources();
             sellTimer = 0f;
+            moneyText.text = "$0";
         }
     }
 
@@ -53,6 +58,7 @@ public class ExportZone : MonoBehaviour, IResourceReceiver
             }
             Debug.Log($"Refined Resources in Export Zone: {ResourceInventoryToString(refinedResourcesInventory)}");
         }
+        moneyText.text = $"${GetValueOfTotalResources()}"; // Update money text
 
         Destroy(resource.gameObject);
     }
@@ -60,7 +66,7 @@ public class ExportZone : MonoBehaviour, IResourceReceiver
     void SellAllResources()
     {
         float totalValue = 0f;
-        totalValue = GetValueOfTotalResourcesSold();
+        totalValue = GetValueOfTotalResources();
 
         if (totalValue > 0)
         {
@@ -76,7 +82,7 @@ public class ExportZone : MonoBehaviour, IResourceReceiver
         refinedResourcesInventory.Clear();
     }
 
-    private float GetValueOfTotalResourcesSold()
+    private float GetValueOfTotalResources()
     {
         float totalValue = 0f;
         foreach (var pair in rawResourcesInventory)
