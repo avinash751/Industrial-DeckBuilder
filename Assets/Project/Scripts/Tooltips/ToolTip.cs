@@ -13,6 +13,7 @@ public class ToolTip : MonoBehaviour
     [SerializeField] TextMeshProUGUI upKeepCostText;
     [SerializeField] TextMeshProUGUI sellValueText;
     [SerializeField] TextMeshProUGUI stateText;
+    [SerializeField] TextMeshProUGUI nothingInputText;
     [SerializeField] Color activeColor;
     [SerializeField] Color inactiveColor;
     [SerializeField] RectTransform rectTransform;
@@ -54,7 +55,7 @@ public class ToolTip : MonoBehaviour
     {
         HeaderText.text = cardData.name;
         sellValueText.text = "Sell Value: $" + cardData.SellValue;
-        upKeepCostText.text = "Upkeep Cost: $" + cardData.MonthlyUpKeepCost;
+        upKeepCostText.text = "UpKeep: $" + cardData.MonthlyUpKeepCost;
 
         if (card is ExtractionCard && cardData is ExtractionCardData)
         {
@@ -62,7 +63,9 @@ public class ToolTip : MonoBehaviour
             ExtractionCard extractionCard = (ExtractionCard)card;
             stateText.text = extractionCard.isExtracting ? "Active" : "Inactive";
             stateText.color = extractionCard.isExtracting ? activeColor : inactiveColor;
-            ClearAllSprites();
+            ClearAllCardData();
+            nothingInputText.gameObject.SetActive(true);
+            outputImages.First().gameObject.SetActive(true);
             outputImages.First().sprite = rawResourceSpriteLibrary[extractionCardData.ResourceToExtract];
 
 
@@ -73,7 +76,7 @@ public class ToolTip : MonoBehaviour
             ProductionCard processingCard = (ProductionCard)card;
             stateText.text = processingCard.isProductionActive ? "Active" : "Inactive";
             stateText.color = processingCard.isProductionActive ? activeColor : inactiveColor;
-            ClearAllSprites();
+            ClearAllCardData();
             List<RawResource> rawResourcesInput = processingCardData.ResourceInput.rawResources.ToList();
             List<RefinedResource> refinedResourcesInput = processingCardData.ResourceInput.refinedResources.ToList();
             SetInputSprites(rawResourcesInput, refinedResourcesInput);
@@ -87,90 +90,65 @@ public class ToolTip : MonoBehaviour
 
     public void SetInputSprites(List<RawResource> rawResources, List<RefinedResource> refinedResources)
     {
-        if(inputImages == null || inputImages.Count ==0)
+        if (inputImages == null || inputImages.Count == 0)
         {
             return;
         }
 
 
-        if(rawResources.Count + refinedResources.Count > inputImages.Count)
+        if (rawResources.Count + refinedResources.Count > inputImages.Count)
         {
             Debug.LogError("Too many input resources for the number of images available.");
             return;
         }
 
         int activeImages = inputImages.Count;
-        for (int i = 0; i < activeImages; i++)
+        for (int i = 0; i < rawResources.Count; i++)
         {
-            if (i < rawResources.Count)
-            {
-                inputImages[i].gameObject.SetActive(true);
-                inputImages[i].sprite = rawResourceSpriteLibrary[rawResources[i]];
-                activeImages--;
-            }
-            else
-            {
-                inputImages[i].gameObject.SetActive(false);
-            }
+            inputImages[i].gameObject.SetActive(true);
+            inputImages[i].sprite = rawResourceSpriteLibrary[rawResources[i]];
+            activeImages--;
         }
-        for (int i = activeImages; i < inputImages.Count; i++)
+        for (int i = activeImages; i < refinedResources.Count; i++)
         {
-            if (i < refinedResources.Count)
-            {
-                inputImages[i].gameObject.SetActive(true);
-                inputImages[i].sprite = refinedResourceSpriteLibrary[refinedResources[i]];
-                activeImages--;
-            }
-            else
-            {
-                inputImages[i].gameObject.SetActive(false);
-            }
+            inputImages[i].gameObject.SetActive(true);
+            inputImages[i].sprite = refinedResourceSpriteLibrary[refinedResources[i]];
+            activeImages--;
         }
 
     }
 
     public void SetOutputSprites(List<RawResource> rawResources, List<RefinedResource> refinedResources)
     {
-        if (outputImages == null || outputImages.Count == 0)
+        if (inputImages == null || inputImages.Count == 0)
         {
             return;
-        }
-        if (rawResources.Count + refinedResources.Count > outputImages.Count)
-        {
-            Debug.LogError("Too many output resources for the number of images available.");
-            return;
-        }
-        int activeImages = outputImages.Count;
-        for (int i = 0; i < activeImages; i++)
-        {
-            if (i < rawResources.Count)
-            {
-                outputImages[i].gameObject.SetActive(true);
-                outputImages[i].sprite = rawResourceSpriteLibrary[rawResources[i]];
-                activeImages--;
-            }
-            else
-            {
-                outputImages[i].gameObject.SetActive(false);
-            }
-        }
-        for (int i = activeImages; i < outputImages.Count; i++)
-        {
-            if (i < refinedResources.Count)
-            {
-                outputImages[i].gameObject.SetActive(true);
-                outputImages[i].sprite = refinedResourceSpriteLibrary[refinedResources[i]];
-                activeImages--;
-            }
-            else
-            {
-                outputImages[i].gameObject.SetActive(false);
-            }
         }
 
+
+        if (rawResources.Count + refinedResources.Count > inputImages.Count)
+        {
+            Debug.LogError("Too many input resources for the number of images available.");
+            return;
+        }
+
+        int ImagesUsed = 0;
+        for (int i = 0; i < rawResources.Count; i++)
+        {
+            outputImages[i].gameObject.SetActive(true);
+            outputImages[i].sprite = rawResourceSpriteLibrary[rawResources[i]];
+            ImagesUsed++;
+        }
+        for (int i = 0; i < refinedResources.Count; i++)
+        {
+
+            outputImages[i + ImagesUsed].gameObject.SetActive(true);
+            outputImages[i + ImagesUsed].sprite = refinedResourceSpriteLibrary[refinedResources[i]];
+            ImagesUsed++;
+        }
     }
 
-    void ClearAllSprites()
+    void ClearAllCardData()
     {
         foreach (var image in inputImages)
         {
@@ -180,6 +158,7 @@ public class ToolTip : MonoBehaviour
         {
             image.gameObject.SetActive(false);
         }
+        nothingInputText.gameObject.SetActive(false);
     }
 
 

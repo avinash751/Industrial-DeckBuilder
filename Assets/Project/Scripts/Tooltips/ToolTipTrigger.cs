@@ -21,7 +21,9 @@ public class ToolTipTrigger : MonoBehaviour
     }
     private void OnMouseDown()
     {
-       StartCoroutine(ShowToolTip());
+        StartCoroutine(ShowToolTip());
+        ToolTipSystem.Instance.ishiding = false;
+
     }
 
     private void OnMouseExit()
@@ -29,18 +31,19 @@ public class ToolTipTrigger : MonoBehaviour
         ToolTipSystem.Instance.Hide();
     }
 
+
     IEnumerator ShowToolTip()
     {
-      
+
         yield return new WaitForSeconds(0.2f);
         if (DragManager.IsDragging)
         {
             ToolTipSystem.Instance.Hide();
         }
-        else
+        else if (!ToolTipSystem.Instance.ishiding)
         {
             ToolTipSystem.Instance.Show(card, cardData);
         }
-       
+
     }
 }

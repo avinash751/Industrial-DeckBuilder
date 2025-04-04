@@ -5,6 +5,8 @@ public class ToolTipSystem : MonoBehaviour
     [SerializeField] protected ToolTip toolTipObject;
     public static ToolTipSystem Instance { get; private set; }
 
+    public bool ishiding;
+
     private void OnEnable()
     {
         if (Instance == null)
@@ -37,6 +39,7 @@ public class ToolTipSystem : MonoBehaviour
     public void Hide()
     {
         toolTipObject.gameObject.SetActive(false);
+        ishiding = true;
     }
 
 }
