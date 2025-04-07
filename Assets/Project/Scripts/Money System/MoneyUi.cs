@@ -1,9 +1,12 @@
 using UnityEngine;
 using TMPro;
+using MoreMountains.Feedbacks;
 
 public class MoneyUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] MMF_Player positiveMoneyFeedback;
+    [SerializeField] MMF_Player negativeMoneyFeedback;
 
 
 
@@ -33,6 +36,14 @@ public class MoneyUI : MonoBehaviour
     {
         UpdateMoneyDisplay(currentMoney);
 
+        if (change > 0)
+        {
+            positiveMoneyFeedback.PlayFeedbacks();
+        }
+        else if (change < 0)
+        {
+            negativeMoneyFeedback?.PlayFeedbacks();
+        }
     }
 
     private void UpdateMoneyDisplay(float money)
@@ -44,6 +55,9 @@ public class MoneyUI : MonoBehaviour
         else
         {
             Debug.LogError("MoneyText TextMeshProUGUI not assigned in MoneyUI script!");
+            return;
         }
+
+
     }
 }
