@@ -17,13 +17,13 @@ MonoBehaviour:
   CardIcon: {fileID: 21300000, guid: 209e91f7427df0c4bb6302f947c3dfdd, type: 3}
   IconColor: {r: 0.6641153, g: 0.75673974, b: 0.7735849, a: 1}
   CardPrefab: {fileID: 1371431145912167240, guid: fb5744d52171a584f922304ed4cfc27b, type: 3}
-  MonthlyUpKeepCost: 17
-  SellValue: 18
+  MonthlyUpKeepCost: 70
+  SellValue: 30
   ResourceInput:
     rawResources: 04000000
     refinedResources: 
   ResourceOutput:
     rawResources: 
     refinedResources: 04000000
-  ProductionRate: 1
+  ProductionRate: 3
   resourcePrefab: {fileID: 294623129989791824, guid: fac34ecf627f0ab4c817bae3d5e65676, type: 3}

@@ -21,7 +21,7 @@ public class GameProgression : MonoBehaviour
         {
             if (i == 0) continue; // skip the first card pack to allow player to get cards when starting the game
             Vector3 spawnPosition = transform.GetChild(i).transform.position;
-            spawnPosition.z = -1;
+            spawnPosition.z = -2;
             GameObject newLockedElement = Instantiate(lockedElementPrefab, spawnPosition, Quaternion.identity);
             // i-1 because we are skipping the first child, so the first milestone is at index 0
             mileStones[i-1].AssociatedLockedElement = newLockedElement; 

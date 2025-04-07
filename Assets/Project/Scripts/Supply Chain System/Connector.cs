@@ -5,6 +5,7 @@ public class Connector : MonoBehaviour
 {
     public bool isInput;
     public ConveyorBelt conveyor;
+    [HideInInspector] public Card associatedCard;
     DragableConnectorPoint editableConnectorPoint;
 
     public static event Action<Connector> OnConnectorClicked;
@@ -53,6 +54,11 @@ public class Connector : MonoBehaviour
         editableConnectorPoint.EnableConveyorEditMode(false,false,false,this);
         conveyor.Connected = true;
         AudioManager.Instance?.PlayAudio(connectedAudioKey);
+
+        if(associatedCard != null)
+        {
+            associatedCard.canSell = false;
+        }
     }
     public void Disconnect()
     {
@@ -61,6 +67,6 @@ public class Connector : MonoBehaviour
         conveyor.Connected = false;
         conveyor = null;
         editableConnectorPoint = null;
-        AudioManager.Instance?.PlayAudio(disconnectedAudioKey);
+        AudioManager.Instance?.PlayAudio(disconnectedAudioKey);     
     }
 }

@@ -99,7 +99,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 1555755549
   m_SortingLayer: 5
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &4607823333581594542
 GameObject:
@@ -402,6 +402,7 @@ MonoBehaviour:
   SupplyChain: {fileID: 11400000, guid: 8b344d4f5a8f1b84ea4bb526a7580855, type: 2}
   packSize: 5
   cardSpawnOffset: {x: 1, y: 0, z: 0}
+  sellCost: 45
 --- !u!114 &2025975874806991498
 MonoBehaviour:
   m_ObjectHideFlags: 0

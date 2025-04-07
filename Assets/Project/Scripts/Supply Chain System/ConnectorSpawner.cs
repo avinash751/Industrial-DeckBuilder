@@ -7,6 +7,7 @@ public class ConnectorSpawner : MonoBehaviour
     [HorizontalLine("References", 3, FixedColor.DustyBlue)]
     [SerializeField] Connector inputConnectorPrefab;
     [SerializeField] Connector outputConnectorPrefab;
+    [SerializeField] Card associatedCard;
 
     [HorizontalLine("Spawn Locations", 3, FixedColor.DustyBlue)]
     [SerializeField] Transform[ ] inputSpawnPointsArray;
@@ -35,6 +36,7 @@ public class ConnectorSpawner : MonoBehaviour
             Quaternion spawnRotation = outputSpawnPointsArray[0].rotation;
             spawnposition.z = -0.2f;
             Connector newOutPutConnector = Instantiate(outputConnectorPrefab,spawnposition,spawnRotation, transform);
+            newOutPutConnector.associatedCard = associatedCard;
             spawnedOutputConnectors.Add(newOutPutConnector);
         }
     }
@@ -54,7 +56,7 @@ public class ConnectorSpawner : MonoBehaviour
                 Quaternion spawnRotation = inputSpawnPointsArray[i].rotation;
                 spawnposition.z = -0.2f;
                 Connector newInputConnector = Instantiate(inputConnectorPrefab,spawnposition,spawnRotation, transform);
-
+                newInputConnector.associatedCard = associatedCard;
                 spawnedInputConnectors.Add(newInputConnector);
             }
             for (int i = 0; i < outputConnectorsRequired; i++)
@@ -62,8 +64,10 @@ public class ConnectorSpawner : MonoBehaviour
                 Vector3 spawnposition = outputSpawnPointsArray[i].position;
                 Quaternion spawnRotation = outputSpawnPointsArray[i].rotation;
                 spawnposition.z = -0.2f;
-                Connector newOutputConnector = Instantiate(outputConnectorPrefab,spawnposition,spawnRotation, transform);
+                Connector newOutputConnector = Instantiate(outputConnectorPrefab, spawnposition, spawnRotation, transform);
+                newOutputConnector.associatedCard = associatedCard;
                 spawnedOutputConnectors.Add((newOutputConnector));
+
             }
 
         }

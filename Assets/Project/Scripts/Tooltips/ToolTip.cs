@@ -102,18 +102,18 @@ public class ToolTip : MonoBehaviour
             return;
         }
 
-        int activeImages = inputImages.Count;
+        int imagesUsed = 0;
         for (int i = 0; i < rawResources.Count; i++)
         {
             inputImages[i].gameObject.SetActive(true);
             inputImages[i].sprite = rawResourceSpriteLibrary[rawResources[i]];
-            activeImages--;
+            imagesUsed++;
         }
-        for (int i = activeImages; i < refinedResources.Count; i++)
+        for (int i = 0; i < refinedResources.Count; i++)
         {
-            inputImages[i].gameObject.SetActive(true);
-            inputImages[i].sprite = refinedResourceSpriteLibrary[refinedResources[i]];
-            activeImages--;
+            inputImages[i+imagesUsed].gameObject.SetActive(true);
+            inputImages[i+imagesUsed].sprite = refinedResourceSpriteLibrary[refinedResources[i]];
+            imagesUsed++;
         }
 
     }

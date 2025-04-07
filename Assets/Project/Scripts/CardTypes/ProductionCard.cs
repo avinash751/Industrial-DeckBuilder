@@ -30,7 +30,8 @@ public class ProductionCard : Card, IResourceReceiver
     private void Start()
     {
         if (MonthTimer.Instance == null) return;
-        MonthTimer.Instance.OnMonthEnd += HandleEndOfMonthPayment; 
+        MonthTimer.Instance.OnMonthEnd += HandleEndOfMonthPayment;
+        canSell = true;
     }
 
     private void OnDisable()
@@ -59,7 +60,7 @@ public class ProductionCard : Card, IResourceReceiver
         AddResourceToReceived(resource);
         Destroy(resource.gameObject);
 
-        if (!AreAllRequiredResourcesReceived() || !AreAllInputConnectorsConnected())
+        if (!AreAllRequiredResourcesReceived() || !AreAllInputConnectorsConnected() && !AreAllOutputConnectorsConnected())
         {
             Debug.Log("Waiting for all required resources and input connections...");
             return;
@@ -150,9 +151,10 @@ public class ProductionCard : Card, IResourceReceiver
         while (AreAllInputConnectorsConnected())
         {
             ProduceResource();
-            yield return new WaitForSeconds(1f / productionCardSO.ProductionRate);
+            yield return new WaitForSeconds( productionCardSO.ProductionRate);
         }
         isProductionActive = false;
+        canSell = true;
     }
 
     void ProduceResource()
@@ -232,6 +234,7 @@ public class ProductionCard : Card, IResourceReceiver
 
         for (int i = 0; i < inputConnectors.Count; i++)
         {
+           
             if (inputConnectors[i] == null || !inputConnectors[i].IsConnected())
                 return false;
         }
@@ -244,6 +247,7 @@ public class ProductionCard : Card, IResourceReceiver
 
         for (int i = 0; i < outputConnectors.Count; i++)
         {
+           
             if (outputConnectors[i] == null || !outputConnectors[i].IsConnected())
                 return false;
         }

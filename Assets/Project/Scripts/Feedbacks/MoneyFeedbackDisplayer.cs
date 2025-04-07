@@ -58,7 +58,7 @@ public class MoneyFeedbackDisplay : MonoBehaviour
     private void ShowMoneyFeedback(float amount)
     {
         if (deductionText == null) return;
-        deductionText.text = $"-{amount:F1}$";
+        deductionText.text = $"-{amount}$";
         deductionText.color =activeColor;
         timer = displayDuration;
     }

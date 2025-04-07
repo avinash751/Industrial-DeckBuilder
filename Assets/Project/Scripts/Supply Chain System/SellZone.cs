@@ -16,8 +16,11 @@ public class SellZone : MonoBehaviour
         if (sellableObject != null)
         {
             Debug.Log($"Sellable object detected in SellZone: {collision.gameObject.name}");
-            sellableObject.SellObject();
-            AudioManager.Instance?.PlayAudio(audioKey);
+            if(sellableObject.SellObject())
+            {
+                AudioManager.Instance?.PlayAudio(audioKey);
+            }
+           
         }
     }
 }

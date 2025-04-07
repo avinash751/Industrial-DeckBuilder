@@ -17,8 +17,8 @@ MonoBehaviour:
   CardIcon: {fileID: -4222217953318386632, guid: af643abe91f3fe74191660bc5203a150, type: 3}
   IconColor: {r: 1, g: 1, b: 1, a: 1}
   CardPrefab: {fileID: 6904530581578315095, guid: 498f941d5eb5f1b47856e40fcd5c3c19, type: 3}
-  MonthlyUpKeepCost: 8
-  SellValue: 5
+  MonthlyUpKeepCost: 20
+  SellValue: 8
   ResourceToExtract: 2
   resourcePrefab: {fileID: 294623129989791824, guid: 228d32b2d08bff94a814e4ebfef11574, type: 3}
   ExtractionRate: 1

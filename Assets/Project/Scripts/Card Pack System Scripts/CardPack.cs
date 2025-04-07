@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardPack : MonoBehaviour
+public class CardPack : MonoBehaviour,ISellable
 {
     public CardSupplyChain SupplyChain; // Acts as a pool of cards
     public int packSize = 5; // Number of cards in the final pack
@@ -9,6 +9,7 @@ public class CardPack : MonoBehaviour
 
     private List<CardData> finalPack; // The final pack of cards to spawn
     private int currentCardIndex = 0; // Tracks which card to spawn next
+    [SerializeField] int sellCost;
 
     string audioKey = "CardPackClick";
 
@@ -44,17 +45,22 @@ public class CardPack : MonoBehaviour
 
     private void SpawnNextCard()
     {
-        if (finalPack != null && currentCardIndex < finalPack.Count)
-        {
-            CardData cardData = finalPack[currentCardIndex];
-            Card card = CardFactory.Instance.CreateCard(cardData);
+        if (finalPack == null) return;
+        CardData cardData = finalPack[currentCardIndex];
+        Card card = CardFactory.Instance.CreateCard(cardData);
 
-            card.transform.position = transform.position + (cardSpawnOffset);
-            currentCardIndex++;
-        }
-        else
+        card.transform.position = transform.position + (cardSpawnOffset);
+        currentCardIndex++;
+        if ( currentCardIndex >= finalPack.Count)
         {
             Destroy(gameObject);
         }
+    }
+
+    public bool SellObject()
+    {
+        Destroy(gameObject);
+        MoneyManager.Instance.AddMoney(sellCost);
+        return true;
     }
 }

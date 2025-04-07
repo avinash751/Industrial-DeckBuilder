@@ -581,6 +581,7 @@ MonoBehaviour:
   SupplyChain: {fileID: 11400000, guid: b27b0d1baf19d8e4ab4e30b1aded4d09, type: 2}
   packSize: 5
   cardSpawnOffset: {x: 1, y: 0, z: 0}
+  sellCost: 75
 --- !u!114 &2025975874806991498
 MonoBehaviour:
   m_ObjectHideFlags: 0

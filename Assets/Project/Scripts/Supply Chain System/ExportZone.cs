@@ -19,6 +19,11 @@ public class ExportZone : MonoBehaviour, IResourceReceiver
     [SerializeField] private float sellInterval = 5f;
     [SerializeField][ReadOnly] private float sellTimer = 0f;
 
+    private void Start()
+    {
+        moneyText.text = "$0";
+    }
+
     private void Update()
     {
         sellTimer += Time.deltaTime;

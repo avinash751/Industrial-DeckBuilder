@@ -23,6 +23,7 @@ public class ExtractionCard : Card
     {
         if (MonthTimer.Instance == null) return;
         MonthTimer.Instance.OnMonthEnd += HandleEndOfMonthPayment;
+        canSell = true; 
     }
 
     private void OnDisable()
@@ -54,9 +55,10 @@ public class ExtractionCard : Card
         {
       
             SpawnResource();
-            yield return new WaitForSeconds(1f / extractionCardData.ExtractionRate);
+            yield return new WaitForSeconds(extractionCardData.ExtractionRate);
         }
         isExtracting = false;
+        canSell = true;
     }
 
     void SpawnResource()

@@ -400,8 +400,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SupplyChain: {fileID: 11400000, guid: ad2ac0f0b5b868a459d1790cc1505996, type: 2}
-  packSize: 5
+  packSize: 4
   cardSpawnOffset: {x: 1, y: 0, z: 0}
+  sellCost: 10
 --- !u!114 &2025975874806991498
 MonoBehaviour:
   m_ObjectHideFlags: 0

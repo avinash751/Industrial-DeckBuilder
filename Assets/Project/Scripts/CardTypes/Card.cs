@@ -10,17 +10,19 @@ public abstract class Card : MonoBehaviour, ISellable
     [FromChildren][SerializeField] protected ConnectorSpawner connectorSpawner;
     int sellValue;
     float monthlyUpkeepCost;
-    public Action<float>OnMoneyDeducted;
+    public Action<float> OnMoneyDeducted;
+    public bool canSell;
+    string cantSellAudi0 = "Cancel&Deny";
 
     public virtual void InitializeCard(CardData data)
     {
         cardIcon.sprite = data.CardIcon;
-        cardIcon.color = data.IconColor;                                 
+        cardIcon.color = data.IconColor;
 
-        cardNameText.text = data.CardName;     
+        cardNameText.text = data.CardName;
         sellValue = data.SellValue;
         monthlyUpkeepCost = data.MonthlyUpKeepCost;
-        connectorSpawner = GetComponentInChildren<ConnectorSpawner>();         
+        connectorSpawner = GetComponentInChildren<ConnectorSpawner>();
         if (connectorSpawner != null)
         {
             connectorSpawner.InitializeConnectors(data);
@@ -40,10 +42,16 @@ public abstract class Card : MonoBehaviour, ISellable
         Debug.Log($"{cardNameText.text} paid upkeep cost of ${monthlyUpkeepCost}");
     }
 
-    public void SellObject()
+    public bool SellObject()
     {
+        if (!canSell)
+        {
+            AudioManager.Instance?.PlayAudio(cantSellAudi0);
+            return false;
+        }
         Destroy(gameObject);
         MoneyManager.Instance.AddMoney(sellValue);
+        return true;
     }
 
     public virtual CardData GetCardData()
