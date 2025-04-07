@@ -97,9 +97,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635548120955888269}
   m_Enabled: 1
-  m_SortingLayerID: -1967793289
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: 1555755549
+  m_SortingLayer: 5
+  m_SortingOrder: 1
   m_SortAtRoot: 0
 --- !u!1 &4607823333581594542
 GameObject:
@@ -289,8 +289,8 @@ GameObject:
   - component: {fileID: 2101857529706715156}
   - component: {fileID: 3205979803209103793}
   - component: {fileID: 6364913486727766705}
-  - component: {fileID: 2977911253425211755}
   - component: {fileID: 2025975874806991498}
+  - component: {fileID: 7136381167816671039}
   m_Layer: 6
   m_Name: Metal Card Pack
   m_TagString: Cards
@@ -402,21 +402,6 @@ MonoBehaviour:
   SupplyChain: {fileID: 11400000, guid: 8b344d4f5a8f1b84ea4bb526a7580855, type: 2}
   packSize: 5
   cardSpawnOffset: {x: 1, y: 0, z: 0}
---- !u!114 &2977911253425211755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6401362870432411069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc37dd1b2de57b8478ea1aa9f546ffc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSmoothness: 10
-  mainCamera: {fileID: 0}
-  clickSoundKey: 
 --- !u!114 &2025975874806991498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,3 +416,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverScale: {x: 1.1, y: 1.1, z: 1.1}
   audioKey: CardHover
+--- !u!114 &7136381167816671039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401362870432411069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed55cf0ac1483e147bb4cf0f250535d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSmoothness: 10
+  mainCamera: {fileID: 0}
+  clickSoundKey: 
+  sortingGroup: {fileID: 2519764944421545612}
+  backgroundSprite: {fileID: 7395052709914435921}
+  invalidColor: {r: 0.96981126, g: 0.6765565, b: 0.59835523, a: 1}
+  cardLayer:
+    serializedVersion: 2
+    m_Bits: 448
+  collsionDetectionScale: {x: 0, y: 0}

@@ -32,7 +32,7 @@ public class DraggableCard : Draggable
     protected override void OnMouseStartDrag()
     {
         base.OnMouseStartDrag();
-        sortingGroup.sortingOrder = 1;
+        sortingGroup.sortingOrder = 100;
         backgroundSprite.color = originalColor;
         originalPosition = transform.position;
     }

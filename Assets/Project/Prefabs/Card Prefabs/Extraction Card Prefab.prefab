@@ -220,7 +220,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 1555755549
   m_SortingLayer: 5
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_SortAtRoot: 0
 --- !u!1 &1349082659731372872
 GameObject:
@@ -487,12 +487,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSmoothness: 10
   mainCamera: {fileID: 0}
+  clickSoundKey: CardClick
   sortingGroup: {fileID: 0}
   backgroundSprite: {fileID: 0}
   invalidColor: {r: 0.9019608, g: 0.72156864, b: 0.72156864, a: 1}
   cardLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   collsionDetectionScale: {x: 1, y: 1.56}
 --- !u!114 &3966456620767018009
 MonoBehaviour:
@@ -507,6 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverScale: {x: 1.1, y: 1.1, z: 1.1}
+  audioKey: CardHover
 --- !u!61 &2339481783312245002
 BoxCollider2D:
   m_ObjectHideFlags: 0
