@@ -37,7 +37,7 @@ public class DragableConnectorPoint : DragableCoveryorPoint
 
     private void OnMouseDown()
     {
-        if (!isConveyerEditMode && !associatedConveyor.Connected)
+        if (!isConveyerEditMode)
         {
             OnAttemptToEnterConveyorEditMode?.Invoke(this, associatedConveyor);
         }

@@ -23,18 +23,18 @@ MonoBehaviour:
     neutralDemandValue: 5
   refinedResourceValues:
   - refinedResourceType: 1
-    neutralDemandValue: 5
+    neutralDemandValue: 6
   - refinedResourceType: 3
     neutralDemandValue: 7
   - refinedResourceType: 7
-    neutralDemandValue: 8
+    neutralDemandValue: 10
   - refinedResourceType: 2
     neutralDemandValue: 3
   - refinedResourceType: 6
     neutralDemandValue: 5
   - refinedResourceType: 4
-    neutralDemandValue: 10
+    neutralDemandValue: 5
   - refinedResourceType: 5
-    neutralDemandValue: 14
-  - refinedResourceType: 8
     neutralDemandValue: 20
+  - refinedResourceType: 8
+    neutralDemandValue: 35

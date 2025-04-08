@@ -95,6 +95,7 @@ public class SupplyChainEditor : MonoBehaviour
         currentEditablePoint = connectorEditPoint;
         existingConveyor = conveyor;
         connectorEditPoint.EnableConveyorEditMode(true,false, true, null);
+        mouse0ClickCounter = 0;
     }
 
 
