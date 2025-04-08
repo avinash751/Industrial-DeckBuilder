@@ -46,7 +46,7 @@ public class PlacePreviewConveyorSegment : ICommand
         Vector2 endPoint = previousMousePosition;
         Vector2 direction = (endPoint - startPoint).normalized;
         float segmentLength = Vector2.Distance(startPoint, endPoint);
-        float trimAmount = segmentLength * 0.2f;    // 20% trimming
+        float trimAmount = segmentLength * 0.4f;    // 30% trimming
         trimAmount = Mathf.Min(trimAmount, segmentLength / 2f);
         Vector2 trimmedStart = startPoint + direction * trimAmount;
         Vector2 trimmedEnd = endPoint - direction * trimAmount;

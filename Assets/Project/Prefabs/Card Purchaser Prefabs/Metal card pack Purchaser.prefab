@@ -759,5 +759,5 @@ MonoBehaviour:
   cardPackPrefab: {fileID: 6401362870432411069, guid: 68a27a905c110d6419dfce2ce81c8641, type: 3}
   spawnTransform: {fileID: 1687653776525265853}
   costText: {fileID: 4908112233712050031}
-  cardPackCost: 90
+  cardPackCost: 140
   <IsPurchasable>k__BackingField: 1
