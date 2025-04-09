@@ -4,9 +4,10 @@
 
 ## Important Links 
 * [GitHub Repository Link](https://github.com/avinash751/Industrial-DeckBuilder)
-* [Game Build Link](https://drive.google.com/drive/folders/17d_v12D2cMc1R85IIUX_hx_0TT7oDVPb?usp=sharing)
+* [Game Build Link](https://falmouthacmy.sharepoint.com/:u:/g/personal/ap319638_falmouth_ac_uk/Eby9o-R1Vq1DlBEskrcljsgB1AJcNUk89EVeyp22BnICHA?e=fGhRXb)
 * [Game Pitch Video Link](https://falmouth.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7d6fab18-ae47-4f66-9db9-b2ba013d3108)
-* [Game Design Document](https://docs.google.com/document/d/1etP5jpJh4kDudZ9LC9bTMK6KER31CzaIItbkAQEjHYk/edit?usp=sharing)
+* [Game Design Document](https://docs.google.com/document/d/1etP5jpJh4kDudZ9LC9bTMK6KER31CzaIItbkAQEjHYk/edit?usp=sharing](https://falmouthacmy.sharepoint.com/:w:/g/personal/ap319638_falmouth_ac_uk/EYurDuxiT-pAmEuVFJGKlNgBVCdq4rpGg_5Jic9cBZck6Q?e=6ob6MR))
+* [Project Submission One Drive Folder Link](https://falmouthac-my.sharepoint.com/:f:/g/personal/ap319638_falmouth_ac_uk/EsxXSjuu1gZMgiONNI0SW1IBBbFXqe-goDnqQTjhWzkBsw?e=FrBu9Y)
 
 ## Table of Contents 
 * Game Controls Scheme
