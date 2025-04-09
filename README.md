@@ -1,6 +1,6 @@
 # READ ME
 
-**Submission For IGO 721** By Avinash Sanjay Prabhu [cite: 1]
+**Submission For IGO 721**  By Avinash Sanjay Prabhu 
 
 ## Important Links 
 * [GitHub Repository Link](https://github.com/avinash751/Industrial-DeckBuilder)
