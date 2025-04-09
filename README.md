@@ -61,10 +61,10 @@
 * This only works when you are constructing a conveyor belt. [cite: 18]
 
 ### Other Controls
-* Press the **Esc Key** to Pause and Unpause the game. [cite: 18]
+* Press the **Esc Key** to Pause and Unpause the game.
 * To generate money in the game, connect any (O) Output Marked Connector from a card to any (I) Input marked Connector of an export zone to generate money monthly. [cite: 19]
 
-## Known Bugs [cite: 20]
+## Known Bugs
 
 ### Issue 1: Conveyor Mode Soft Lock
 * **Description:** Fiddling with the endpoints of the conveyor belts too much can occasionally soft lock you, making the conveyor never stop following the mouse. [cite: 20]
@@ -75,9 +75,9 @@
 * **Fix:** Just try to move it to different places near where you want it to be until it does not show as red. [cite: 23]
 * This is because there is a fundamental flaw in how colliders are made, and there was not enough time to restructure this logic. [cite: 24]
 
-### Issue 3: End and Start Conveyor Points Not Responding When Clicked [cite: 2]
+### Issue 3: End and Start Conveyor Points Not Responding When Clicked 
 
-## Third Party Assets Used For Development [cite: 25]
+## Third Party Assets Used For Development 
 
 ### 1. Feel
 * **Description:** Feel is a ready-to-use solution to provide on-demand game feel to your Unity game, with as little friction or setup as possible[cite: 25]. It’s a modular, user-friendly, and very easy-to-extend system you can build upon[cite: 26]. (MoreMountains, 2021) [cite: 27]
@@ -105,7 +105,7 @@
 * **Reference/Link:** Technologies, U. (2024). [Real-Time 3D Development Platform & Editor | Unity](https://unity.com/products/unity-engine). [online] unity.com. [cite: 39]
 
 ### 2. Visual Studio 2022 Community Edition
-* **Description:** It is a fully-featured, extensible, free IDE for creating modern applications for Android, iOS, Windows, as well as web applications and cloud services[cite: 40]. It is also used extensively for game development. (Microsoft, 2014) [cite: 41]
+* **Description:** It is a fully-featured, extensible, free IDE for creating modern applications for Android, iOS, Windows, as well as web applications and cloud services[cite: 40]. It is also used extensively for game development. (Microsoft, 2014) 
 * **What I Have Used It For:** This is the only software I have used for writing all my game code and scripts[cite: 41]. It is also the main software I have used for debugging code[cite: 42].
 * **Reference/Link:** Microsoft (2022). [Free IDE and Developer Tools | Visual Studio Community](https://visualstudio.microsoft.com/vs/community/). [online] Visual Studio. [cite: 43]
 
@@ -120,8 +120,8 @@
 * **Reference/Link:** Google (2025). [Gemini Pro](https://deepmind.google/technologies/gemini/pro/). [online] Google DeepMind. [cite: 52]
 
 ### 5. Audacity (3.0.0)
-* **Description:** It is a free, open-source audio editing and audio recording DAW, used to edit music, sound effects, and anything audio-related[cite: 53]. It has a bunch of audio tools and pre-made effects to get the desired output needed[cite: 54].
-* **What I Have Used It For:** This is the only software I have used to edit audio and make modified sound effects out of pre-existing ones[cite: 55]. So all sounds that you hear in the game have been edited and modified by me using the Audacity software[cite: 56].
+* **Description:** It is a free, open-source audio editing and audio recording DAW, used to edit music, sound effects, and anything audio-related[cite: 53]. It has a bunch of audio tools and pre-made effects to get the desired output needed.
+* **What I Have Used It For:** This is the only software I have used to edit audio and make modified sound effects out of pre-existing ones[cite: 55]. So all sounds that you hear in the game have been edited and modified by me using the Audacity software
 * **Reference/Link:** Audacity (2022). [Audacity | free, open source, cross-platform audio software for multi-track recording and editing.](https://www.audacityteam.org/). [online] Audacityteam.org. [Accessed 8 Apr. 2025] [cite: 57]
 
 ### 6. Coolors
