@@ -6,6 +6,7 @@
 * [GitHub Repository Link](https://github.com/avinash751/Industrial-DeckBuilder)
 * [Game Build Link](https://drive.google.com/drive/folders/17d_v12D2cMc1R85IIUX_hx_0TT7oDVPb?usp=sharing)
 * [Game Pitch Video Link](https://falmouth.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7d6fab18-ae47-4f66-9db9-b2ba013d3108)
+* [Game Design Document](https://docs.google.com/document/d/1etP5jpJh4kDudZ9LC9bTMK6KER31CzaIItbkAQEjHYk/edit?usp=sharing)
 
 ## Table of Contents 
 * Game Controls Scheme
